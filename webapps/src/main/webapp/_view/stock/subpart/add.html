@@ -1,0 +1,58 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">零部件</label>
+            <div class="layui-input-inline">
+                <input type="text" name="subpart.partName" placeholder="零部件" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">数量</label>
+            <div class="layui-input-inline">
+                <input type="text" name="subpart.numUntil"  placeholder="数量" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">单位</label>
+            <div class="layui-input-inline">
+                <input type="text" name="subpart.numUntil" placeholder="单位" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">单价</label>
+            <div class="layui-input-inline">
+                <input type="text" name="subpart.price"  placeholder="单价" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">规格</label>
+            <div class="layui-input-inline">
+                <input type="text" name="devicelist.standard" placeholder="规格" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">品牌</label>
+            <div class="layui-input-inline">
+                <input type="text" name="subpart.brand"  placeholder="品牌" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">经销商</label>
+            <div class="layui-input-inline">
+                <input type="text" name="subpart.dealer" placeholder="规格" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">来源</label>
+            <div class="layui-input-inline">
+                <textarea  style="height: 60px;width: 500px"type="textarea" name="subpart.source" placeholder="来源" autocomplete="off" class="layui-input"></textarea>
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit2" data-url="#(ctx)/stock/subpart/doadd">
+                        <i class="fa fa-floppy-o">&nbsp;</i>提交
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end

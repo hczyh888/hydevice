@@ -1,0 +1,121 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel panel-info">
+    <div class="panel-heading ">
+    </div>
+    <div id="all" class="panel-body">
+        <!-- 库存设备 -->
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label label-120">设备档案号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="fileNumber" placeholder="请输入设备档案号" class="layui-input">
+                </div>
+                 <label class="layui-form-label label-120">部门科室</label>
+                <div class="layui-input-inline">
+                    #combox(type='dept',name='dept.dept','1','',code='dept')
+                </div>
+                <div class="layui-input-nomarl">
+                    <button class="layui-btn layui-btn-sm layui-btn-green" lay-submit="" lay-filter="moreSearch">
+                        <i class="fa fa-chevron-down">&nbsp;</i>更多
+                    </button>
+                    <button class="layui-btn layui-btn-sm search-btn" table-id="archivesInfoTable" lay-submit="" lay-filter="search">
+                        <i class="fa fa-search">&nbsp;</i>查询
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+                </div>
+            </div>
+            <div class="layui-form-item more-search">
+                <label class="layui-form-label label-120">库房名称:</label>
+                <div class="layui-input-inline">
+                    <select name="warehouseName"  lay-search="">
+                        <option value="">请选择</option>
+                        <option value="A库房">A库房</option>
+                        <option value="B库房">B库房</option>
+                        <option value="C库房">C库房</option>
+                        <option value="D库房">D库房</option>
+                        <option value="E库房">E库房</option>
+
+                    </select>
+                </div>
+                <label class="layui-form-label label-120">设备名称:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="deviceName" placeholder="请输入设备名称" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120">设备分类:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="className" placeholder="请输入设备分类" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item more-search">
+                <label class="layui-form-label label-120">建档时间:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="firstEnterDate" id="firstEnterDate" placeholder="请输入入库时间" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120 ">生产企业:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="companyName" placeholder="请输入生产企业" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120 ">经销商:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="agencyName" placeholder="请输入经销商" class="layui-input">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel">
+    <div class="panel-heading ">
+        <span>完善设备资料</span>
+        <div class="layui-btn-group pull-right ">
+            <a href="#(ctx)/stock/archivesInfo/exportLogToExcel" class="layui-btn layui-btn-sm" >
+                <i class="fa fa-file-excel-o">&nbsp;</i>导出
+            </a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="layui-form nowrap">
+            <table class="layui-table" id="archivesInfoTable" cyType="pageGrid"
+                   cyProps="url:'/stock/archivesInfo/getList',checkbox:'true',pageColor:'#2991d9'">
+                <thead>
+                <tr>
+                    <!--复选框-->
+                    <th width="1%" param="{type:'checkbox'}">
+                        <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                    </th>
+                    <!--isPrimary：是否是主键-->
+                    <th width="5%" param="{name:'status',codeName:'stockPileStatus'}">使用状态</th>
+
+                    <th width="10%" param="{name:'fileNumber',sort:'true'}">设备档案号</th>
+
+                    <th width="10%" param="{name:'deviceName'}">设备名称</th>
+
+                    <th width="10%" param="{name:'companyName'}">生产企业</th>
+
+                    <th width="10%" param="{name:'agencyName'}">经销商</th>
+
+                    <th width="5%" param="{name:'price'}">单价</th>
+
+                    <th width="10%" param="{name:'regisNumberName'}">医疗器械注册证号</th>
+
+                    <th width="10%" param="{name:'firstEnterDate'}">建档时间</th>
+
+                    <th width="15%" param="{operate:'true',buttons:[{func:'Render.edit',url:'#(ctx)/stock/archivesInfo/edit',title:'完善资料',area:'55%-80%'},{func:'Render.info',url:'/stock/archivesInfo/view',title:'查看',area:'60%-80%'}]}">操作</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#firstEnterDate'
+        });
+    });
+</script>
+#end

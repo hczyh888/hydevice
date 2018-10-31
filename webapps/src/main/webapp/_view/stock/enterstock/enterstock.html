@@ -1,0 +1,129 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel panel-info">
+
+    <div id="all" class="panel-body">
+        <div class="wrapper" id="hyapp" v-cloak>
+        <!-- search  -->
+        <!--<form class="layui-form" action="">
+            <input type="hidden" id="copyall">
+            <div class="layui-form-item">
+                <label class="layui-form-label label-120">入库单号：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="name" placeholder="请输入单号" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120">库房类型：</label>
+                <div class="layui-input-inline">
+                    #combox(type='wareHouse',name='wareHouse.wareHouse','1','',code='wareHouse')
+                </div>
+                <div class="layui-input-nomarl">
+                    <button class="layui-btn layui-btn-sm layui-btn-green" lay-submit="" lay-filter="moreSearch">
+                        <i class="fa fa-chevron-down">&nbsp;</i>更多
+                    </button>
+                    <button class="layui-btn layui-btn-sm search-btn" table-id="enterTable" lay-submit="" lay-filter="search">
+                        <i class="fa fa-search">&nbsp;</i>查询
+                    </button>
+                    <button type="reset" class="layui-butn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+                </div>
+            </div>
+        </form>-->
+        <div class="layui-card ">
+            <div class="layui-card-body">
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-120">入库单号：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="enterStockId" placeholder="请输入单号" v-model="q.enterStockId" @keyup.enter="query" class="form-control">
+                    </div>
+                    <label class="layui-form-label label-120">库房类型：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="housetype" placeholder="请输入库房类型" v-model="q.housetype" @keyup.enter="query" class="form-control">
+                    </div>
+                    <button class="layui-btn layui-btn-sm search-btn " @click="query">
+                        <i class="fa fa-search">&nbsp;</i>查询
+                    </button>
+                    <button class="layui-btn layui-btn-sm layui-btn-primary" @click="clearWhere">
+                        <i class="fa fa-refresh">&nbsp;</i>重置</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading ">
+        <span>入库单列表</span>
+        <div class="pull-right">
+            <a  href="javascript:addPage('新增入库单','#(ctx)/stock/enterStock/add','enterStockAdd','57.35%-70%')"><i class="fa fa-plus">&nbsp;</i>增加入库单</a>
+        </div>
+    </div>
+    <div class="layui-form nowrap">
+        <table id="enterTable" lay-filter="enter" ></table>
+    </div>
+</div>
+<script type="text/html" id="barEnter">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+<script>
+    //引用layui table
+    var enterTable;
+    layui.use(['table'],function () {
+        enterTable = layui.table;
+        enterTable.render({
+            elem:'#enterTable',
+            url:'#(ctx)/stock/enterStock/getList',
+            page:true,
+            id:'enterTable',
+            cols:[[
+                {type:'numbers',title:'序号',width:'5%'},
+                {field:'enterStockId',title:'入库单号'},
+                {field:'housetype',title:'库房类型'},
+                {field:'housename',title:'库房名称'},
+                {field:'sumNum',title:'数量'},
+                {field:'sumMoney',title:'金额'},
+                {field:'status',title:'审核状态'},
+                {field:'agency',title:'经销商'},
+                {fixed:'right',align:'center',title:'操作',width:120,toolbar:'#barEnter'}
+            ]]
+        });
+        //监听工具条
+        enterTable.on('tool(enter)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'del'){
+                deleteOne(data.id,'#(ctx)/stock/enterStock/del','删除');
+
+            }else if(layEvent == 'edit'){
+                openIframe(data.id,'#(ctx)/stock/enterStock/edit','编辑-信息','60%-75%');
+            }
+        });
+    });
+
+    //实例化vue
+    var vm = new Vue({
+        el:'#hyapp',
+        data:{
+            q:{enterStockId:null,housetype:null}
+        },
+        methods:{
+            query: function () {
+                vm.reload();
+            },
+            reload: function () {
+                enterTable.reload('enterTable',{
+                    where:vm.q,
+                    page:{curr:1}
+                })
+            },
+            clearWhere:function () {
+                vm.q.enterStockId = null;
+                vm.q.housetype = null;
+            }
+
+        }
+    })
+</script>
+#end

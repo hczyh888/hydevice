@@ -1,0 +1,60 @@
+#@iframeIview()
+#define mainContent()
+<div id="app" v-cloak="">
+    <i-form :model="formRight" label-position="right" :label-width="100">
+        <form-item label="设备名称">
+            <i-input v-model="formRight.deviceName"></i-input>
+        </form-item>
+        <form-item label="部门名称">
+            <i-input v-model="formRight.deptName"></i-input>
+        </form-item>
+        <form-item label="期初数量">
+            <i-input v-model="formRight.initNum"></i-input>
+        </form-item>
+        <form-item label="存放位置">
+            <i-input v-model="formRight.place"></i-input>
+        </form-item>
+        <form-item>
+            <i-button type="primary" @click="add">添加</i-button>
+            <i-button type="primary" @click="dosubmit">提交</i-button>
+        </form-item>
+    </i-form>
+    <i-table stripe :columns="columns1" :data="data1"></i-table>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:function () {
+            return  {
+                formRight:{xh: '1',deviceName:'22',deptName:'33',initNum:1,place:''},
+                columns1:[
+                    {title:'序号',key:'xh'},
+                    {title:'设备名',key:'deviceName'},
+                    {title:'部门科室',key:'deptName'},
+                    {title:'数量',key:'initNum'},
+                    {title:'存放地',key:'place'}
+                ],
+                data1:[
+                ]
+            }
+        },
+        methods:{
+            add:function () {
+                this.formRight.xh=this.data1.length;
+                this.data1.push(
+                    {
+                     xh:this.formRight.xh,
+                     deviceName:this.formRight.deviceName,
+                     deptName:this.formRight.deptName,
+                     initNum:this.formRight.initNum,
+                     place:this.formRight.place
+                    })
+            },
+            dosubmit:function(){
+
+            }
+        }
+
+    })
+</script>
+#end

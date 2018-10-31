@@ -1,0 +1,145 @@
+#@iframeLayout()
+#define mainContent()
+
+
+<div class="m0Auto pos_relaive mt30 pb30 bgw w800 " id="planPrintDiv">
+<div class="m0Auto w730" id="iframepage" >
+<!--需要打印的目标表格-->
+    <div class="pt30 pos_relaive" id="printTitle">
+        <p class="h40 lh40px f18px fB textC pos_relaive">医疗设备申请表</p>
+        <p class="h40 lh40px f16px textL pos_relaive">申请日期：
+            <span id="logInfo"></span>
+
+        </p>
+        <div class="">
+            <table class="layui-table">
+                <tbody>
+                <tr class="h40">
+                    <td width="16.6%" height="50px">设备名称</td>
+                    <td class="fb">#(apply.planType)</td>
+                    <td width="16.6%" >设备数量</td>
+                    <td width="16.6%" class="fb">#(apply.deviceNumber)</td>
+                    <td width="16.6%">单位</td>
+                    <td class="fb">#(apply.unit)</td>
+                </tr>
+
+                <tr class="h40">
+                    <td width="16.6%" height="50px">预算金额</td>
+                    <td class="fb">#(apply.budget)</td>
+                    <td width="16.6%">部门科室</td>
+                    <td width="16.6%" colspan="3" class="fb">#(apply.deviceCnName)</td>
+                </tr>
+
+                <tr>
+                    <td width="16.6%" height="100px">申购理由</td>
+                    <td width="16.6%" colspan="5" class="fb">#(apply.applyReason)</td>
+                </tr>
+
+                <tr>
+                    <td width="16.6%" height="50px">主要配置</td>
+                    <td width="16.6%" colspan="5" class="fb"></td>
+                </tr>
+
+                <tr>
+                    <td width="16.6%" height="150px">设备主管部门意见</td>
+                    <td colspan="5" style="text-align: end">
+                        <p class="pTxtS" >签名：</p>
+                        <p class="pTxtD">年<span class="ml30 mr30">月</span>日</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="16.6%" height="150px">医教部领导意见</td>
+                    <td colspan="5" style="text-align: end">
+                        <p class="pTxtS">签名：</p>
+                        <p class="pTxtD">年<span class="ml30 mr30">月</span>日</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="16.6%" height="150px">院领导意见</td>
+                    <td colspan="5" style="text-align: end">
+                        <p class="pTxtS">签名：</p>
+                        <p class="pTxtD">年<span class="ml30 mr30">月</span>日</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="16.6%" height="150px">备注</td>
+                    <td colspan="5"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+    <div class="page-footer">
+        <div class="btn-list">
+            <div class="btnlist">
+        <button class="printBtn pos_absolute right8  mr-140 top40 J_download layui-btn layui-btn-normal layui-btn-radius" type="button" onclick="print()">打印</button>
+        <a class="printBtn pos_absolute right8  mr-140 top40 J_download layui-btn layui-btn-normal layui-btn-radius" href="http://mem.reps.com.cn/main-print-download_demo-plan_id-28.html">下载</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--利用jqueryprint插件打印、下载-->
+<script type="text/javascript" src="./exort_files/jquery-1.8.3.min.js.下载"></script>
+<script language="javascript" src="/statics/plugins/export/jquery-1.4.4.min.js"></script>
+<script language="javascript" src="/statics/plugins/export/jquery.jqprint-0.3.js"></script>
+
+
+<script>
+    /*
+    * 打印
+    * */
+    function  print(){
+        /* $("#iframepage").jqprint();*/
+
+        $("#iframepage").jqprint({
+            debug: false, //如果是true则可以显示iframe查看效果（iframe默认高和宽都很小，可以再源码中调大），默认是false
+            importCSS: true, //true表示引进原来的页面的css，默认是true。（如果是true，先会找$("link[media=print]")，若没有会去找$("link")中的css文件）
+            printContainer: true, //表示如果原来选择的对象必须被纳入打印（注意：设置为false可能会打破你的CSS规则）。
+            operaSupport: true//表示如果插件也必须支持歌opera浏览器，在这种情况下，它提供了建立一个临时的打印选项卡。默认是true
+        });
+    }
+    /*
+    * 下载
+    * */
+    $("#download").click(function(){
+        $("#delAll").submit();
+    });
+    
+    //当前时间
+    function getCurDate()
+    {
+        var d = new Date();
+        var week;
+        switch (d.getDay()){
+            case 1: week="星期一"; break;
+            case 2: week="星期二"; break;
+            case 3: week="星期三"; break;
+            case 4: week="星期四"; break;
+            case 5: week="星期五"; break;
+            case 6: week="星期六"; break;
+            default: week="星期天";
+        }
+        var years = d.getFullYear();
+        var month = add_zero(d.getMonth()+1);
+        var days = add_zero(d.getDate());
+        var hours = add_zero(d.getHours());
+        var minutes = add_zero(d.getMinutes());
+        var seconds=add_zero(d.getSeconds());
+        var ndate = years+"年"+month+"月"+days+"日 "+hours+":"+minutes+":"+seconds+" "+week;
+        var divT=document.getElementById("logInfo");
+        divT.innerHTML= ndate;
+    }
+    function add_zero(temp)
+    {
+        if(temp<10) return "0"+temp;
+        else return temp;
+    }
+    setInterval("getCurDate()",100);
+</script>
+#end

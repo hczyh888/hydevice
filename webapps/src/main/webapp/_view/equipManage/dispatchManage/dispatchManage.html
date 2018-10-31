@@ -1,0 +1,145 @@
+#@iframeLayout()
+#define mainContent()
+<!--begin派单列表-->
+<div class="layui-form-item">
+    <div class="panel">
+        <div class="panel-heading">
+            <!-- search  -->
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-120">单号:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="planName" placeholder="请输入单号" class="layui-input">
+                    </div>
+                    <label class="layui-form-label label-120">设备名称:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="planName" placeholder="请输入设备名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-normal">
+                        <button class="layui-btn layui-btn-sm layui-btn-green" lay-submit="" lay-filter="moreSearch">
+                            <i class="fa fa-chevron-down">&nbsp;</i>更多
+                        </button>
+                        <button class="layui-btn layui-btn-sm search-btn" table-id="auditTable" lay-submit="" lay-filter="search">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+                    </div>
+                </div>
+                <div class="layui-form-item more-search">
+                    <label class="layui-form-label label-120">生产企业:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="planName" placeholder="请输入生产企业" class="layui-input">
+                    </div>
+                    <label class="layui-form-label label-120">单据类型:</label>
+                    <div class="layui-input-inline">
+                        <select name="audit.planType"  lay-search="">
+                            <option value="">请选择</option>
+                            <option value="1">安装单</option>
+                            <option value="2">维修单</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item more-search">
+                    <label class="layui-form-label label-120">部门科室:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="createTime" id="createTime" placeholder="请输入部门科室" class="layui-input">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-body">
+            <div class="layui-btn-group pull-right ">
+                <button class="layui-btn layui-btn-sm layui-btn-primary" id="singleList" >
+                    派单列表
+                </button>
+                <button class="layui-btn layui-btn-sm  layui-btn-primary" id="denyList">
+                    拒绝列表
+                </button>
+                <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="Msg.success('自动派单设置成功')">
+                    <i class="fa fa-file-excel-o">&nbsp;</i>自动派单
+                </button>
+            </div>
+            <div class="layui-form nowrap" id="dispatch">
+                <table class="layui-table" id="auditTable" cyType="pageGrid"
+                       cyProps="url:'#(ctx)/equipManage/dispatchManage/getList',checkbox:'true',pageColor:'#2991d9'">
+                    <thead>
+                    <tr>
+                        <!--复选框-->
+                        <th width="1%" param="{type:'checkbox'}">
+                            <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                        </th>
+                        <!--isPrimary：是否是主键-->
+                        <th width="5%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                        <th width="5%" param="{name:'taskName',sort:'true'}">单号</th>
+
+                        <th width="5%" param="{name:'taskName'}">设备名称</th>
+
+                        <th width="5%" param="{name:'taskName'}">生产企业</th>
+
+                        <th width="10%" param="{name:'taskName'}">部门科室</th>
+
+                        <th width="5%" param="{name:'taskName'}">单据类型</th>
+
+                        <th width="5%" param="{name:'taskName'}">提交时间</th>
+
+                        <th width="10%" param="{operate:'true',buttons:[{func:'Render.info',url:'#(ctx)/equipManage/dispatchManage/view',title:'派单',area:'50%-75%'}]}">操作
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="layui-form nowrap" id="forbid" style="display: none">
+                <table class="layui-table" cyType="pageGrid" id="table-part"
+                       cyProps="url:'/stock/subpart/getList',checkbox:'true',pageColor:'#2991d9'">
+                    <thead>
+                    <tr>
+                        <!--复选框-->
+                        <th width="1%" param="{type:'checkbox'}">
+                            <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                        </th>
+                        <th width="10%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                        <th width="10%" param="{name:'taskName',sort:'true'}">安装单号</th>
+
+                        <th width="10%" param="{name:'taskName'}">设备名称</th>
+
+                        <th width="10%" param="{name:'taskName'}">部门科室</th>
+
+                        <th width="10%" param="{name:'taskName'}">安装状态</th>
+
+                        <th width="10%" param="{name:'taskName'}">报装时间</th>
+
+                        <th width="10%" param="{name:'taskName'}">接单时间</th>
+
+                        <th width="10%" param="{name:'taskName'}">约束时间</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+#end
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use(['element','form','upload'], function(){
+        var element = layui.element,form = layui.form,upload=layui.upload;
+
+    });
+    //入库类型show、hidden
+    $("#singleList").click(function () {
+        $("#dispatch").show(function () {
+            $("#forbid").hide();
+        })
+    });
+    $("#denyList").click(function () {
+        $("#forbid").show(function () {
+            $("#dispatch").hide();
+        })
+    });
+</script>
+

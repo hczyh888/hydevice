@@ -1,0 +1,88 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel">
+    <div class="panel-body">
+        <div class="layui-btn-group pull-right">
+            巡查日期：2018.04.18（巡查中）
+        </div>
+        <div class="layui-form nowrap" id="dispatch">
+            <table class="layui-table" id="documentTable" cyType="pageGrid"
+                   cyProps="url:'#(ctx)/equipManage/documentManage/getList',checkbox:'true',pageColor:'#2991d9'">
+                <thead>
+                <tr>
+                    <!--复选框-->
+                    <th width="1%" param="{type:'checkbox'}">
+                        <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                    </th>
+                    <!--isPrimary：是否是主键-->
+                    <th width="5%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                    <th width="5%" param="{name:'taskName',sort:'true'}">任务编号</th>
+
+                    <th width="5%" param="{name:'taskName'}">巡查人</th>
+
+                    <th width="5%" param="{name:'taskName'}">巡查设备总数</th>
+
+                    <th width="10%" param="{name:'taskName'}">已巡查备数</th>
+
+                    <th width="5%" param="{name:'taskName'}">完成时间</th>
+                    <th width="10%" param="{operate:'true',buttons:[{func:'Render.edit',url:'#(ctx)/equipManage/maintainManage/edit1',title:'完成任务',area:'85%-90%'}]}">操作</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="layui-form nowrap" id="forbid"  style="display: none">
+            <table class="layui-table" id="document1Table" cyType="pageGrid"
+                   cyProps="url:'#(ctx)/equipManage/documentManage/getList',checkbox:'true',pageColor:'#2991d9'">
+                <thead>
+                <tr>
+                    <!--复选框-->
+                    <th width="1%" param="{type:'checkbox'}">
+                        <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                    </th>
+                    <!--isPrimary：是否是主键-->
+                    <th width="5%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                    <th width="5%" param="{name:'taskName',sort:'true'}">单号</th>
+
+                    <th width="5%" param="{name:'taskName'}">设备名称</th>
+
+                    <th width="5%" param="{name:'taskName'}">单据状态</th>
+
+                    <th width="10%" param="{name:'taskName'}">单据提交时间</th>
+
+                    <th width="5%" param="{name:'taskName'}">操作人</th>
+
+                    <th width="5%" param="{name:'taskName'}">接单时间</th>
+
+                    <th width="5%" param="{name:'taskName'}">接单人</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading ">
+        巡查验收单：
+    </div>
+    <div id="all" class="panel-body">
+        <div style=" height:50px; width: 94%;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">上传文件</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="menu.levels" placeholder="请输入上传文件" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/statics/js/commonList.js"></script>
+#end
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+    });
+</script>

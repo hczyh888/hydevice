@@ -1,0 +1,112 @@
+#@iframeLayout()
+#define mainContent()
+<div class="wrapper" id="hyapp" v-cloak>
+        <!-- search  -->
+        <div class="layui-card ">
+            <div class="layui-card-body">
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-120">计划名称:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="planName" placeholder="请输入计划名称" v-model="q.planName" @keyup.enter="query" class="form-control">
+                    </div>
+
+                    <label class="layui-form-label label-120">设备名称:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="deviceCnName" placeholder="请输入设备名称" v-model="q.deviceCnName" @keyup.enter="query" class="form-control">
+                    </div>
+                    <button class="layui-btn layui-btn-sm search-btn " @click="query">
+                        <i class="fa fa-search">&nbsp;</i>查询
+                    </button>
+                    <button class="layui-btn layui-btn-sm layui-btn-primary" @click="clearWhere">
+                        <i class="fa fa-refresh">&nbsp;</i>重置</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span>计划汇总列表</span>
+                <div class="layui-btn-group pull-right top5 ">
+                    <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="Msg.success('操作成功')"><i class="fa fa-file-excel-o">&nbsp;</i>导出</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="editPage('planSumTable','#(ctx)/plan/planSum/edit','60%-80%')">生成任务</button>
+                </div>
+            </div>
+            <div class="layui-form nowrap">
+                <table id="sumTable" lay-filter="sum" ></table>
+            </div>
+        </div>
+</div>
+<script type="text/html" id="barSum">
+    <a class="layui-btn layui-btn-xs" lay-event="prePlan">完善计划审核</a>
+    #[[
+    {{# if (d.status==3){ }}
+        <a class="layui-btn layui-btn-xs" lay-event="task">&nbsp;生成任务</a>
+    {{# }else{ }}
+    已生成任务
+    {{# } }}
+    ]]#
+</script>
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+<script>
+    //引用layui table
+    var sumTable;
+    layui.use(['table'],function () {
+        sumTable = layui.table;
+        sumTable.render({
+            elem:'#sumTable',
+            url:'#(ctx)/plan/planSum/getList/3',
+            page:true,
+            id:'sumTable',
+            cols:[[
+                {type:'numbers',title:'序号',width:'5%'},
+                {field:'planName',title:'计划名称',width:'10%'},
+                {field:'deviceCnName',title:'设备名称',width:'10%'},
+                {field:'planType',title:'计划类型',width:'13%'},
+                {field:'userDept',title:'使用科室',width:'10%'},
+                {field:'budget',title:'预算金额',width:'10%'},
+                {field:'createTime',title:'申请日期',width:'12%'},
+                {field:'purchaseDate',title:'采购日期',width:'11%'},
+                {fixed:'right',align:'center',title:'操作',width:'20%',toolbar:'#barSum'}
+            ]]
+        });
+        //监听工具条
+        sumTable.on('tool(sum)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'prePlan'){
+                openIframe(data.id,'#(ctx)/plan/planSum/view','完善计划审核','60%-75%');
+
+            }else if(layEvent == 'task'){
+                openIframe(data.id,'#(ctx)/plan/planSum/edit','生成任务','60%-75%');
+            }
+        });
+    });
+
+    //实例化vue
+    var vm = new Vue({
+        el:'#hyapp',
+        data:{
+            q:{planName:null,pid:null,deviceCnName:null}
+        },
+        methods:{
+            query: function () {
+                vm.reload();
+            },
+            reload: function () {
+                sumTable.reload('sumTable',{
+                    where:vm.q,
+                    page:{curr:1}
+                })
+            },
+            clearWhere:function () {
+                vm.q.planName = null;
+                vm.q.pid = null;
+                vm.q.deviceCnName = null;
+            }
+
+        }
+    })
+</script>
+#end
+

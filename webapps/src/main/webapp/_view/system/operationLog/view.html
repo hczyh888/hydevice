@@ -1,0 +1,28 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-inline ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">日志名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="logName" value="#(operationLog.logName)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">操作人</label>
+            <div class="layui-input-inline">
+                <input type="text" name="classname" value="#(operationLog.classname)" class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">方法参数</label>
+            <div class="layui-input-inline">
+                <input type="text" name="method" value="#(operationLog.method)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">是否成功</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="succeed" value="#(operationLog.succeed)" title="成功" #(operationLog.succeed==0?"checked":"disabled")>
+                <input type="radio" name="succeed" value="#(operationLog.succeed)" title="失败" #(operationLog.succeed==1?"checked":"disabled")>
+            </div>
+        </div>
+    </form>
+</div>
+#end

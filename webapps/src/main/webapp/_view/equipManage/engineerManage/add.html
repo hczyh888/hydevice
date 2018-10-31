@@ -1,0 +1,82 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">绑定用户</label>
+            <div class="layui-input-inline">
+                <select name="city" lay-verify="">
+                    <option value="">请选择用户</option>
+                    <option value="009">瑞普思测试账户（request）</option>
+                    <option value="010"> 长海医院123(chyy123)</option>
+                    <option value="021">信合医院(xhyy123)</option>
+                    <option value="0571"> yangyang(yangyang123)</option>
+                    <option value="008">巴彦淖尔市中医医院(quanzhenhong)</option>
+                    <option value="010">恩精医疗(ejyl2016)</option>
+                    <option value="021">长海医院123</option>
+                    <option value="0571"> 长海医院123(chyy123)</option>
+                    <option value="007">郭金鹏(guojinpeng)</option>
+                    <option value="010">大管家(daguanjia) </option>
+                    <option value="021"> 郭燕(guoyan)</option>
+                    <option value="0571"> 宋苗云(songmy)</option>
+                    <option value="002"> 李清民(liqingmin)</option>
+                    <option value="010">马鑫(maxin)</option>
+                    <option value="021">枣庄市立医院(zzslyy)</option>
+                    <option value="0571">临汾二院(linfeneryuan)</option>
+                </select>
+            </div>
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="status" value="nan" title="启用">
+                <input type="radio" name="status" value="nv" title="禁用" checked>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">擅长领域</label>
+            <div class="layui-input-inline">
+                <select name="city" lay-verify="">
+                    <option value="">请选择用户</option>
+                    <option value="009">按设备分类选</option>
+                    <option value="010"> 按所属科室选</option>
+                    <option value="021">按设备目录选</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">已选择0</label>
+            <div class="layui-input-inline">
+                <textarea type="textarea" style="height:200px;width: 200px" name="status"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所负责的工作</label>
+            <div class="layui-input-inline">
+                <input type="checkbox" name="status" value="nan" title="维修">
+            </div>
+            <div class="layui-input-inline">
+                <input type="text" name="sss" placeholder="自动接单上限">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所负责的工作</label>
+            <div class="layui-input-inline">
+                <input type="checkbox" name="status" value="nv" title="安装">
+            </div>
+            <div class="layui-input-inline">
+                <input type="text" name="sss" placeholder="自动接单上限">
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/equipManage/engineerManage/doadd">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end

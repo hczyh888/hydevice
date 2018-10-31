@@ -1,0 +1,82 @@
+<!--begin 零部件信息-->
+<div class="layui-tab-item layui-show">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">零部件名称:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="partName" placeholder="请输入零部件名称" class="layui-input">
+            </div>
+            <label class="layui-form-label label-120">单价:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="price" placeholder="请输入单价" class="layui-input">
+            </div>
+            <div class="layui-input-nomarl">
+                <button class="layui-btn layui-btn-sm layui-btn-green" lay-submit="" lay-filter="moreSearch">
+                    <i class="fa fa-chevron-down">&nbsp;</i>更多
+                </button>
+                <button class="layui-btn layui-btn-sm search-btn" table-id="subpartTable" lay-submit="" lay-filter="search">
+                    <i class="fa fa-search">&nbsp;</i>查询
+                </button>
+                <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+            </div>
+        </div>
+        <div class="layui-form-item more-search">
+            <label class="layui-form-label label-120">规格:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="standard" placeholder="请输入规格" class="layui-input">
+            </div>
+            <label class="layui-form-label label-120">品牌:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="brand" placeholder="请输入品牌" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item more-search">
+            <label class="layui-form-label label-120">经销商:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="dealer" placeholder="请输入经销商" class="layui-input">
+            </div>
+            <label class="layui-form-label label-120">来源:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="source" placeholder="请输入来源" class="layui-input">
+            </div>
+        </div>
+    </form>
+    <div class="layui-form nowrap">
+        <table class="layui-table" id="subpartTable" cyType="pageGrid"
+               cyProps="url:'/stock/subpart/getList',checkbox:'true',pageColor:'#2991d9'">
+            <thead>
+            <tr>
+                <!--复选框-->
+                <th width="1%" param="{type:'checkbox'}">
+                    <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                </th>
+                <th width="10%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                <th width="10%" param="{name:'partName',sort:'true'}">零部件名称</th>
+
+                <th width="10%" param="{name:'numUntil'}">数量/单位</th>
+
+                <th width="10%" param="{name:'price'}">单价</th>
+
+                <th width="10%" param="{name:'standard'}">规格</th>
+
+                <th width="10%" param="{name:'brand'}">品牌</th>
+
+                <th width="10%" param="{name:'dealer'}">经销商</th>
+
+                <th width="10%" param="{name:'source'}">来源</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<!--end 零部件信息-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        //表格渲染查询
+        var tables = $("[cyType='pageGrid']");
+        for (var i = 0; i < tables.length; i++) {
+            $(tables[i]).pageGrid();
+        }
+    });
+</script>

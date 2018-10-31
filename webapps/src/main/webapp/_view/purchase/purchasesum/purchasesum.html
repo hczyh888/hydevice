@@ -1,0 +1,105 @@
+#@iframeLayout()
+#define mainContent()
+<div class="wrapper" id="hyapp" v-cloak>
+        <!-- search  -->
+        <div class="layui-card ">
+            <div class="layui-card-body">
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-120">设备名称:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="deviceName" placeholder="请输入设备名称" v-model="q.deviceName" @keyup.enter="query" class="form-control">
+                    </div>
+
+                    <label class="layui-form-label label-120">参数:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="parameters" placeholder="请输入参数" v-model="q.parameters" @keyup.enter="query" class="form-control">
+                    </div>
+                    <button class="layui-btn layui-btn-sm search-btn " @click="query">
+                        <i class="fa fa-search">&nbsp;</i>查询
+                    </button>
+                    <button class="layui-btn layui-btn-sm layui-btn-primary" @click="clearWhere">
+                        <i class="fa fa-refresh">&nbsp;</i>重置</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span>采购汇总列表</span>
+                <div class="layui-btn-group pull-right top5 ">
+                    <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="Msg.success('操作成功')"><i class="fa fa-file-excel-o">&nbsp;</i>导出</button>
+                   <!-- <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="editPage('planSumTable','#(ctx)/plan/planSum/edit','60%-80%')">设备入库</button>-->
+                </div>
+            </div>
+            <div class="layui-form nowrap">
+                <table id="sumTable" lay-filter="sum" ></table>
+            </div>
+        </div>
+</div>
+
+<script type="text/html" id="barSum">
+    <a class="layui-btn layui-btn-xs" lay-event="prePlan">完善采购审核</a>
+</script>
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+<script>
+    //引用layui table
+    var sumTable;
+    layui.use(['table'],function () {
+        sumTable = layui.table;
+        sumTable.render({
+            elem:'#sumTable',
+            url:'#(ctx)/purchase/purchaseSum/getList',
+            page:true,
+            id:'sumTable',
+            cols:[[
+                {type:'numbers',title:'序号',width:'5%'},
+                {field:'deviceName',title:'设备名称',width:'15%'},
+                {field:'buget',title:'预算',width:'10%'},
+                {field:'taskNum',title:'数量',width:'13.5%'},
+                {field:'unit',title:'单位',width:'11%'},
+                {field:'source',title:'来源',width:'15%'},
+                {field:'parameters',title:'参数',width:'12%'},
+                {fixed:'right',align:'center',title:'操作',width:'20%',toolbar:'#barSum'}
+            ]]
+        });
+        //监听工具条
+        sumTable.on('tool(sum)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'prePlan'){
+                openIframe(data.id,'#(ctx)/purchase/purchaseSum/view','完善计划审核','60%-75%');
+
+            }else if(layEvent == 'task'){
+                openIframe(data.id,'#(ctx)/purchase/purchaseSum/edit','生成任务','60%-75%');
+            }
+        });
+    });
+
+    //实例化vue
+    var vm = new Vue({
+        el:'#hyapp',
+        data:{
+            q:{deviceName:null,pid:null,parameters:null}
+        },
+        methods:{
+            query: function () {
+                vm.reload();
+            },
+            reload: function () {
+                sumTable.reload('sumTable',{
+                    where:vm.q,
+                    page:{curr:1}
+                })
+            },
+            clearWhere:function () {
+                vm.q.deviceName = null;
+                vm.q.pid = null;
+                vm.q.parameters = null;
+            }
+
+        }
+    })
+</script>
+#end
+

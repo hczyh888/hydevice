@@ -1,0 +1,46 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel panel-info">
+    <div class="panel-heading ">
+        上报不良事件
+    </div>
+    <div id="all" class="panel-body">
+        <form class="layui-form" action="">
+        <div style=" height:300px; width: 94%;">
+            请上传在国家相关系统中上报并导出后的不良事件PDF格式文件：
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">上报编码：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">上报文件：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+<div class="page-footer">
+    <div class="btn-list">
+        <div class="btnlist">
+            <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/equipManage/badManage/update">
+                <i class="fa fa-floppy-o">&nbsp;</i>保存
+            </button>
+            <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="/statics/js/commonList.js"></script>
+#end
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+    });
+</script>

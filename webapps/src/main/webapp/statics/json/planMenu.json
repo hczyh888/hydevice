@@ -1,0 +1,40 @@
+{
+  "code": 0,
+  "menuList": [
+    {
+      "name": "计划管理",
+      "type": 1,
+      "url": null,
+      "children": null,
+      "icon": "fa fa-tachometer",
+      "list": [
+        {
+          "children": null,
+          "icon": "fa fa-font",
+          "list": null,
+          "name": "计划申请",
+          "type": 2,
+          "url": "/plan/planApply"
+        },
+        {
+          "children": null,
+          "icon": "fa fa-square",
+          "list": null,
+          "name": "计划审核",
+          "type": 2,
+          "url": "/plan/audit"
+        },
+        {
+          "children": null,
+          "icon": "fa fa-strikethrough",
+          "list": null,
+          "name": "计划汇总",
+          "type": 2,
+          "url": "/plan/planSum"
+        }
+
+      ]
+    }
+  ]
+
+}

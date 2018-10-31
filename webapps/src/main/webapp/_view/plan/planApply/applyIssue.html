@@ -1,0 +1,104 @@
+<!--begin 待下达-->
+<div class="layui-tab-item layui-show">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <!--<input  type="hidden" name="deptId" id="deptId"  class="layui-input"/>-->
+            <label class="layui-form-label label-120">计划名称:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planName" placeholder="请输入计划名称" class="layui-input">
+            </div>
+            <label class="layui-form-label label-120">设备名称:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="cnNme" placeholder="请输入设备名称" class="layui-input">
+            </div>
+            <div class="layui-input-normal">
+                <button class="layui-btn layui-btn-green" lay-submit="" lay-filter="moreSearch">
+                    <i class="fa fa-chevron-down">&nbsp;</i>更多
+                </button>
+                <button class="layui-btn search-btn" table-id="waiteOrderApplyTable" lay-submit="" lay-filter="search">
+                    <i class="fa fa-search">&nbsp;</i>查询
+                </button>
+                <button type="reset" class="layui-btn layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+            </div>
+        </div>
+        <div class="layui-form-item more-search">
+            <label class="layui-form-label label-120">部门科室:</label>
+            <div class="layui-input-inline">
+                #combox(type='dept',name='dept.dept','1','',code='dept')
+                #end
+            </div>
+            <label class="layui-form-label label-120">计划类型:</label>
+            <div class="layui-input-inline">
+                <select name="apply.planType"  lay-search="">
+                    <option value="">请选择</option>
+                    <option value="1">年计划</option>
+                    <option value="2">临时计划</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item more-search">
+            <label class="layui-form-label label-120">申请日期:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="startDate" id="startDate" placeholder="请输入申请日期" class="layui-input">
+            </div>
+            <label class="layui-form-label label-120">采购日期:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="startDate" id="startDate1" placeholder="请输入采购日期" class="layui-input">
+            </div>
+        </div>
+    </form>
+    <div class="layui-form nowrap">
+        <table class="layui-table" id="waiteOrderApplyTable" cyType="pageGrid"
+               cyProps="url:'/plan/planApply/getList/4',checkbox:'true',pageColor:'#2991d9'">
+            <thead>
+            <tr>
+                <!--复选框-->
+                <th width="1%" param="{type:'checkbox'}">
+                    <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                </th>
+                <!--isPrimary：是否是主键-->
+                <th width="5%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                <th width="5%" param="{name:'planName',sort:'true'}">计划名称</th>
+
+                <th width="5%" param="{name:'deviceCnName'}">设备名称</th>
+
+                <th width="5%" param="{name:'planType',codeName:'planType'}">计划类型</th>
+
+                <th width="10%" param="{name:'userDept'}">使用科室</th>
+
+                <th width="5%" param="{name:'budget'}">预算金额</th>
+
+                <th width="5%" param="{name:'createTime'}">申请日期</th>
+
+                <th width="5%" param="{name:'purchaseDate'}">采购日期</th>
+
+                <th width="5%" param="{name:'status',codeName:'planApplyStatus',render:'Render.planApplyState'}">状态</th>
+
+                <th width="10%" param="{operate:'true',buttons:[{func:'Render.delete',url:'/plan/planApply/del',title:'按钮待添加'}]}">操作</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<!--end 待下达-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        //表格渲染查询
+        var tables = $("[cyType='pageGrid']");
+        for (var i = 0; i < tables.length; i++) {
+            $(tables[i]).pageGrid();
+        }
+    });
+    //重新渲染页面元素
+    layui.use('laydate', function(){
+        var laydate = layui.laydate,form=layui.form;
+        form.render('select');
+        laydate.render({
+            elem: '#startDate'
+        });
+        laydate.render({
+            elem: '#startDate1'
+        });
+    });
+</script>

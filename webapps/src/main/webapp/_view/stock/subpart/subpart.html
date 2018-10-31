@@ -1,0 +1,131 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel panel-info">
+    <div class="panel-heading ">
+        <a href="#all">全部</a>
+        <a href="#all">草稿</a>
+        <a href="#all">待审核</a>
+    </div>
+    <div id="all" class="panel-body">
+
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label label-120">出库单号:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="leavestockId" placeholder="请输入领用单号" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120">请领科室:</label>
+                <div class="layui-input-inline">
+                    <!--<input    value="#(apply.deviceCnName??)"  id="apply-deviceCnName"  cyType="treeTool" lay-verType="tips"   cyProps="url:'#(ctx)/cache/getDeptTree',name:'apply.deviceId'"
+                              placeholder="请选择部门" class="layui-input"/>-->
+                    #combox(type='dept',name='leaveStock.deviceCnName', value='84' ,required='required')
+                    #end
+                </div>
+                <div class="layui-input-nomarl">
+                    <button class="layui-btn layui-btn-sm layui-btn-green" lay-submit="" lay-filter="moreSearch">
+                        <i class="fa fa-chevron-down">&nbsp;</i>更多
+                    </button>
+                    <button class="layui-btn layui-btn-sm search-btn" table-id="leaveStockTable" lay-submit="" lay-filter="search">
+                        <i class="fa fa-search">&nbsp;</i>查询
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+                </div>
+            </div>
+            <div class="layui-form-item more-search">
+                <label class="layui-form-label label-120">库房类型:</label>
+                <div class="layui-input-inline">
+                    <select name="stockhouseId"  lay-search="">
+                        <option value="">请选择</option>
+                        <option value="设备库">设备库</option>
+                        <option value="备件库">备件库</option>
+                        <option value="平面仓库">平面仓库</option>
+                        <option value="立体式仓库">立体式仓库</option>
+                        <option value="多层楼房型仓库">多层楼房型仓库</option>
+                        <option value="地下仓库">地下仓库</option>
+                        <option value="智能化仓库">智能化仓库</option>
+                    </select>
+                </div>
+                <label class="layui-form-label label-120">出库库房:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="deptId" placeholder="请输入出库库房" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120">出库类型:</label>
+                <div class="layui-input-inline">
+                    <select name="warehouse.type"  lay-search="">
+                        <option value="">请选择</option>
+                        <option value="请领出库">请领出库</option>
+                        <option value="报废出库">报废出库</option>
+                        <option value="退货出库">退货出库</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item more-search">
+                <label class="layui-form-label label-120">申请日期:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="purchaseDate" id="purchaseDate" placeholder="请输入申请日期" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120">制单人:</label>
+                <div class="layui-input-inline">
+                    <!--<input    value="#(apply.userId??)"  id="apply-userId"  cyType="treeTool" lay-verType="tips"    cyProps="url:'#(ctx)/cache/getRolesTree',name:'apply.userId'"
+                              placeholder="请选择负责人" class="layui-input"/>-->
+                    #combox(type='user',name='apply.userId', value='84' ,required='required')
+                    #end
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="layui-tab-item">
+    <div class="panel">
+        <div class="panel-heading ">
+            <span>出库单列表</span>
+            <div class="pull-right">
+                <a  href="javascript:addPage('录入出库单','#(ctx)/stock/subpart/add','subpartAdd','54%-70%')"><i class="fa fa-plus">&nbsp;</i>增加出库单</a>
+            </div>
+        </div>
+        <div class="layui-form nowrap">
+            <table class="layui-table" cyType="pageGrid"
+                   cyProps="url:'/stock/subpart/getList',checkbox:'true',pageColor:'#2991d9'">
+                <thead>
+                <tr>
+                    <!--复选框-->
+                    <th width="1%" param="{type:'checkbox'}">
+                        <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                    </th>
+                    <th width="10%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                    <th width="10%" param="{name:'partName',sort:'true'}">零部件名称</th>
+
+                    <th width="10%" param="{name:'numUntil'}">数量/单位</th>
+
+                    <th width="10%" param="{name:'price'}">单价</th>
+
+                    <th width="10%" param="{name:'standard'}">规格</th>
+
+                    <th width="10%" param="{name:'brand'}">品牌</th>
+
+                    <th width="10%" param="{name:'dealer'}">经销商</th>
+
+                    <th width="10%" param="{name:'source'}">来源</th>
+
+                    <th width="15%" param="{operate:'true',buttons:[{func:'Render.edit',url:'#(ctx)/stock/subpart/edit',title:'编辑',area:'60%-80%'},{func:'Render.delete',url:'#(ctx)/stock/subpart/del',title:'删除'}]}">操作</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#firstEnterDate'
+        });
+    });
+</script>
+#end

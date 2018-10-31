@@ -1,0 +1,81 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form " action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">设备分类</span></label>
+            <div class="layui-input-inline div-input-50">
+                <input  id="devicelist-classId"  cyType="treeTool"   cyProps="url:'#(ctx)/cache/getDeviceclassTree',name:'devicelist.classId'"
+                        required  lay-verify="required"     placeholder="请选择设备分类" class="layui-input"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">设备名称</span></label>
+            <div class="layui-input-inline div-input-50">
+                <input type="text" name="devicelist.cnName"  required  lay-verify="required" placeholder="请输入设备名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">设备简码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="devicelist.simpleName"  placeholder="请输入设备简码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">英文名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="devicelist.enName"  placeholder="请输入英文名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">型号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="devicelist.type"  placeholder="请输入型号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">单位</label>
+            <div class="layui-input-inline">
+                <div cyType="selectTool" cyProps="codeName:'unitList',search:'true'"   name="devicelist.unit" class="layui-input-inline" >  </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">品牌</label>
+            <div class="layui-input-inline">
+                <div cyType="selectTool" cyProps="codeName:'brandList',search:'true'"   name="devicelist.brand" class="layui-input-inline" >  </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">生产企业</label>
+            <div class="layui-input-inline div-input-50" >
+                <input  id="devicelist-otherCompanyID"  cyType="treeTool"   cyProps="url:'#(ctx)/cache/getPartnerTree',name:'devicelist.otherCompanyID'"
+                        required  lay-verify="required"  placeholder="请选择生产企业" class="layui-input"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">状态</label>
+            <div class="layui-input-inline">
+                <div  value="1"  id="devicelist-status"  cyType="radioTool"   cyProps="enumName:'StateEnum'" name="devicelist.status"
+                      class="layui-input-inline"> </div>
+            </div>
+        </div>
+        <div class="page-footer ">
+            <div class="btn-list pull-right">
+                <button class="layui-btn layui-btn-sm" lay-submit lay-filter="submit" data-url="#(ctx)/sys/devicelist/doadd">
+                    <i class="fa fa-floppy-o">&nbsp;</i>保存
+                </button>
+                <button class="layui-btn layui-btn-sm" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+#end
+#define js()
+<!-- 引入ztree插件 -->
+<script type="text/javascript" src="/statics/plugins/ztree/jquery.ztree.all.min.js"></script>
+<!-- 引入ztree插件扩展功能 -->
+<script type="text/javascript" src="/statics/plugins/ztree/jquery.ztree.exhide.min.js"></script>
+<!-- 引入自定义方法 -->
+<script type="text/javascript" src="/statics/plugins/ztree/fuzzysearch.js"></script>
+#end

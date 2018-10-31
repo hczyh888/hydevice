@@ -1,0 +1,60 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form layui-form-pane" action="">
+        <input type="hidden" name="purchaseAudit.id" value="#(purchaseAudit.id)">
+        <div class="layui-form-item">
+            <label class="layui-form-label" >任务名称：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAudit.taskName" value="#(purchaseAudit.taskName)" placeholder="请输入任务类型" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">总数量：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAudit.taskNum" value="#(purchaseAudit.taskNum)" placeholder="请输入任务编号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">总预算：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAudit.sumBuget" value="#(purchaseAudit.sumBuget)" placeholder="请输入任务名称" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">计划采购时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAudit.time" value="#(purchaseAudit.time)" id="time" placeholder="请输入计划任务" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">下达任务时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAudit.time" value="#(purchaseAudit.time)" id="time1" placeholder="请输入设备名称" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">任务处理人：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAudit.userId" value="#(purchaseAudit.userId)" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/purchase/purchaseAudit/update">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end
+<script type="text/javascript"></script>
+<script>
+    layui.use(['form','laydate'], function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#time'
+        });
+        laydate.render({
+            elem: '#time1'
+        });
+    });
+</script>

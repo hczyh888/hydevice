@@ -1,0 +1,66 @@
+#@iframeLayout()
+#define mainContent()
+<div class=" layui-field-box layui-inline ">
+    <form class="layui-form layui-form-pane" action="">
+        <input type="hidden" name="menu.status" value="1">
+        <div class="layui-form-item">
+            <label class=" layui-form-label">维修单号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="menu.pcode"  placeholder="请输入维修单号" autocomplete="off" class="layui-input">
+            </div>
+            <label class=" layui-form-label">设备名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="menu.pcode"  placeholder="请输入设备名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">生产企业</label>
+            <div class="layui-input-inline">
+                <input type="text" name="menu.code"  placeholder="请输入生产企业" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                <input type="text" name="menu.name"  placeholder="请输入状态" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">部门科室</label>
+            <div class="layui-input-inline">
+                <input type="text" name="menu.url"  placeholder="请输入部门科室" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">报装时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="menu.icon" id="taskTime"  placeholder="请输入报装时间" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">安装日期</label>
+            <div class="layui-input-inline">
+                <input type="text" name="menu.levels" id="taskTime1" placeholder="请输入安装日期" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/sys/menu/doadd">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end
+<script src="/statics/js/laydate.js"></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#taskTime'
+        });
+        laydate.render({
+            elem: '#taskTime1'
+        });
+    });
+</script>

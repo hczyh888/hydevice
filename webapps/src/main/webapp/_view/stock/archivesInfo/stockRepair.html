@@ -1,0 +1,74 @@
+<!--begin 维修记录-->
+<div class="layui-tab-item layui-show">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">维修单号:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="repairId" placeholder="请输入维修单号" class="layui-input">
+            </div>
+            <label class="layui-form-label label-120">维修工程师:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="repairMan" placeholder="请输入维修工程师" class="layui-input">
+            </div>
+            <div class="layui-input-nomarl">
+                <button class="layui-btn layui-btn-sm layui-btn-green" lay-submit="" lay-filter="moreSearch">
+                    <i class="fa fa-chevron-down">&nbsp;</i>更多
+                </button>
+                <button class="layui-btn layui-btn-sm search-btn" table-id="repairTable" lay-submit="" lay-filter="search">
+                    <i class="fa fa-search">&nbsp;</i>查询
+                </button>
+                <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+            </div>
+        </div>
+        <div class="layui-form-item more-search">
+            <label class="layui-form-label label-120">完成时间:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="completeTime" id="completeTime" placeholder="请输入完成时间" class="layui-input">
+            </div>
+            <label class="layui-form-label label-120">报销时间:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="expenseTime" id="expenseTime" placeholder="请输入报销时间" class="layui-input">
+            </div>
+        </div>
+    </form>
+    <div class="layui-form nowrap">
+        <table class="layui-table" id="repairTable" cyType="pageGrid"
+               cyProps="url:'/stock/repair/getList',checkbox:'true',pageColor:'#2991d9'">
+            <thead>
+            <tr>
+                <!--复选框-->
+                <th width="1%" param="{type:'checkbox'}">
+                    <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                </th>
+                <th width="10%" param="{name:'repairId',sort:'true'}">维修单号</th>
+
+                <th width="10%" param="{name:'repairMan'}">维修工程师</th>
+
+                <th width="10%" param="{name:'completeTime'}">完成时间</th>
+
+                <th width="10%" param="{name:'expenseTime'}">报销时间</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<!--end 维修记录-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        //表格渲染查询
+        var tables = $("[cyType='pageGrid']");
+        for (var i = 0; i < tables.length; i++) {
+            $(tables[i]).pageGrid();
+        }
+    });
+    //重新渲染页面元素
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#completeTime'
+        });
+        laydate.render({
+            elem: '#expenseTime'
+        });
+    });
+</script>

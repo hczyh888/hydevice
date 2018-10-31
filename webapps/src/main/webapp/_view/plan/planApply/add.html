@@ -1,0 +1,264 @@
+#@iframeLayout()
+#define mainContent()
+<form class="layui-form"  >
+<div class="nav-tabs-custom">
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab">基础资料</a></li>
+        <li><a href="#file" data-toggle="tab">报批资料</a></li>
+        <li><a href="#money" data-toggle="tab">经济效益</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <!--新增主页面-->
+        <div class="tab-pane fade in active" id="home">
+            <div class="layui-form-item  ">
+                <label class="layui-form-label label-150">计划名称：</label>
+                <div class="layui-input-inline">
+                    <input type="text" required lay-verify="required" name="apply.planName" id="planName"  placeholder="请输入名称" autocomplete="off" class="form-control ">
+                </div>
+                <label class="layui-form-label label-150">计划类型：</label>
+                <div class="layui-input-inline">
+                    <div cyType="selectTool" cyProps="codeName:'planType',search:'true'" name="apply.planType" class="layui-input-inline" >  </div>
+                </div>
+            </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-150">申请科室：</label>
+                    <div class="layui-input-inline">
+                        #combox(type='dept',name='apply.deptid','1','',code='dept')
+                    </div>
+                    <label class="layui-form-label label-150"> 科室负责人：</label>
+                    <div class="layui-input-inline">
+                        <input    value="#(apply.userId??)"  id="apply-userId"  cyType="treeTool" lay-verType="tips"    cyProps="url:'/cache/getRolesTree',name:'apply.userId'"
+                                  placeholder="请选择负责人" class="form-control"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-150">设备名称：</label>
+                    <div class="col-sm-4 no-padding">
+                        <div cyType="selectTool" cyProps="url:'#(ctx)/cache/getDeviceList',search:'true'" name="apply.cnName"  placeholder="请输入名称" ></div>
+                    </div>
+                    <div class="col-sm-1 no-padding">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe608;</i></a>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-150">设备数量：</label>
+                    <div class="layui-input-inline">
+                        <input type="number" lay-verify="number" value="1" name="apply.deviceNumber"  placeholder="请输入数量" autocomplete="off" class="form-control">
+                    </div>
+                    <label class="layui-form-label label-150"> 预算金额：</label>
+                    <div class="layui-input-inline">
+                        <input type="number"  lay-verify="number" value="0" name="apply.budget"  placeholder="请输入金额" autocomplete="off" class="form-control">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                        <label class="layui-form-label label-150">设备应用类型：</label>
+                        <div class="layui-input-inline">
+                            <select name="apply.deviceId"  lay-search="">
+                                <option value="">请选择</option>
+                                <option value="1">临床应用型</option>
+                                <option value="2">临床使用型</option>
+                                <option value="3">临床研究型</option>
+                            </select>
+                        </div>
+                    <label class="layui-form-label label-150"> 采购日期：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="apply.purchaseDate" class="Wdate form-control" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',readOnly:false})">
+                    </div>
+                </div>
+            <div class="layui-form-item" >
+                <label class="layui-form-label label-150"> 推荐品牌/厂商：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applypartner.brand"     placeholder="请输入厂商" autocomplete="off" class="form-control">
+                </div>
+
+                <label class="layui-form-label label-150"> 规格型号：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applypartner.models"  placeholder="请输入型号" autocomplete="off" class="form-control">
+                </div>
+            </div>
+            <div class="layui-form-item" >
+                <label class="layui-form-label label-150">是否进口:</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="applypartner.importOut" value="1" title="是" checked="">
+                    <input type="radio" name="applypartner.importOut" value="2" title="否">
+                </div>
+                <label class="layui-form-label label-150">合作分成方式购置:</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="applypartner.way" value="1" title="是" checked="">
+                    <input type="radio" name="applypartner.way" value="2" title="否">
+                </div>
+            </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-120">资金来源：</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" value="1" name="apply.capitalSource" title="财政拨款">
+                        <input type="checkbox" value="2" name="apply.capitalSource" title="科室自留" >
+                        <input type="checkbox" value="3" name="apply.capitalSource" title="其他">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-120">申请理由：</label>
+
+                    <div class="col-sm-6">
+                        <textarea  name="apply.applyReason"   lay-verify=" " placeholder="请输入申请理由" class="form-control"></textarea>
+                    </div>
+                </div>
+        </div>
+        <!--报批资料-->
+        <div class="tab-pane fade" id="file">
+            <div class="layui-form-item">
+                <label class="layui-form-label label-120">报批资料：</label>
+                <div class="layui-input-inline div-input-40">
+                    <input type="text" name="applyinfor.path" value="" readonly="readonly" class="form-control">
+                </div>
+                <div class="layui-input-inline layui-upload">
+                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" id="chooseFile">选择文件</button>
+                    <button type="button" class="layui-btn layui-btn-sm" id="beginUpload">开始上传</button>
+                </div>
+            </div>
+        </div>
+
+        <!--经济效益-->
+        <div class="tab-pane fade" id="money">
+
+        <div class="layui-form-item">
+        <label class="layui-form-label label-180">正常使用年限：</label>年
+        <div class="layui-input-inline">
+            <input type="text" name="applybenefit.useYear"    lay-verify=" " placeholder="请输入使用年限" autocomplete="off" class="form-control">
+        </div>
+        </div>
+
+        <div class="layui-form-item">
+        <label class="layui-form-label label-180">每周使用时间：</label>小时
+        <div class="layui-input-inline">
+            <input type="text" name="applybenefit.useWeek"    lay-verify=" " placeholder="请输入使用时间" autocomplete="off" class="form-control">
+        </div>
+        </div>
+
+        <div class="layui-form-item">
+        <label class="layui-form-label label-180">收费标准一次：</label>元
+        <div class="layui-input-inline">
+            <input type="text" name="applybenefit.charge"    lay-verify=" " placeholder="请输入收费标准" autocomplete="off" class="form-control">
+        </div>
+        </div>
+            <div class="layui-form-item">
+        <label class="layui-form-label label-180">年经济收入：</label>万元
+        <div class="layui-input-inline">
+            <input type="text" name="applybenefit.income"    lay-verify=" " placeholder="请输入收入" autocomplete="off" class="form-control">
+        </div>
+        </div>
+
+
+        <div class="layui-form-item">
+        <label class="layui-form-label label-180">每年维修耗材费用共：</label>元
+        <div class="layui-input-inline">
+            <input type="text" name="applybenefit.cost"    lay-verify=" " placeholder="请输入耗材费用" autocomplete="off" class="form-control">
+        </div>
+        </div>
+            <div class="layui-form-item">
+
+        <label class="layui-form-label label-180">预计回收成本时间：</label>月
+        <div class="layui-input-inline">
+            <input type="text" name="applybenefit.recoveryTime"    lay-verify=" "  placeholder="请输入时间" autocomplete="off" class="form-control">
+        </div>
+        </div>
+
+        <div class="layui-form-item">
+        <label class="layui-form-label label-180">样品数：</label>个
+        <div class="layui-input-inline">
+            <input type="text" name="applybenefit.sampleNumber"    lay-verify=" " placeholder="请输入样品数" autocomplete="off" class="form-control">
+        </div>
+        </div>
+
+        <div class="layui-form-item">
+        <label class="layui-form-label label-180">人次数：</label>人
+        <div class="layui-input-inline">
+            <input type="text" name="applybenefit.peopleTimes"    lay-verify=" " placeholder="请输入人次数" autocomplete="off" class="form-control">
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="page-footer ">
+        <div class="btn-list pull-right">
+            <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="applySubmit" data-url="#(ctx)/plan/planApply/doadd/1">
+                <i class="fa fa-floppy-o"></i>存为草稿
+            </button>
+            <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="applySubmit" data-url="#(ctx)/plan/planApply/doadd/2">
+                <i class="fa fa-undo"></i>提交审核</button>
+            <button class="layui-btn layui-btn-sm" onclick="parent.vm.goBack();return false;"><i class="fa fa-undo">&nbsp;</i>返回</button>
+        </div>
+    </div>
+
+</div>
+</form>
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use(['element','form','upload','laydate'], function(){
+        var element = layui.element,form = layui.form,
+            upload = layui.upload;
+        //渲染上传控件
+        upload.render({
+            elem:'#chooseFile'
+            ,url:'#(ctx)/plan/planApply/upload'
+            ,accept:''
+            ,auto:false
+            ,bindAction:'#beginUpload'
+            ,choose: function (obj) {
+                var index = layer.load(1);
+                obj.preview(function (index, file, result) {
+                    $('#imgPic').attr('src', result); //图片链接（base64）
+                    $('[name="applyinfor.path"]').val(file.name);
+                });
+                layer.close(index);
+            }
+            ,done: function(res, index, upload) {
+                if(res.state=='ok'){
+                    $('[name="applyinfor.path"]').val(res.filePath);
+                }
+            }
+        });
+        //监听提交
+        form.on('submit(applySubmit)', function (data) {
+            var url=$(this).attr("data-url");
+            $.ajax({
+                url: url,
+                type: "post",
+                contentType: "application/x-www-form-urlencoded",
+                data: $(data.form).serialize(),    //JSON.stringify(data.field),
+                async: false,
+                dataType: "json",
+                success: function (R) {
+                    if (R.code == 0) {
+                        //刷新页面
+                        parent.layer.msg('操作成功 !', {icon: 1});
+                    } else if(R.code==1){
+                        parent.layer.alert(R.msg, {icon: 5});
+
+                    } else{
+                        parent.layer.msg(R.msg, {icon: 5});
+                    }
+                },
+                error: function (err) {
+                    alert("系统繁忙",{icon:5});
+                }
+            });
+        });
+    });
+
+$(function () {
+   addBreadcrumb("新增");
+   //生成设备名称简码
+    $('.genCode').on('click',function(){
+        $t.doAjax('#(ctx)/plan/planApply/genSimpleCode','deviceName='+$('#cnName').val(),function(data){
+            $("#deviceCode").val(data.simpleCode);
+        },false,'post','json')
+    });
+})
+</script>
+
+#end
+
+
+

@@ -1,0 +1,54 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-inline ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单编号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="code" value="#(menu.code)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">菜单父编号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="pcode" value="#(menu.pcode)"  class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" value="#(menu.name)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">菜单类型</label>
+            <div class="layui-input-inline">
+                <input type="text" name="alias" value="#(menu.alias)"  class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">请求地址</label>
+            <div class="layui-input-inline">
+                <input type="text" name="url" value="#(menu.url)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">图标样式</label>
+            <div class="layui-input-inline">
+                <input type="text" name="icon" value="#(menu.icon)" class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">级别</label>
+            <div class="layui-input-inline">
+                <input type="text" name="levels" value="#(menu.levels)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="status" value="#(menu.status)" title="启用" #(menu.status==1?"checked":"disabled") >
+                <input type="radio" name="status" value="#(menu.status)" title="禁用" #(menu.status==2?"checked":"disabled") >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-inline">
+                <textarea style="height:100px;width: 500px" type="textarea" name="tips" value="#(menu.tips)"   class="layui-textarea" disabled></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+#end

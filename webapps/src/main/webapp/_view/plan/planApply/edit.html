@@ -1,0 +1,261 @@
+#@iframeLayout()
+#define mainContent()
+<form class="layui-form layui-form-pane " action="">
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul  id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab">基础资料</a></li>
+        <li><a href="#file" data-toggle="tab">报批资料</a></li>
+        <li><a href="#money" data-toggle="tab">经济效益</a></li>
+    </ul>
+    <div class="tab-content">
+        <!--begin基础信息-->
+        <div class="tab-pane fade in active" id="home">
+                    <input type="hidden" name="apply.id" value="#(apply.id)">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">计划名称</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="apply.planName" value="#(apply.planName)"  required  lay-verify="required" placeholder="请输入计划名称" autocomplete="off" class="layui-input">
+                        </div>
+
+                        <label class="layui-form-label">计划类型：</label>
+                        <div class="layui-input-inline">
+                            <select name="apply.planType"  lay-search="">
+                                <option value="">请选择</option>
+                                <option value="1">年计划</option>
+                                <option value="2">临时计划</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">设备科室</label>
+                        <div class="layui-input-inline">
+                            <div class="layui-input-inline">
+                                #combox(type='dept',name='dept.dept','1','',code='dept')
+                                #end
+                            </div>
+                            <!--<div class="layui-input-inline">
+                                <input    value="#(apply.deviceCnName??)"  id="apply-deviceCnName"  cyType="treeTool" lay-verType="tips"   cyProps="url:'/cache/getDeptTree',name:'apply.deviceId'"
+                                          placeholder="请选择部门" class="layui-input"/>
+                            </div>-->
+                        </div>
+                        <label class="layui-form-label label-100"> 科室负责人：</label>
+                        <div class="layui-input-inline">
+                            <div class="layui-input-inline">
+                                <input    value="#(apply.userId??)"  id="apply-userId"  cyType="treeTool" lay-verType="tips"    cyProps="url:'/cache/getRolesTree',name:'apply.userId'"
+                                          placeholder="请选择负责人" class="layui-input"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">设备名称</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="apply.cnName" value="#(apply.cnName)"  required  lay-verify="required"  autocomplete="off" class="layui-input">
+                        </div>
+
+                        <label class="layui-form-label">拼音简码</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="apply.Code" value="#(apply.Code)"   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">设备英文名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="apply.enName" value="#(apply.enName)"    autocomplete="off" class="layui-input">
+                        </div>
+
+                        <label class="layui-form-label">设备数量</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="apply.deviceNumber" value="#(apply.deviceNumber)"    autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">单位</label>
+                        <div class="layui-input-inline">
+                            <div cyType="selectTool" cyProps="codeName:'unitList',search:'true'"  name="apply.unit" value="#(apply.unit)" class="layui-input-inline" >  </div>
+                        </div>
+                        <label class="layui-form-label label-100">设备应用类型</label>
+                        <div class="layui-input-inline">
+                            <select name="apply.deviceCnName" value="#(apply.deviceCnName)" lay-search="">
+                                <option value="">请选择</option>
+                                <option value="1">临床应用型</option>
+                                <option value="2">临床使用型</option>
+                                <option value="3">临床研究型</option>
+                            </select>
+                        </div>
+                     </div>
+
+                     <div class="layui-form-item">
+                        <label class="layui-form-label">预算金额</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="apply.budget" value="#(apply.budget)"   autocomplete="off" class="layui-input">
+                        </div>
+
+                        <label class="layui-form-label">采购日期</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="apply.purchaseDate" id="purchaseDate" value="#(apply.purchaseDate)"   autocomplete="off" class="layui-input">
+                        </div>
+                     </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">申请日期</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="apply.createTime" id="createTime" value="#(apply.createTime)"   autocomplete="off" class="layui-input">
+                        </div>
+                        <label class="layui-form-label">使用科室</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="apply.userDept" value="#(apply.userDept)"  required  lay-verify="required"  autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                            <input type="hidden" name="applypartner.id" value="#(applypartner.id)">
+                            <div class="layui-form-item" >
+                                <label class="layui-form-label label-120"> 推荐品牌/厂商：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="applypartner.brand" value="#(applypartner.brand)" lay-verify=" " autocomplete="off" class="layui-input">
+                                </div>
+                                <label class="layui-form-label"> 规格型号：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="applypartner.models"  value="#(applypartner.models)"  lay-verify=" "  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item" >
+                                <label class="layui-form-label">是否进口:</label>
+                                <div class="layui-input-inline">
+                                    <div cyType="radioTool" cyProps="enumName:'ApplypartnerEnum'" name="applypartner.importOut" value="#(applypartner.importOut)" class="layui-input-inline "></div>
+                                </div>
+                                <label class="layui-form-label label-150">合作分成方式购置:</label>
+                                <div class="layui-input-inline">
+                                    <div cyType="radioTool" cyProps="enumName:'ApplypartnerEnum'" name="applypartner.way" value="#(applypartner.way)" class="layui-input-inline "></div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">资金来源：</label>
+                                <div class="layui-input-block">
+                                    <input type="checkbox" value="allocate" name="capitalSource" title="财政拨款">
+                                    <input type="checkbox" value="retention" name="scapitalSource" title="科室自留" >
+                                    <input type="checkbox" value="other" name="capitalSource" title="其他">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">申请理由：</label>
+                                <textarea name="apply.applyReason" value="#(apply.applyReason)"  lay-verify=" "  class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+
+
+
+        <!--begin报批资料-->
+        <div class="tab-pane fade" id="file">
+            <input type="hidden" name="applyinfor.id" value="#(applyinfor.id)">
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">标题：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" value="#(applyinfor.title)"    lay-verify=" "  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">文件名：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.fileName" value="#(applyinfor.fileName)"    lay-verify=" "  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">存储相对路径：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.path" value="#(applyinfor.path)"    lay-verify=" "  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <!--begin经济效益-->
+        <div class="tab-pane fade" id="money">
+            <input type="hidden" name="applybenefit.id" value="#(applybenefit.id)">
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">正常使用年限：</label>年
+                <div class="layui-input-inline">
+                    <input type="text" name="applybenefit.useYear" value="#(applybenefit.useYear)"   lay-verify=" "  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">每周使用时间：</label>小时
+                <div class="layui-input-inline">
+                    <input type="text" name="applybenefit.useWeek" value="#(applybenefit.useWeek)"   lay-verify=" "  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">收费标准一次：</label>元
+                <div class="layui-input-inline">
+                    <input type="text" name="applybenefit.charge" value="#(applybenefit.charge)"   lay-verify=" " autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">年经济收入：</label>万元
+                <div class="layui-input-inline">
+                    <input type="text" name="applybenefit.income" value="#(applybenefit.income)"   lay-verify=" "  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">每年维修，耗材费用共：</label>元
+                <div class="layui-input-inline">
+                    <input type="text" name="applybenefit.cost" value="#(applybenefit.cost)"    lay-verify=" "  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+
+                <label class="layui-form-label label-180">预计回收成本时间：</label>月
+                <div class="layui-input-inline">
+                    <input type="text" name="applybenefit.recoveryTime" value="#(applybenefit.recoveryTime)"    lay-verify=" "   autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">样品数：</label>个
+                <div class="layui-input-inline">
+                    <input type="text" name="applybenefit.sampleNumber" value="#(applybenefit.sampleNumber)"    lay-verify=" " autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">人次数：</label>人
+                <div class="layui-input-inline">
+                    <input type="text" name="applybenefit.peopleTimes"  value="#(applybenefit.peopleTimes)"   lay-verify=" "  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="page-footer" style="text-align: end">
+        <div class="btn-list">
+            <div class="btnlist">
+                <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/plan/planApply/update">
+                    <i class="fa fa-floppy-o">&nbsp;</i>保存
+                </button>
+                <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use(['element','form','upload'], function(){
+        var element = layui.element,form = layui.form,upload=layui.upload;
+    });
+</script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#purchaseDate'
+        });
+        laydate.render({
+            elem: '#createTime'
+        });
+    });
+</script>
+

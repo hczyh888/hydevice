@@ -1,0 +1,116 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel">
+    <div class="panel-body">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label label-120">单位名称:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="companyName" placeholder="请输入单位名称" class="layui-input">
+                </div>
+                <div class="layui-input-normal">
+                    <button class="layui-btn layui-btn-sm layui-btn-green" lay-submit="" lay-filter="moreSearch">
+                        <i class="fa fa-chevron-down">&nbsp;</i>更多
+                    </button>
+                    <button class="layui-btn layui-btn-sm search-btn" table-id="auditTable" lay-submit="" lay-filter="search">
+                        <i class="fa fa-search">&nbsp;</i>查询
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+                </div>
+            </div>
+
+            <div class="layui-form-item more-search">
+                <label class="layui-form-label label-120">国别:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="nationality" placeholder="请输入国别" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120">类型:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="type" placeholder="请输入类型" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120">品牌:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="brand" placeholder="请输入品牌" class="layui-input">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <span>合作单位列表</span>
+        <div class="layui-btn-group pull-right top5" >
+            <button class="layui-btn layui-btn-sm layui-btn-gray" onclick="Page.open('添加-合作单位','#(ctx)/sys/partner/add','partnerAdd','60%-75%')">
+                <i class="fa fa-plus">&nbsp;</i>增加
+            </button>
+            <button class="layui-btn layui-btn-sm layui-btn-gray" onclick="Msg.success('操作成功')">
+                <i class="fa fa-file-excel-o">&nbsp;</i>导出
+            </button>
+        </div>
+    </div>
+    <div class="panel-body pd0" >
+        <div class="layui-form nowrap">
+            <table id="partnerTable" lay-filter="partner" ></table>
+        </div>
+    </div>
+<script type="text/html" id="barPartner">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+</div>
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+<script type="text/javascript">
+    brandList = '#(brandList)';
+    var objBrandList = eval('('+brandList+')');
+    partnerType = '#(partnerType)';
+    var objPartnerType = eval('('+partnerType+')');
+    countryList = '#(countryList)';
+    var objCountryList = eval('('+countryList+')');
+    layui.use('table',function(){
+        var partnerTable = layui.table;
+        //渲染表格
+        partnerTable.render({
+            elem:'#partnerTable'
+            ,skin:'row'
+            ,cellMinWidth: 80
+            ,url:'#(ctx)/sys/partner/getList'
+            ,page:true
+            ,cols:[[
+                {type:'numbers',title:'序号',width:'5%'},
+                {field:'companyName',title:'单位名称',width:'20%',templet:function (d) {
+                    return '<a href="#" onclick="openIframe('+d.id+',\'#(ctx)/sys/partner/view\',\'查看-合作单位信息\',\'50%-70%\')">'+d.companyName+'</a>';
+                }},
+                {field:'contact',title:'联系人',width:'10%'},
+                {field:'contactTel',title:'联系电话',width:'10%'},
+                {field:'type',title:'分类',width:'10%',templet:function (d) {
+                    return objPartnerType['id_'+d.type];
+                }},
+                {field:'brand',title:'品牌',width:'10%',templet:function (d) {
+                    return objBrandList['id_'+d.brand];
+                }},
+                {field:'nationality',title:'国别',width:'10%',templet:function (d) {
+                    return objCountryList['id_'+d.nationality];
+                }},
+                {field:'address',title:'单位地址',width:'14%'},
+                {fixed:'right',align:'center',title:'操作',width:'10%',toolbar:'#barPartner'}
+            ]]
+        });
+        //监听工具条
+        partnerTable.on('tool(partner)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'del'){
+                deleteOne(data.id,'#(ctx)/sys/partner/del','删除合作单位');
+
+            }else if(layEvent == 'edit'){
+                openIframe(data.id,'#(ctx)/sys/partner/edit','编辑-合作单位信息','50%-75%');
+            }
+        })
+    })
+</script>
+#end
+
+
+

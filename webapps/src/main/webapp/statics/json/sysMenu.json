@@ -1,0 +1,109 @@
+{
+  "code": 0,
+  "menuList": [
+    {
+      "name": "系统管理",
+      "type": 1,
+      "url": null,
+      "icon": "fa fa-tachometer",
+      "children": [
+        {
+          "children": null,
+          "icon": "fa fa-font",
+          "list": null,
+          "name": "用户",
+          "type": 2,
+          "url": "/sys/user"
+        },
+        {
+          "icon": "fa fa-square",
+          "children": null,
+          "name": "角色",
+          "type": 2,
+          "url": "/sys/roles"
+        },
+        {
+          "children": null,
+          "icon": "fa fa-strikethrough",
+          "name": "部门",
+          "type": 2,
+          "url": "/sys/dept"
+        },
+        {
+          "children": null,
+          "icon": "fa fa-table",
+          "name": "菜单功能",
+          "type": 2,
+          "url": "/sys/menu"
+        },
+        {
+          "children": null,
+          "icon": "fa fa-table",
+          "name": "字典库",
+          "type": 2,
+          "url": "/sys/dict"
+        }
+      ]
+    },
+    {
+      "name": "系统日志",
+      "type": 1,
+      "url": null,
+      "icon": "fa fa-window-restore",
+      "children": [
+        {
+          "children": null,
+          "icon": "",
+          "list": null,
+          "name": "操作日志",
+          "type": 2,
+          "url": "/sys/operationLog"
+        },
+        {
+          "children": null,
+          "icon": "",
+          "name": "登录日志",
+          "type": 2,
+          "url": "/sys/loginLog"
+        }
+      ]
+    },
+    {
+      "name": "基础资料",
+      "type": 1,
+      "url": null,
+      "icon": "fa fa-television",
+      "children": [
+        {
+          "children": null,
+          "icon": "",
+          "name": "设备目录",
+          "type": 2,
+          "url": "/sys/devicelist"
+        },
+        {
+          "children": null,
+          "icon": "",
+          "name": "设备分类",
+          "type": 2,
+          "url": "/sys/deviceclass"
+        },
+        {
+          "children": null,
+          "icon": "",
+          "name": "合作单位",
+          "type": 2,
+          "url": "/sys/partner"
+        },
+        {
+          "children": null,
+          "icon": "",
+          "name": "公司信息",
+          "type": 2,
+          "url": "/sys/company"
+        }
+      ]
+    }
+  ]
+
+}

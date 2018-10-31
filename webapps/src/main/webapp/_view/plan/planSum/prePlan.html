@@ -1,0 +1,188 @@
+#@iframeLayout()
+#define mainContent()
+
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+
+        <ul class="layui-tab-title">
+            <li class="layui-this">基础信息</li>
+            <li>报批资料</li>
+            <li>审核结果</li>
+            <li>计划审批</li>
+        </ul>
+
+        <div class="layui-tab-content">
+            <!--新增主页面-->
+            <div class="layui-tab-item layui-show" style="word-spacing: 30px;margin-left: 60px">
+            <!--begin基础信息-->
+            <div class="layui-form-item">
+                <table class="layui-table" style="margin-left: 20px">
+                    <colgroup>
+                        <col width="230">
+                        <col width="230">
+                        <col width="230">
+                    </colgroup>
+                    <tr>
+                        <td><span>计划类型： <label class="layui-label-right">#(planSum.planType)</label></span></td>
+                        <td><span>计划名称： <label class="layui-label-right">#(planSum.planName)</label></span></td>
+                        <td><span>拼音简码：<label class="layui-label-right">#(planSum.Code)</label></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>设备科室： <label class="layui-label-right">#(planSum.deviceCnName)</label></span></td>
+                        <td><span>科室负责人： <label class="layui-label-right">#(planSum.userId)</label></span></td>
+                        <td><span>设备名称：<label class="layui-label-right">#(planSum.deviceCnName)</label></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>设备英文名： <label class="layui-label-right">#(planSum.deviceCnName)</label></span></td>
+                        <td><span>设备数量：<label class="layui-label-right">#(planSum.deviceNumber)</label></span></td>
+                        <td><span>单  位： <label class="layui-label-right">#(planSum.unit)</label></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>设备应用类型： <label class="layui-label-right">#(planSum.deviceCnName)</label></span></td>
+                        <td><span>预算金额：<label class="layui-label-right">#(planSum.budget)</label></span></td>
+                        <td><span>采购日期： <label class="layui-label-right">#(planSum.purchaseDate)</label></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>资金来源：<label class="layui-label-right">#(planSum.capitalSource)</label></span></td>
+                        <td colspan="2"><span>申请理由： <label class="layui-label-right">#(planSum.applyReason)</label></span></td>
+                    </tr>
+                    <!--partner 部分 -->
+                    #for(partner : planSum.applyPartnerLst)
+                    <tr>
+                        <td><span>是否进口： <label class="layui-label-right">#(partner.importOut)</label></span></td>
+                        <td><span>规格型号： <label class="layui-label-right">#(partner.models)</label></span></td>
+                        <td><span>推荐品牌/厂商：<label class="layui-label-right">#(partner.brand)</label></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>合作分成方式购置：<label class="layui-label-right">#(partner.way)</label></span></td>
+                    </tr>
+                    #end
+                    </tbody>
+                </table></br>
+            </div>
+            </div>
+            <!--报批资料-->
+            <div class="layui-tab-item">
+                <table class="layui-table" style="margin-left: 20px">
+                    <colgroup>
+                        <col width="250">
+                        <col width="250">
+                        <col>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <td><span>文件标题： <label class="layui-label-right">#(planSum.applyinfor.title)</label></span></td>
+                        <td><span>文件名： <label class="layui-label-right">#(planSum.applyinfor.fileName)</label></span></td>
+                        <td><span>存储相对路径：<label class="layui-label-right">#(planSum.applyinfor.path)</label></span></td>
+                    </tr>
+                    </tbody>
+                </table></br>
+            </div>
+            <!--审核结果-->
+
+            <div class="layui-tab-item">
+                <table class="layui-table" style="margin-left: 20px">
+                    <colgroup>
+                        <col width="250">
+                        <col width="250">
+                        <col>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <td><span>审核结果： <label class="layui-label-right">#(planSum.status)</label></span></td>
+                        <td><span>审核人： <label class="layui-label-right">#(getUser().id)</label></span></td>
+                        <td><span>意见：<label class="layui-label-right">#(planSum.auditOpinion)</label></span></td>
+                    </tr>
+                    </tbody>
+                </table></br>
+            </div>
+
+             <!--计划审批-->
+            <div class="layui-tab-item">
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-180"></label>
+                    <div class="layui-input-inline">
+                        <input type="text" style="width: 190px;height: 190px"name=".useWeek"    lay-verify=" "  autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label label-180"></label>
+                    <div class="layui-input-inline">
+                        <input type="text" style="width: 190px;height:190px"name=".useWeek"    lay-verify=" "  autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-180">审核结果：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="useYear"    lay-verify=" " placeholder="审核结果" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label label-180">添加文件：</label>
+            <div class="layui-input-inline">
+                <input type="text" name=".useWeek"    lay-verify=" " placeholder="添加文件" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+
+#end
+
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use(['element','form','upload'], function(){
+        var element = layui.element,form = layui.form,upload=layui.upload;
+
+    });
+
+
+    /*
+    动态表格生成数据生成js代码
+    * */
+    window.onload = function(){
+        var mytr=document.getElementsByTagName('tr');
+        for (var i =0 ; i <mytr.length; i++) {
+            newcolor(mytr[i]);
+        }
+    }
+    function newcolor(mtr) {
+        mtr.onmouseover=function(){
+            mtr.style.backgroundColor="#f2f2f2";
+        }
+        mtr.onmouseout=function(){
+            mtr.style.backgroundColor="#fff";
+        }
+    }
+
+    var num=2;
+    function addone() {
+        num++;
+        var tr=document.createElement("tr");
+        var td1=document.createElement("td");
+        td1.innerHTML=document.getElementById("add").outerHTML
+        var td2=document.createElement("td");
+        td2.innerHTML="<a href='javascript:;' onclick='delone(this)' class=\"layui-btn layui-btn-sm layui-btn-radius layui-btn-danger\">删除</a>";
+        var tab=document.getElementById("table");
+        tab.appendChild(tr);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        var mytr=document.getElementsByTagName('tr');
+        for (var i =0 ; i <mytr.length; i++) {
+            newcolor(mytr[i]);
+        }
+        layui.use('form',function(){
+            var form = layui.form;
+            form.render();
+        })
+    }
+
+    function delone(otr){
+        var a=otr.parentNode.parentNode;
+        a.parentNode.removeChild(a);
+    }
+
+
+
+
+
+
+</script>
+
+
+

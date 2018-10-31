@@ -1,0 +1,57 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>组管理</title>
+    <link rel="stylesheet" href="/statics/plugins/layui/css/layui.css">
+</head>
+<body>
+<div>
+    <div class="layui-btn-group">
+        <button class="layui-btn layui-btn-sm" >
+            <i class="layui-icon">&#xe654;</i>增加组
+        </button>
+
+        <button class="layui-btn layui-btn-sm" style="margin-left:10px">
+            <i class="layui-icon">&#xe642;</i>修改组
+        </button>
+        <button class="layui-btn layui-btn-sm" style="margin-left: 20px">
+            <i class="layui-icon">&#xe640;</i>删除组
+        </button>
+        <button class="layui-btn layui-btn-sm">
+            <i class="layui-icon">&#x1002;</i>刷新
+        </button>
+
+        <table id="table" lay-filter="test">
+
+        </table>
+
+    </div>
+
+    <script src="/statics/plugins/layui/layui.js"></script>
+
+    <script>
+        layui.use('table', function(){
+            var table = layui.table;
+
+            table.render({
+                elem: '#table'
+                ,url:'/demo/table/user/'
+                ,width: 1800
+                ,height: 800
+                ,cols: [[
+                    {type:'checkbox', fixed: 'left'}
+                    ,{field:'dept_id', width:420, title: '状态',}
+                    ,{field:'dept', width:420, title: '组名称'}
+                    ,{field: 'department', title: '组描述', width:420}
+                    ,{field:'repeat', width:420, title: '备注'}
+
+                ]]
+                ,page: true
+            });
+        });
+    </script>
+</div>
+</body>
+</html>
+#end

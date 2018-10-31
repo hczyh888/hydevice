@@ -1,0 +1,49 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form layui-form-pane" action="">
+        <input type="hidden" name="loginLog.id" value="#(loginLog.id)">
+        <div class="layui-form-item">
+            <label class="layui-form-label">日志名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="loginLog.logName" value="#(loginLog.logName)"  required  lay-verify="required" placeholder="请输入日志名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">方法参数</label>
+            <div class="layui-input-inline">
+                <input type="text" name="loginLog.method" value="#(loginLog.method)"  required  lay-verify="required" placeholder="请输入方法参数" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否成功</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="loginLog.succeed" value="#(loginLog.succeed)" required  lay-verify="required" title="成功" checked>
+                <input type="radio" name="loginLog.succeed" value="#(loginLog.succeed)" required  lay-verify="required" title="失败">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">操作人</label>
+            <div class="layui-input-inline">
+                <select name="loginLog.classname" value="#(loginLog.classname)"  required  lay-verify="required" lay-verify="" lay-search="">
+                    <option value=""></option>
+                    <option selected="" value="1">管理员</option>
+                    <option value="22">213123</option>
+                    <option value="23">阿斯顿飞过</option>
+                    <option value="24">测试用户一</option>
+                </select>
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="/sys/loginLog/update">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end

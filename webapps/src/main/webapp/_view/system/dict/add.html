@@ -1,0 +1,49 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="form-horizontal" action="">
+        <div class="form-group">
+            <div class="col-sm-2 control-label">字典父名称</div>
+            <div class="col-sm-10">
+                <input    value="#(dict.pid ??)"  id="dict-pid"  cyType="treeTool"   cyProps="url:'/cache/getDictTree',name:'dict.pid'"
+                          placeholder="请选择父名称" class="layui-input"/>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">字典名称</div>
+            <div class="col-sm-10">
+                <input type="text" name="dict.name"  required  lay-verify="required" placeholder="请输入字典名称" autocomplete="off" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">字典编号</div>
+            <div class="col-sm-10">
+                <input type="text" name="dict.pcode"  required  lay-verify="required" placeholder="请输入字典编号" autocomplete="off" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">字典序号</div>
+            <div class="col-sm-10">
+                <input type="text" name="dict.code"  required  lay-verify="required" placeholder="请输入字典序号" autocomplete="off" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">备注</div>
+            <div class="col-sm-10">
+                <textarea style="height:100px;width: 500px" type="textarea" name="dict.tips"  placeholder="请输入备注"  class="form-control"></textarea>
+            </div>
+        </div>
+
+        <div class="page-footer ">
+            <div class="btn-list pull-right">
+                <button class="layui-btn layui-btn-sm" lay-submit lay-filter="submit" data-url="#(ctx)/sys/dict/doadd">
+                    <i class="fa fa-floppy-o">&nbsp;</i>保存
+                </button>
+                <button class="layui-btn layui-btn-sm" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+#end

@@ -1,0 +1,87 @@
+<!--begin 保养记录-->
+<div class="layui-tab-item layui-show">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">保养类型:</label>
+            <div class="layui-input-inline">
+                <select name="upkeepType" lay-filter="aihao">
+                    <option value="0">日常保养</option>
+                    <option value="1">巡查保养</option>
+                </select>
+            </div>
+            <label class="layui-form-label label-120">保养人:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="upkeeper" placeholder="请输入保养人" class="layui-input">
+            </div>
+            <div class="layui-input-nomarl">
+                <button class="layui-btn layui-btn-sm layui-btn-green" lay-submit="" lay-filter="moreSearch">
+                    <i class="fa fa-chevron-down">&nbsp;</i>更多
+                </button>
+                <button class="layui-btn layui-btn-sm search-btn" table-id="upkeepTable" lay-submit="" lay-filter="search">
+                    <i class="fa fa-search">&nbsp;</i>查询
+                </button>
+                <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+            </div>
+        </div>
+        <div class="layui-form-item more-search">
+            <label class="layui-form-label label-120">保养状态:</label>
+            <div class="layui-input-inline">
+                <select name="status" lay-filter="aihao">
+                    <option value="0">未保养</option>
+                    <option value="1">保养过期</option>
+                </select>
+            </div>
+            <label class="layui-form-label label-120">保养日期:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" placeholder="请输入保养日期" class="layui-input">
+            </div>
+            <label class="layui-form-label label-120">完成时间:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="time" id="time" placeholder="请输入完成时间" class="layui-input">
+            </div>
+        </div>
+    </form>
+    <div class="layui-form nowrap">
+        <table class="layui-table" id="upkeepTable" cyType="pageGrid"
+               cyProps="url:'/stock/upkeep/getList',checkbox:'true',pageColor:'#2991d9'">
+            <thead>
+            <tr>
+                <!--复选框-->
+                <th width="1%" param="{type:'checkbox'}">
+                    <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                </th>
+                <th width="10%" param="{name:'upkeepType',sort:'true'}">保养类型</th>
+
+                <th width="10%" param="{name:'upkeeper'}">保养人</th>
+
+                <th width="10%" param="{name:'status'}">保养状态</th>
+
+                <th width="10%" param="{name:'date'}">保养日期</th>
+
+                <th width="10%" param="{name:'time'}">完成时间</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<!--end 保养记录-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        //表格渲染查询
+        var tables = $("[cyType='pageGrid']");
+        for (var i = 0; i < tables.length; i++) {
+            $(tables[i]).pageGrid();
+        }
+    });
+    //重新渲染页面元素
+    layui.use(['laydate','form'], function(){
+        var laydate = layui.laydate,form=layui.form;
+        form.render('select');
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#time'
+        });
+    });
+</script>

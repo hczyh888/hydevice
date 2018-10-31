@@ -1,0 +1,272 @@
+#@iframeLayout()
+#define mainContent()
+<div class="wrapper" id="hyapp" v-cloak>
+    <div class="layui-tab layui-tab-brief" lay-filter="applyTabs">
+        <ul class="layui-tab-title">
+        <li class="layui-this">草稿</li>
+        <li>待审核</li>
+        <li>已审核</li>
+    </ul>
+        <!--begin 计划申请-->
+        <div class="layui-tab-content" >
+        <!--begin 草稿部分-->
+        <div class="layui-tab-item layui-show">
+            <!-- search  -->
+                <div class="layui-card ">
+                    <div class="layui-card-body">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label label-120">计划名称:</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="planName" placeholder="请输入计划名称" v-model="q.planName" @keyup.enter="query" class="form-control">
+                            </div>
+
+                            <label class="layui-form-label label-120">设备名称:</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="cnName" placeholder="请输入设备名称" v-model="q.cnName" @keyup.enter="query" class="form-control">
+                            </div>
+                            <button class="layui-btn layui-btn-sm search-btn " @click="query">
+                                <i class="fa fa-search">&nbsp;</i>查询
+                            </button>
+                            <button class="layui-btn layui-btn-sm layui-btn-primary" @click="clearWhere">
+                                <i class="fa fa-refresh">&nbsp;</i>重置</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span>计划申请列表</span>
+                        <div class="layui-btn-group pull-right top5 ">
+                            <a class="layui-btn layui-btn-sm layui-btn-gray" href="#(ctx)/plan/planApply/add">增加</a>
+                            <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="Msg.success('操作成功')">
+                                <i class="fa fa-file-excel-o">&nbsp;</i>导出
+                            </button>
+                        </div>
+                    </div>
+                    <div class="layui-form nowrap">
+                        <table id="applyTable" lay-filter="apply" ></table>
+                    </div>
+                </div>
+        </div>
+        <!--end 草稿部分-->
+
+        <!--待审核begin-->
+        <div class="layui-tab-item">
+            <div class="layui-card ">
+                <div class="layui-card-body">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label-120">计划名称:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="planName" placeholder="请输入计划名称" v-model="q.planName" @keyup.enter="query" class="form-control">
+                        </div>
+
+                        <label class="layui-form-label label-120">设备名称:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="deviceId" placeholder="请输入设备名称" v-model="q.deviceId" @keyup.enter="query" class="form-control">
+                        </div>
+                        <button class="layui-btn layui-btn-sm search-btn " @click="query">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                        <button class="layui-btn layui-btn-sm layui-btn-primary" @click="clearWhere">
+                            <i class="fa fa-refresh">&nbsp;</i>重置</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span>计划申请列表</span>
+                </div>
+                <div class="layui-form nowrap">
+                    <table id="waitTable" lay-filter="wait" ></table>
+                </div>
+            </div>
+        </div>
+        <!--待审核end-->
+
+        <!--已审核begin-->
+        <div class="layui-tab-item">
+            <div class="layui-card ">
+                <div class="layui-card-body">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label-120">计划名称:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="planName" placeholder="请输入计划名称" v-model="q.planName" @keyup.enter="query" class="form-control">
+                        </div>
+
+                        <label class="layui-form-label label-120">设备名称:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="deviceId" placeholder="请输入设备名称" v-model="q.deviceId" @keyup.enter="query" class="form-control">
+                        </div>
+                        <button class="layui-btn layui-btn-sm search-btn " @click="query">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                        <button class="layui-btn layui-btn-sm layui-btn-primary" @click="clearWhere">
+                            <i class="fa fa-refresh">&nbsp;</i>重置</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span>计划申请列表</span>
+                </div>
+                <div class="layui-form nowrap">
+                    <table id="checkedTable" lay-filter="checked" ></table>
+                </div>
+            </div>
+
+        </div>
+        <!--审核未通过end-->
+    </div>
+        <!--end 计划申请-->
+    </div>
+</div>
+    <!--草稿操作按钮-->
+    <script type="text/html" id="barApply">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+    <!--待审核操作按钮-->
+    <script type="text/html" id="wait">
+    <a class="layui-btn layui-btn-xs" lay-event="export">申请表导出</a>
+    </script>
+    <!--已审核操作按钮-->
+    <script type="text/html" id="checked">
+    <a class="layui-btn layui-btn-xs" lay-event="export">按钮待添加</a>
+    </script>
+
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+<script>
+    planApplyList = '#(ApplyStateEnum)';
+    var objPlanApplyList = eval('('+planApplyList+')');
+
+
+    //引用layui table
+    var applyTable;//草稿
+    var waitTable;//待审核
+    var checkedTable;//已审核
+    layui.use(['table','element'],function () {
+        var element = layui.element;
+        applyTable = layui.table;
+        applyTable.render({
+            elem:'#applyTable',
+            url:'#(ctx)/plan/planApply/getList/1',
+            page:true,
+            id:'applyTable',
+            cols:[[
+                {type:'numbers',title:'序号',width:'5%'},
+                {field:'planName',title:'计划名称'},
+                {field:'cnName',title:'设备名称'},
+                {field:'planType',title:'计划类型'},
+                {field:'userDept',title:'使用科室'},
+                {field:'budget',title:'预算金额'},
+                {field:'createTime',title:'申请日期'},
+                {field:'purchaseDate',title:'采购日期'},
+                {field:'status',title:'状态',templet:function(d){
+                    return objPlanApplyList["id_"+d.status];
+                     }},
+                {fixed:'right',align:'center',title:'操作',width:120,toolbar:'#barApply'}
+            ]]
+        });
+
+        waitTable = layui.table;
+        waitTable.render({
+            elem:'#waitTable',
+            url:'#(ctx)/plan/planApply/getList/2',
+            page:true,
+            id:'waitTable',
+            cellMinWidth:100,
+            cols:[[
+                {type:'numbers',title:'序号',width:50},
+                {field:'planName',title:'计划名称',width:120},
+                {field:'cnName',title:'设备名称'},
+                {field:'planType',title:'计划类型'},
+                {field:'userDept',title:'使用科室'},
+                {field:'budget',title:'预算金额'},
+                {field:'createTime',title:'申请日期'},
+                {field:'purchaseDate',title:'采购日期'},
+                {field:'status',title:'状态',templet:function(d){
+                    return objPlanApplyList["id_"+d.status];
+                }},
+                {fixed:'right',align:'center',title:'操作',width:120,toolbar:'#wait'}
+            ]]
+        });
+
+        checkedTable = layui.table;
+        checkedTable.render({
+            elem:'#checkedTable',
+            url:'#(ctx)/plan/planApply/getList/3',
+            page:true,
+            id:'checkedTable',
+            cellMinWidth:100,
+            cols:[[
+                {type:'numbers',title:'序号',width:50},
+                {field:'planName',title:'计划名称',width:120},
+                {field:'cnName',title:'设备名称'},
+                {field:'planType',title:'计划类型'},
+                {field:'userDept',title:'使用科室'},
+                {field:'budget',title:'预算金额'},
+                {field:'createTime',title:'申请日期'},
+                {field:'purchaseDate',title:'采购日期'},
+                {field:'status',title:'状态',templet:function(d){
+                    return objPlanApplyList["id_"+d.status];
+                }},
+                {fixed:'right',align:'center',title:'操作',toolbar:'#checked'}
+            ]]
+        });
+        //监听工具条
+        applyTable.on('tool(apply)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'del'){
+                deleteOne(data.id,'#(ctx)/plan/planApply/del','删除');
+
+            }else if(layEvent == 'edit'){
+                openIframe(data.id,'#(ctx)/plan/planApply/edit','编辑-信息','60%-75%');
+            }
+        });
+        waitTable.on('tool(wait)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'export'){
+                openIframe(data.id,'#(ctx)/plan/planApply/Export','申请表导出','60%-75%');
+            }
+        });
+        checkedTable.on('tool(checked)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'export'){
+                openIframe(data.id,'#(ctx)/plan/planApply/Export','申请表导出','60%-75%');
+            }
+        });
+
+    });
+
+    //实例化vue
+    var vm = new Vue({
+        el:'#hyapp',
+        data:{
+            q:{planName:null,pid:null,cnName:null}
+        },
+        methods:{
+            query: function () {
+                vm.reload();
+            },
+            reload: function () {
+                applyTable.reload('applyTable',{
+                    where:vm.q,
+                    page:{curr:1}
+                })
+            },
+            clearWhere:function () {
+                vm.q.planName = null;
+                vm.q.pid = null;
+                vm.q.cnName = null;
+            }
+        }
+    });
+</script>
+
+
+#end
+

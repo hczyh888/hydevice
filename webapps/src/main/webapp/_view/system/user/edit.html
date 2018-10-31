@@ -1,0 +1,79 @@
+#@iframeLayout()
+#define mainContent()
+<form class="layui-form form-horizontal" action="">
+    <input type="hidden" name="user.id" value="#(user.id)">
+    <div class="form-group">
+        <div class="col-sm-2 control-label">账 号</div>
+        <div class="col-sm-10">
+            <input type="text" name="user.account" value="#(user.account??)" lay-verify="required"  lay-verType="tips" placeholder="请输入账号" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2 control-label">姓 名</div>
+        <div class="col-sm-10">
+            <input type="text" name="user.name" value="#(user.name)"   lay-verify="required" lay-verType="tips" placeholder="请输入姓名"  class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2 control-label">性 别</div>
+        <div cyType="radioTool" cyProps="enumName:'SexEnum'" name="user.sex" value="#(user.sex)" class="layui-input-inline "></div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-2 control-label">角 色</div>
+        <div class="col-sm-10 ">
+            <input    value="#(user.roleId ??)"  id="user-rolesId"  cyType="treeTool"   cyProps="url:'/cache/getRolesTree',name:'user.roleId'"
+                      placeholder="请选择角色" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2 control-label">部 门</div>
+        <div class="col-sm-10 ">
+            <input    value="#(user.deptId ??)"  id="user-deptId"  cyType="treeTool"   cyProps="url:'/cache/getDeptTree',name:'user.deptId'"
+                      placeholder="请选择部门" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-2 control-label">邮 箱</div>
+        <div class="col-sm-10">
+            <input type="text" name="user.email" value="#(user.email)"   lay-verify="email" placeholder="email" autocomplete="off" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">电 话</label>
+        <div class="col-sm-10">
+            <input type="text" name="user.phone" value="#(user.phone)"   lay-verify="phone" placeholder="phone" autocomplete="off" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2 control-label">生 日</div>
+        <div class="col-sm-10">
+            <input type="text" name="user.birthday" value="#(user.birthday)"  placeholder="请输入生日" id="birthday" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-2 control-label">状 态</div>
+        <div cyType="radioTool" cyProps="enumName:'StateEnum'" name="user.status" value="#(user.status)" class="layui-input-inline"></div>
+    </div>
+    <div class="page-footer">
+        <div class="btn-list pull-right">
+            <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="submit" data-url="#(ctx)/sys/user/update">
+                <i class="fa fa-floppy-o">&nbsp;</i>保存
+            </button>
+            <button class="layui-btn layui-btn-sm" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+        </div>
+    </div>
+
+</form>
+#end
+<script src="/statics/js/laydate.js"></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#birthday'
+        });
+    });
+</script>

@@ -1,0 +1,107 @@
+#@iframeLayout()
+#define mainContent()
+<div class="wrapper" id="hyapp" v-cloak>
+    <div class="layui-card ">
+                <div class="layui-card-body">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label-120">库房名称：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="warehouseName" placeholder="请输入库房名称" v-model="q.warehouseName" @keyup.enter="query" class="form-control">
+                        </div>
+                        <label class="layui-form-label label-120">库房类型：</label>
+                        <div class="layui-input-inline">
+                            <select name="type" class="form-control" lay-search="">
+                                <option value="">请选择</option>
+                                <option value="设备库">设备库</option>
+                                <option value="备件库">备件库</option>
+                                <option value="平面仓库">平面仓库</option>
+                                <option value="立体式仓库">立体式仓库</option>
+                                <option value="多层楼房型仓库">多层楼房型仓库</option>
+                                <option value="地下仓库">地下仓库</option>
+                                <option value="智能化仓库">智能化仓库</option>
+                            </select>
+                        </div>
+                        <button class="layui-btn layui-btn-sm search-btn " @click="query">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                        <button class="layui-btn layui-btn-sm layui-btn-primary" @click="clearWhere">
+                            <i class="fa fa-refresh">&nbsp;</i>重置</button>
+                    </div>
+                </div>
+            </div>
+    <div class="panel panel-default">
+        <div class="panel-heading ">
+            <span>库存设备列表</span>
+        </div>
+        <div class="layui-form nowrap">
+            <table id="stockPileTable" lay-filter="stock" ></table>
+        </div>
+    </div>
+</div>
+    <script type="text/html" id="barStock">
+            <a class="layui-btn layui-btn-xs" lay-event="edit">完善资料</a>
+            <a class="layui-btn layui-btn-xs" lay-event="info">调拨</a>
+            <a class="layui-btn layui-btn-xs" lay-event="out">出库</a>
+        </script>
+    #end
+#define js()
+<script>
+    //引用layui table
+    var stockPileTable;
+    layui.use(['table'],function () {
+        stockPileTable = layui.table;
+        stockPileTable.render({
+            elem:'#stockPileTable',
+            url:'#(ctx)/stock/stockPile/getList',
+            page:true,
+            id:'stockPileTable',
+            cols:[[
+                {type:'numbers',title:'序号',width:'5%'},
+                {field:'warehouseName',title:'库房名称',width:'13%'},
+                {field:'deviceName',title:'设备名称',width:'13%'},
+                {field:'className',title:'设备分类名称',width:'13%'},
+                {field:'TypeName',title:'型号',width:'13%'},
+                {field:'agency',title:'经销商',width:'13%'},
+                {field:'companyName',title:'生产企业',width:'13%'},
+                {fixed:'right',align:'center',title:'操作',width:'17%',toolbar:'#barStock'}
+            ]]
+        });
+        //监听工具条
+        stockPileTable.on('tool(stock)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'info'){
+                openIframe(data.id,'#(ctx)/stock/stockPile/view','调拨','60%-75%');
+            }else if(layEvent == 'edit'){
+                openIframe(data.id,'#(ctx)/stock/stockPile/edit','完善资料','60%-75%');
+            }else if(layEvent == 'out'){
+                openIframe(data.id,'#(ctx)/stock/stockPile/view','出库','60%-75%');
+            }
+        });
+    });
+
+    //实例化vue
+    var vm = new Vue({
+        el:'#hyapp',
+        data:{
+            q:{warehouseName:null}
+        },
+        methods:{
+            query: function () {
+                vm.reload();
+            },
+            reload: function () {
+                stockPileTable.reload('stockPileTable',{
+                    where:vm.q,
+                    page:{curr:1}
+                })
+            },
+            clearWhere:function () {
+                vm.q.warehouseName = null;
+
+            }
+
+        }
+    })
+</script>
+#end

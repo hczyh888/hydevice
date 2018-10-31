@@ -1,0 +1,109 @@
+#@iframeLayout()
+#define mainContent()
+<div class=" layui-field-box layui-inline ">
+    <form class="layui-form layui-form-pane" action="">
+        <input type="hidden" name="menu.status" value="1">
+        <div class="layui-form-item">
+            <label class="layui-form-label">巡查时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="menu.levels" id="taskTime" placeholder="请输入巡查时间" autocomplete="off" class="layui-input">
+            </div>
+            <label class=" layui-form-label">巡查类型</label>
+            <div class="layui-input-inline">
+                <select name="city" lay-verify="">
+                    <option value="">请选择</option>
+                    <option value="010">按部门巡查</option>
+                    <option value="021">按设备巡查</option>
+                    <option value="0571">按设备目录巡查</option>
+                </select>
+            </div>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择部门</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="menu.levels" placeholder="部门查询" autocomplete="off" class="layui-input">
+                    </div>
+                    <select style="display:block;">
+                        <option  value="1" title="门诊科室">门诊科室</option>
+                        <option  value="2" title="内科门诊">内科门诊</option>
+                        <option  value="3" title="呼吸内科">呼吸内科</option>
+                        <option  value="4" title="心血管内科">心血管内科</option>
+                        <option  value="5" title="血液内科">血液内科</option>
+                        <option  value="6" title="肾内科">肾内科</option>
+                        <option  value="7" title="消化内科">消化内科</option>
+                        <option  value="8" title="内分泌糖尿病">内分泌糖尿病</option>
+                        <option  value="9" title="老年医学">老年医学</option>
+                        <option  value="10" title="风湿免疫">风湿免疫</option>
+                        <option  value="11" title="内科普通">内科普通</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">生产企业</label>
+                    <div class="layui-input-inline">
+                        <select name="city" lay-verify="">
+                            <option value="">请选择一个城市</option>
+                            <option value="010">北京</option>
+                            <option value="021">上海</option>
+                            <option value="0571">杭州</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">添加任务</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="menu.levels" placeholder="部门查询" autocomplete="off" class="layui-input">
+                    </div>
+                    <select style="display:block;">
+                        <option  value="1" title="门诊科室">门诊科室</option>
+                        <option  value="2" title="内科门诊">内科门诊</option>
+                        <option  value="3" title="呼吸内科">呼吸内科</option>
+                        <option  value="4" title="心血管内科">心血管内科</option>
+                        <option  value="5" title="血液内科">血液内科</option>
+                        <option  value="6" title="肾内科">肾内科</option>
+                        <option  value="7" title="消化内科">消化内科</option>
+                        <option  value="8" title="内分泌糖尿病">内分泌糖尿病</option>
+                        <option  value="9" title="老年医学">老年医学</option>
+                        <option  value="10" title="风湿免疫">风湿免疫</option>
+                        <option  value="11" title="内科普通">内科普通</option>
+                    </select>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="menu.levels" placeholder="请输入巡查时间" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="page-footer">
+                <div class="btn-list">
+                    <div class="btnlist">
+                        <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/sys/menu/doadd">
+                            <i class="fa fa-floppy-o">&nbsp;</i>保存
+                        </button>
+                        <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                    </div>
+                </div>
+            </div>
+    </form>
+</div>
+#end
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#taskTime'
+        });
+    });
+</script>

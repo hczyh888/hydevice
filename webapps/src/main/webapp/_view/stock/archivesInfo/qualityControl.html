@@ -1,0 +1,75 @@
+<!--begin 质量与控制记录-->
+<div class="layui-tab-item layui-show">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">安装单号:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="installId" placeholder="请输入安装单号" class="layui-input">
+            </div>
+            <label class="layui-form-label label-120">安装工程师:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="installMan" placeholder="请输入安装工程师" class="layui-input">
+            </div>
+            <div class="layui-input-nomarl">
+                <button class="layui-btn layui-btn-sm layui-btn-green" lay-submit="" lay-filter="moreSearch">
+                    <i class="fa fa-chevron-down">&nbsp;</i>更多
+                </button>
+                <button class="layui-btn layui-btn-sm search-btn" table-id="qualityControlTable" lay-submit="" lay-filter="search">
+                    <i class="fa fa-search">&nbsp;</i>查询
+                </button>
+                <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+            </div>
+        </div>
+        <div class="layui-form-item more-search">
+            <label class="layui-form-label label-120">安装完成时间:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="installTime" id="installTime" placeholder="请输入安装完成时间" class="layui-input">
+            </div>
+            <label class="layui-form-label label-120">报装时间:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="appearTime" id="appearTime" placeholder="请输入报装时间" class="layui-input">
+            </div>
+        </div>
+    </form>
+    <div class="layui-form nowrap">
+        <table class="layui-table" id="qualityControlTable" cyType="pageGrid"
+               cyProps="url:'/stock/qualityControl/getList',checkbox:'true',pageColor:'#2991d9'">
+            <thead>
+            <tr>
+                <!--复选框-->
+                <th width="1%" param="{type:'checkbox'}">
+                    <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                </th>
+                <th width="10%" param="{name:'installId',sort:'true'}">安装单号</th>
+
+                <th width="10%" param="{name:'installMan'}">安装工程师</th>
+
+                <th width="10%" param="{name:'installTime'}">安装完成时间</th>
+
+                <th width="10%" param="{name:'appearTime'}">报装时间</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<!--end 质量与控制记录-->
+<script type="text/javascript">
+    /*$(document).ready(function () {
+        //表格渲染查询
+        var tables = $("[cyType='pageGrid']");
+        for (var i = 0; i < tables.length; i++) {
+            $(tables[i]).pageGrid();
+        }
+    });*/
+</script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#installTime'
+        });
+        laydate.render({
+            elem: '#appearTime'
+        });
+    });
+</script>

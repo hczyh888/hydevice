@@ -1,0 +1,50 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">服务类型</label>
+            <div class="layui-input-inline">
+                <input type="text" name="subservice.type" placeholder="服务类型" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">机构名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="subservice.companyId"  placeholder="机构名称" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">合同期限</label>
+            <div class="layui-input-inline">
+                <input type="text" name="subservice.date" id="subservice" placeholder="请输入合同期限" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-inline">
+                <input  style="height: 60px;width: 500px"type="text" name="subservice.remark" placeholder="备注" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">上传合同</label>
+            <div class="layui-input-inline">
+                <input  style="height: 60px;width: 500px"type="text" name="subservice.fileId" placeholder="上传合同" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit2" data-url="#(ctx)/stock/subservice/doadd">
+                        <i class="fa fa-floppy-o">&nbsp;</i>提交
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#subservice'
+        });
+    });
+</script>

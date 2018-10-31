@@ -1,0 +1,89 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-card">
+        <div class="layui-card-header">
+            <span>公司基本信息</span>
+        </div>
+        <div class="layui-card-body">
+            <form class="layui-form" action="">
+                <input type="hidden" value="#(company.id)" name="company.id">
+                <div class="layui-form-item">
+                  <label class="layui-form-label label-120" >中文名称：</label>
+                  <div class="layui-input-inline div-input-40 "  >
+                      <input type="text" name="company.cnName" value="#(company.cnName)"  lay-verify="required" placeholder="中文名称" autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                <label class="layui-form-label label-120" >英文名称：</label>
+                <div class="layui-input-inline div-input-40" >
+                    <input type="text" name="company.enName" value="#(company.enName)"  lay-verify="required" placeholder="英文名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+                <div class="layui-form-item">
+            <label class="layui-form-label label-120" >地址：</label>
+            <div class="layui-input-inline div-input-40" >
+                <input type="text" name="company.address" value="#(company.address)" placeholder="地址" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+                <div class="layui-form-item">
+                        <label class="layui-form-label label-120" >邮政编码：</label>
+                    <div class="layui-input-inline" >
+                        <input type="text" name="company.zip"  value="#(company.zip)" placeholder="邮政编码" autocomplete="off" class="layui-input">
+                     </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-120">公司logo：</label>
+                    <div class="layui-input-inline div-input-40">
+                        <input type="text" name="company.picture" value="#(ctx)#(company.picture)" readonly="readonly" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline layui-upload">
+                        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" id="chooseFile">选择文件</button>
+                        <button type="button" class="layui-btn layui-btn-sm" id="beginUpload">开始上传</button>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-120">预览</label>
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" id="imgPic" src="#(ctx)#(company.picture)">
+                    </div>
+                </div>
+                 <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button id="hySubmit" class="layui-btn" lay-submit lay-filter="submit" data-url="#(ctx)/sys/company/doadd">提交</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+    layui.use(['upload','form','element'], function() {
+        var $ = layui.jquery
+            , upload = layui.upload;
+        upload.render({
+            elem:'#chooseFile'
+            ,url:'#(ctx)/sys/company/upload'
+            ,accept:'images'
+            ,auto:false
+            ,bindAction:'#beginUpload'
+            ,choose: function (obj) {
+                var index = layer.load(1);
+                obj.preview(function (index, file, result) {
+                    $('#imgPic').attr('src', result); //图片链接（base64）
+                    $('[name="company.picture"]').val(file.name);
+                });
+                layer.close(index);
+            }
+            ,done: function(res, index, upload) {
+                if(res.state=='ok'){
+                    $('[name="company.picture"]').val(res.filePath);
+                }
+            }
+        });
+    });
+</script>
+
+</div>
+#end

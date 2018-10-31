@@ -1,0 +1,94 @@
+    <!--begin 设备信息-->
+    <div class="layui-tab-item layui-show">
+        <!-- search  -->
+        <div class="layui-field-box ">
+            <form class="layui-form layui-form-pane" action="">
+                <!--设备信息-->
+                <fieldset>
+                    <legend>设备基础资料</legend>
+                    <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                        <span>设备档案号：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.fileNumber)</label></span>
+                        <span>是否固定资产：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.fixedAssets) </label></span>
+                        <span>资产编号：<label class="layui-label-right" style="font-size: larger;color: #0a67fb"> #(archivesinfo.stockpileSubinfor.propertyId) </label></span></br>
+                    </div>
+                </fieldset>
+                <!--设备基本属性-->
+                <fieldset>
+                    <legend>设备基本属性</legend>
+                    <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                        <span>设备名称：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.devicelist.cnName)</label></span>
+                        <span>英文名称：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.devicelist.enName) </label></span>
+                        <span>品牌：<label class="layui-label-right" style="font-size: larger;color: #0a67fb"> #(archivesinfo.devicelist.brand) </label></span></br>
+                    </div>
+                    <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                        <span>型号：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.devicelist.type) </label></span>
+                        <span>生产企业：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.companyId) </label></span>
+                        <span>经销商：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.enterstock.agency)</label></span></br>
+                    </div>
+                    <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                        <span>单价：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.price) </label></span>
+                        <span>单位：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.devicelist.unit) </label></span>
+                        <span>设备出厂编号：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.facNumber) </label></span>
+                    </div>
+                    <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                        <span>购置日期：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.buyDate) </label></span>
+                        <span>验收日期：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.acceptanceDate) </label></span>
+                        <span>医疗器械注册号：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.regisNumber) </label></span></br>
+                    </div>
+                </fieldset>
+                <!--设备扩展属性-->
+                <fieldset>
+                    <legend>设备扩展属性</legend>
+                    <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                        <span>设备分类编码：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.deviceclass.simpleCode) </label></span>
+                        <span>设备分类：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.deviceclass.name) </label></span>
+                        <span>使用状态：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.deviceclass.status) </label></span></br>
+                    </div>
+                    <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                        <span>所属库房类型：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.warehouse.type) </label></span>
+                        <span>所属库房：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.warehouse.name) </label></span>
+                        <span>货位：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.warehouse.place) </label></span>
+                    </div>
+                    <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                        <span>高危资产：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.riskAssets) </label></span>
+                        <span>是否急救设备：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.emergencyDevice) </label></span>
+                        <span>是否特种设备：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.specialDevice) </label></span>
+                    </div>
+                    <div class="layui-form-item">
+                        <span>设备应用类型：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.deviceType) </label></span>
+                    </div>
+                </fieldset>
+                <!--设备维护属性-->
+                <fieldset>
+                    <legend>设备维护属性</legend>
+                    <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                        <span>保养周期：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.mainPeriod) </label></span>
+                        <span>计量周期：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.meaPeriod) </label></span>
+                        <span>质量周期：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.quaPeriod) </label></span>
+                    </div>
+                    <div class="layui-form-item">
+                        <span>折旧方式：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(archivesinfo.stockpileSubinfor.DepreWay) </label></span>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <!--end 设备信息-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //表格渲染查询
+        var tables = $("[cyType='pageGrid']");
+        for (var i = 0; i < tables.length; i++) {
+            $(tables[i]).pageGrid();
+        }
+    });
+    //重新渲染页面元素
+    layui.use(['laydate','element'], function(){
+        var laydate = layui.laydate,element=layui.element;
+        laydate.render({
+            elem: '#enterstockDate'
+        });
+    });
+</script>

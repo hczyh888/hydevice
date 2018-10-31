@@ -1,0 +1,85 @@
+#@iframeLayout()
+#define mainContent()
+<div class=" layui-field-box layui-inline ">
+    <form class="layui-form layui-form-pane" action="">
+        <input type="hidden" name="qualityManage.id" value="#(qualityManage.id)">
+        <div class="layui-form-item">
+            <label class=" layui-form-label">设备名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="qualityManage.taskName" value="#(qualityManage.taskName)"  placeholder="请输入设备名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class=" layui-form-label">类型</label>
+            <div class="layui-input-inline">
+                <select  name="qualityManage.taskName" value="#(qualityManage.taskName)" lay-verify="">
+                    <option value="">请选择类型</option>
+                    <option value="010">计量</option>
+                    <option value="021">质控</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">原因</label>
+            <div class="layui-input-inline">
+                <select  name="qualityManage.taskName" value="#(qualityManage.taskName)" lay-verify="">
+                    <option value="">请选择原因</option>
+                    <option value="010">维修验收质检</option>
+                    <option value="021">常规计量</option>
+                    <option value="021">常规质控</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">机构名称</label>
+            <div class="layui-input-inline">
+                <select  name="qualityManage.taskName" value="#(qualityManage.taskName)" lay-verify="">
+                    <option value="">请选择机构名称</option>
+                    <option value="010">北京瑞普思软件开发有限公司</option>
+                    <option value="021">北京阳光宝润技术有限公司</option>
+                    <option value="021">北京压安利电子公司</option>
+                    <option value="010">迪姆软件北京有限公司</option>
+                    <option value="021">德国STORZ</option>
+                    <option value="021">江阴市科研器械厂</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">费用</label>
+            <div class="layui-input-inline">
+                <input type="text" name="qualityManage.taskName" value="#(qualityManage.taskName)"  placeholder="请输入费用" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="qualityManage.taskTime" value="#(qualityManage.taskTime)"  id="taskTime"  placeholder="请输入时间" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">上传报告</label>
+            <div class="layui-input-inline">
+                <input type="text" name="qualityManage.taskName" value="#(qualityManage.taskName)"  autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/equipManage/qualityManage/doadd">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#taskTime'
+        });
+    });
+</script>

@@ -1,0 +1,116 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel">
+    <div class="panel-body">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label label-120">档案编号:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="taskName" placeholder="请输入档案编号" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120">提交时间:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="taskTime" id="taskTime" placeholder="请输入提交时间" class="layui-input">
+                </div>
+                <div class="layui-input-normal">
+                    <button class="layui-btn layui-btn-sm layui-btn-green" lay-submit=""
+                            lay-filter="moreSearch">
+                        <i class="fa fa-chevron-down">&nbsp;</i>更多
+                    </button>
+                    <button class="layui-btn layui-btn-sm search-btn" table-id="applyTable" lay-submit="" lay-filter="search">
+                        <i class="fa fa-search">&nbsp;</i>查询
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+                </div>
+            </div>
+            <div class="layui-form-item more-search">
+                <label class="layui-form-label label-120">设备名称:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="taskName" placeholder="请输入设备名称" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120">部门科室:</label>
+                <div class="layui-input-inline">
+                    #combox(type='dept',name='dept.dept','1','',code='dept')
+                </div>
+            </div>
+            <div class="layui-form-item more-search">
+                <label class="layui-form-label label-120">类型:</label>
+                <div class="layui-input-inline">
+                    <select  name="taskTask" lay-verify="">
+                        <option value="">请选择类型</option>
+                        <option value="010">计量</option>
+                        <option value="021">质控</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <span>计量质控管理</span>
+        <div class="layui-btn-group pull-right" style="margin-top: -5px" >
+            <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="Page.open('添加监测记录','#(ctx)/equipManage/qualityManage/add','maintainManageAdd','50%-70%')">
+                <i class="fa fa-plus">&nbsp;</i>添加
+            </button>
+        </div>
+    </div>
+    <div class="panel-body" style="padding:0px">
+        <div class="layui-form nowrap">
+            <table id="qualityManageTable" lay-filter="qualityManage" ></table>
+        </div>
+    </div>
+    <script type="text/html" id="barQualityManage">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+    </script>
+</div>
+#end
+#define js()
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#taskTime'
+        });
+    });
+</script>
+<script src="/statics/js/commonList.js"></script>
+<script type="text/javascript">
+    layui.use('table',function(){
+        var qualityManageTable = layui.table;
+        //渲染表格
+        qualityManageTable.render({
+            elem:'#qualityManageTable'
+            ,skin:'row'
+            ,cellMinWidth: 80
+            ,url:'#(ctx)/equipManage/qualityManage/getList'
+            ,page:true
+            ,cols:[[
+                {type:'numbers',title:'序号',width:'5%'},
+                {field:'taskName',title:'档案单号',width:'20%'},
+                {field:'taskName',title:'设备名称',width:'10%'},
+                {field:'taskName',title:'部门科室',width:'10%'},
+                {field:'taskTime',title:'提交时间',width:'10%'},
+                {field:'taskName',title:'类型',width:'10%'},
+                {field:'taskName',title:'费用',width:'10%'},
+                {fixed:'right',align:'center',title:'操作',width:'14%',toolbar:'#barQualityManage'}
+            ]]
+        });
+        //监听工具条
+        qualityManageTable.on('tool(qualityManage)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'detail'){
+
+            }else if(layEvent === 'del'){
+                deleteOne(data.id,'#(ctx)/equipManage/qualityManage/del','删除合作单位');
+
+            }else if(layEvent == 'edit'){
+                openIframe(data.id,'#(ctx)/equipManage/qualityManage/edit','修改合作单位信息','50%-70%');
+            }
+        })
+    })
+</script>
+
+#end
+

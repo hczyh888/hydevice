@@ -1,0 +1,174 @@
+#@iframeLayout()
+#define mainContent()
+
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+
+    <ul class="layui-tab-title">
+        <li class="layui-this" style="width: 50%;text-align:center;background-color: 	WhiteSmoke">维修工作记录</li>
+        <li style="width: 50%;text-align:center;background-color: WhiteSmoke">安装工作记录</li>
+    </ul>
+
+    <div class="layui-tab-content">
+        <!--新增主页面-->
+        <div class="layui-tab-item layui-show" style="word-spacing: 30px;margin-left: 60px">
+            <!--begin维修工作记录-->
+            <div class="layui-form-item">
+                <div class="panel">
+                <div class="panel-heading ">
+                    <span>工程师： <label class="layui-label-right">#(getUser().name)</label></span>
+                </div>
+                <table class="layui-table" style="margin-top: -10px">
+                    <colgroup>
+                        <col width="230">
+                        <col width="230">
+                        <col width="230">
+                        <col width="230">
+                    </colgroup>
+                    <tbody>
+                    <tr height="230">
+                        <td><span>维修质量评分： <label class="layui-label-right">0</label></span></td>
+                        <td><span>解决方案评分： <label class="layui-label-right">0</label></span></td>
+                        <td><span>维修工期评分：<label class="layui-label-right">0</label></span></td>
+                        <td><span>维修满意度：<label class="layui-label-right">0</label></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading ">
+                        <span>维修列表</span>
+                        <div class="pull-right">
+                            <form class="layui-form"  >
+                               <!-- <a  href="javascript:addPage('零部件信息','#(ctx)/stock/subpart/add','subpartAdd','54%-70%')"><i class="fa fa-plus">&nbsp;</i>添加零部件</a>-->
+                                <!--此btn只是为了刷新grid -->
+                                <button class="layui-btn-sm search-btn hidden " table-id="table-part1" lay-submit="" lay-filter="search">
+                                    <i class="fa fa-search">&nbsp;</i>查询
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="layui-form nowrap">
+                        <table class="layui-table" cyType="pageGrid" id="table-part1" cyProps="url:'/stock/subpart/getList',checkbox:'true',pageColor:'#2991d9'">
+                            <thead>
+                            <tr>
+                                <!--复选框-->
+                                <th width="1%" param="{type:'checkbox'}">
+                                    <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                                </th>
+                                <th width="10%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                                <th width="10%" param="{name:'partName',sort:'true'}">维修单号</th>
+
+                                <th width="10%" param="{name:'numUntil'}">设备名称</th>
+
+                                <th width="10%" param="{name:'price'}">报修科室</th>
+
+                                <th width="10%" param="{name:'standard'}">维修状态</th>
+
+                                <th width="10%" param="{name:'brand'}">保修时间</th>
+
+                                <th width="10%" param="{name:'dealer'}">接单时间</th>
+
+                                <th width="10%" param="{name:'source'}">结束时间</th>
+
+                                <th width="10%" param="{name:'source'}">维修评论</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--end维修工作记录-->
+        </div>
+        <!--begin安装工作记录-->
+        <div class="layui-tab-item">
+            <div class="panel">
+            <div class="panel-heading ">
+                <span>工程师： <label class="layui-label-right">#(getUser().name)</label></span>
+                <div class="pull-right">
+                    <form class="layui-form"  >
+                       <!-- <a  href="javascript:addPage('零部件信息','#(ctx)/stock/subpart/add','subpartAdd','54%-70%')"><i class="fa fa-plus">&nbsp;</i>添加零部件</a>-->
+                        <!--此btn只是为了刷新grid -->
+                        <button class="layui-btn-sm search-btn hidden " table-id="table-part" lay-submit="" lay-filter="search">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="layui-form nowrap">
+                <table class="layui-table" cyType="pageGrid" id="table-part"
+                       cyProps="url:'/stock/subpart/getList',checkbox:'true',pageColor:'#2991d9'">
+                    <thead>
+                    <tr>
+                        <!--复选框-->
+                        <th width="1%" param="{type:'checkbox'}">
+                            <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                        </th>
+                        <th width="10%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                        <th width="10%" param="{name:'partName',sort:'true'}">安装单号</th>
+
+                        <th width="10%" param="{name:'numUntil'}">设备名称</th>
+
+                        <th width="10%" param="{name:'price'}">部门科室</th>
+
+                        <th width="10%" param="{name:'standard'}">安装状态</th>
+
+                        <th width="10%" param="{name:'brand'}">报装时间</th>
+
+                        <th width="10%" param="{name:'dealer'}">接单时间</th>
+
+                        <th width="10%" param="{name:'source'}">约束时间</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        </div>
+        <!--end安装工作记录-->
+    </div>
+</div>
+
+
+<div class="layui-field-box">
+    <table class="layui-table" lay-data="{url:'#(ctx)/stock/stockPile/layuigetList/',id:'leaveStockTable',page:true}" lay-filter="demo">
+        <thead>
+        <tr>
+            <!--复选框-->
+            <th lay-data="{type:'checkbox',fix:'left'}"></th>
+            <!--isPrimary：是否是主键-->
+            <th  lay-data="{field:'fileNumber'}">设备档案</th>
+
+            <th  lay-data="{field:'deviceName'}">设备名称</th>
+
+            <th lay-data="{field:'price',sort:'true'}">单价</th>
+
+            <th lay-data="{field:'number',sort:'true'}">数量</th>
+
+            <th  lay-data="{field:'firstEnterDate',sort:'true'}">入库时间</th>
+
+            <th lay-data="{field:'agencyName',sort:'true'}">经销商</th>
+
+            <th  lay-data="{field:'brandName',sort:'true'}">品牌</th>
+
+            <th  lay-data="{field:'companyName'}">生产企业</th>
+
+            <th width="10%" lay-data="{field:'className'}">设备分类名称</th>
+
+        </tr>
+        </thead>
+    </table>
+</div>
+
+#end
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use(['element','form','upload'], function(){
+        var element = layui.element,form = layui.form,upload=layui.upload;
+
+    });
+</script>
+
+
+
+

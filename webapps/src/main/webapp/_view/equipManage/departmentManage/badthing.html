@@ -1,0 +1,87 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel panel-info" xmlns="http://www.w3.org/1999/html">
+    <div class="panel-heading ">
+        添加个例不良事件
+    </div>
+    <div id="all" class="panel-body">
+        事件基本情况
+        <div style=" height:300px; width: 94%;">
+            <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">用械人数：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title"   lay-verify=" " placeholder="请输入用械人数" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">发生地区：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title"   lay-verify=" " placeholder="请输入发生地区" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">首例用械日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title"   lay-verify=" " placeholder="请输入首例用械日期" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">首例发生日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title"   lay-verify=" " placeholder="请输入首例发生日期" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            医疗器械信息
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">事件主要表现：器械故障</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label label-180">主要伤害</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title"   lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">主要临床经过：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" lay-verify=" " placeholder="请输入主要临床经过" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            关联个例
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">个例列表：</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="sex" value="-amd00180fe-123-2312312312" title="-amd00180fe-123-2312312312">
+                    <input type="checkbox" name="sex" value="无创呼吸机-sn874954326-赵钱-频率故障" title="无创呼吸机-sn874954326-赵钱-频率故障">
+                </div>
+            </div>
+                <button class="layui-btn" lay-filter="submit"><i class="fa fa-undo" data-url="#(ctx)/">&nbsp;</i>提交</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<script src="/statics/js/commonList.js"></script>
+#end
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+    });
+</script>
+<script>
+    layui.use('form', function(){
+        var form = layui.form;
+</script>

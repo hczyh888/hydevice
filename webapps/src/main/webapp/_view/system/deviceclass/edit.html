@@ -1,0 +1,57 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form layui-form-pane" action="">
+        <input type="hidden" name="deviceclass.id" value="#(deviceclass.id)">
+        <div class="layui-form-item">
+            <label class="layui-form-label">分类编号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="deviceclass.classId"  value="#(deviceclass.sn)" required  lay-verify="required" placeholder="请输入分类编号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">分类名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="deviceclass.name" value="#(deviceclass.name)"  required  lay-verify="required" placeholder="请输入分类名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">分类父编号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="deviceclass.pid"  value="#(deviceclass.pid)" required  lay-verify="required" placeholder="请输入分类父编号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">分类简码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="deviceclass.simpleCode" value="#(deviceclass.simpleCode)"   placeholder="请输入分类简码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+
+            <label class="layui-form-label">排序号</label>
+            <div class="layui-inline">
+            <input type="text" name="deviceclass.num" value="#(deviceclass.num)"  required  lay-verify="required" placeholder="请输入排序号" autocomplete="off" class="layui-input" id="test1">
+            </div>
+        </div>
+        <div class="layui-form-item">
+
+            <label class="layui-form-label">状 态</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="deviceclass.status"required  lay-verify="required"  value="1" title="启用"checked>
+                <input type="radio" name="deviceclass.status"required  lay-verify="required"  value="2" title="禁用" >
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/sys/deviceclass/update">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end

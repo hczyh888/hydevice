@@ -1,0 +1,135 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel">
+    <div class="panel-heading">
+        <!-- search  -->
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label label-120">设备名称:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="cnName" placeholder="请输入设备名称" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120">设备简码:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="simpleName" placeholder="请输入设备简码" class="layui-input">
+                </div>
+                <div class="layui-input-normal">
+                    <button class="layui-btn layui-btn-sm layui-btn-green" lay-submit="" lay-filter="moreSearch">
+                        <i class="fa fa-chevron-down">&nbsp;</i>更多
+                    </button>
+                    <button class="layui-btn layui-btn-sm search-btn" table-id="auditTable" lay-submit="" lay-filter="search">
+                        <i class="fa fa-search">&nbsp;</i>查询
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+                </div>
+            </div>
+            <div class="layui-form-item more-search">
+                <label class="layui-form-label label-120">英文名:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="cnName" placeholder="请输入英文名" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120">设备分类:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="classId" placeholder="请输入设备分类" class="layui-input">
+                </div>
+                <label class="layui-form-label">型号:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="classId" placeholder="请输入型号" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item more-search">
+                <label class="layui-form-label label-120">单位:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="unit" placeholder="请输入单位" class="layui-input">
+                </div>
+                <label class="layui-form-label label-120">品牌:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="brand" placeholder="请输入品牌" class="layui-input">
+                </div>
+                <label class="layui-form-label">状态:</label>
+                <div cyType="selectTool" cyProps="codeName:'StatusCode',search:'true'"
+                     name="status" class="layui-input-inline">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <span>设备目录列表</span>
+        <div class="layui-btn-group pull-right top5" >
+            <button class="layui-btn layui-btn-sm layui-btn-gray" onclick="Page.open('添加设备目录','#(ctx)/sys/devicelist/add','devicelistAdd','60%-90%')">
+                <i class="fa fa-plus">&nbsp;</i>增加
+            </button>
+            <button class="layui-btn layui-btn-sm layui-btn-gray" onclick="Msg.success('操作成功')">
+                <i class="fa fa-file-excel-o">&nbsp;</i>导出
+            </button>
+        </div>
+    </div>
+    <div class="panel-body" style="padding: 0px">
+        <div class="layui-form nowrap">
+            <table id="devicelistTable" lay-filter="devicelist"></table>
+        </div>
+    </div>
+    <script type="text/html" id="barDevicelist">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+</div>
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+<script type="text/javascript">
+    status = '#(stateEnum)';
+    var objStatus = eval('('+status+')');
+    unitList = '#(unitList)';
+    var objUnitList = eval('('+unitList+')');
+    brandList = '#(brandList)';
+    var objBrandList = eval('('+brandList+')');
+    layui.use('table',function(){
+        var devicelistTable = layui.table;
+        //渲染表格
+        devicelistTable.render({
+            elem:'#devicelistTable'
+            ,skin:'row'
+            ,cellMinWidth: 80
+            ,url:'#(ctx)/sys/devicelist/getList'
+            ,page:true
+            ,cols:[[
+                {type:'numbers',title:'序号',width:'5%'},
+                {field:'cnName',title:'设备名称',width:'20%',templet:function(d){
+                    return '<a href="#" onclick="openIframe('+d.id+',\'#(ctx)/sys/devicelist/view\',\'查看设备信息\',\'60%-90%\')" class="layui-table-link">'+d.cnName+'</a>'
+                }},
+                {field:'simpleName',title:'设备简码',width:'10%'},
+                {field:'enName',title:'英文名',width:'10%'},
+                {field:'unit',title:'单位',width:'10%',templet:function (d) {
+                   return objUnitList[d.unit];
+                }},
+                {field:'type',title:'型号',width:'10%'},
+                {field:'brand',title:'品牌',width:'10%',templet:function (d) {
+                    return objBrandList[d.brand];
+                }},
+                {field:'companyName',title:'生产企业',width:'10%'},
+                {field:'className',title:'设备分类',width:'10%'},
+                {field:'status',title:'状态',width:'10%',templet:function (d) {
+                    return objStatus["id_"+d.status];
+                }},
+                {fixed:'right',align:'center',title:'操作',width:'10%',toolbar:'#barDevicelist'}
+            ]]
+        });
+        //监听工具条
+        devicelistTable.on('tool(devicelist)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'del'){
+                deleteOne(data.id,'#(ctx)/sys/devicelist/del','删除设备');
+            }else if(layEvent == 'edit'){
+                openIframe(data.id,'#(ctx)/sys/devicelist/edit','编辑设备','60%-90%');
+            }
+        })
+    })
+</script>
+#end
+
+
+

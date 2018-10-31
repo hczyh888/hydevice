@@ -1,0 +1,70 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box layui-inline  ">
+    <form class="layui-form form-horizontal" action="">
+        <input type="hidden" name="menu.id" value="#(menu.id)">
+        <div class="form-group">
+            <div class="col-sm-2 control-label">菜单父编号</div>
+            <div class="col-sm-10">
+                <input type="text" name="menu.pcode" value="#(menu.pcode)"  placeholder="请输入菜单父编号" autocomplete="off" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">菜单编号</div>
+            <div class="col-sm-10">
+                <input type="text" name="menu.code"   value="#(menu.code)"  lay-verify="required" placeholder="请输入菜单编号" autocomplete="off" class="form-control">
+            </div>
+        </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">菜单名称</div>
+                <div class="col-sm-10">
+                <input type="text" name="menu.name" value="#(menu.name)"   lay-verify="required" placeholder="请输入菜单名称" autocomplete="off" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">请求地址</div>
+            <div class="col-sm-10">
+                <input type="text" name="menu.url" value="#(menu.url)" placeholder="请输入请求地址" autocomplete="off" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">图标样式</div>
+            <div class="col-sm-10">
+                <input type="text" name="menu.icon" value="#(menu.icon)"  placeholder="请输入图标样式" autocomplete="off" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">级别</div>
+            <div class="col-sm-10">
+                <input type="text" name="menu.levels"value="#(menu.levels)" placeholder="请输入级别" autocomplete="off" class="form-control">
+            </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">排序</div>
+                <div class="col-sm-10">
+                <input type="number" name="menu.num" value="#(menu.num)" class="form-control">
+            </div>
+            </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">菜单类型</div>
+            <div cyType="radioTool" cyProps="enumName:'MenuTypeEnum'" name="menu.menuType" value="#(menu.menuType)" class="layui-input-inline "></div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">备注</div>
+            <div class="col-sm-10">
+                <textarea style="height:100px;width: 500px" type="textarea" name="menu.tips"  placeholder="请输入备注"  class="form-control">#(menu.tips)</textarea>
+            </div>
+        </div>
+
+        <div class="page-footer ">
+            <div class="btn-list pull-right">
+                <button class="layui-btn layui-btn-sm" lay-submit lay-filter="submit" data-url="#(ctx)/sys/menu/update">
+                    <i class="fa fa-floppy-o">&nbsp;</i>保存
+                </button>
+                <button class="layui-btn layui-btn-sm" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+#end

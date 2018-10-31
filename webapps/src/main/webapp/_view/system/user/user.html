@@ -1,0 +1,146 @@
+#@iframeLayout()
+#define mainContent()
+<div class="wrapper" id="hyapp" v-cloak>
+<!--左边部门列表-->
+    <div class="layui-row">
+        <div class="layui-col-md2">
+            <div class="panel panel-info ">
+                <div class="panel-heading">
+                    <h4>部门科室</h4>
+                </div>
+            <input type="text" placeholder="部门搜索" value="" id="keyword" class="layui-input ">
+            <ul id="deptzTree" class="ztree" style="min-height: 90%"></ul>
+            </div>
+        </div>
+        <div class="layui-col-md10">
+            <div class="layui-card">
+            <div class="layui-card-body">
+                <!-- search  -->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">姓名:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="name" v-model="q.name" placeholder="请输入姓名" class="form-control">
+                        </div>
+                        <label class="layui-form-label">账号:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="account" v-model="q.account" placeholder="请输入账号" class="form-control">
+                        </div>
+                            <button class="layui-btn layui-btn-sm search-btn" @click="query">
+                                <i class="fa fa-search">&nbsp;</i>查询
+                            </button>
+                            <button class="layui-btn layui-btn-sm layui-btn-primary" @click="clearWhere">
+                                <i class="fa fa-refresh">&nbsp;</i>重置</button>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span>用户列表</span>
+                    <div class="layui-btn-group pull-right top5 ">
+                    <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="addPage('添加用户','/sys/user/add','userAdd','60%-85%')"><i class="fa fa-plus">&nbsp;</i>增加</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="editPage(userTable,'userTable','/sys/user/edit','60%-80%')"><i class="layui-icon">&#xe642;</i>编辑</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="deleteOnePage(userTable,'userTable','/sys/user/del','删除')"><i class="fa fa-times-circle">&nbsp;</i>删除</button>
+                </div>
+                </div>
+                <div class="layui-form nowrap">
+                    <table id="userTable" lay-filter="user"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+#end
+
+#define js()
+  <script src="/statics/js/commonList.js"></script>
+  <script type="text/javascript">
+      status = '#(stateEnum)';
+      var objStatus = eval('('+status+')');
+      var setting = {
+          view: {nameIsHTML: true, //允许name支持html
+              selectedMulti: false},
+          edit: {enable: false,editNameSelectAll: false},
+          data: {simpleData: {enable: true}},
+          callback: {beforeClick: zTreeBeforeClick}
+      };
+      function zTreeBeforeClick(treeId, treeNode, clickFlag){
+          var id=treeNode.id;
+          vm.q.pid = id;
+          vm.query();
+      }
+
+      function initZtree(urlStr){
+          $.ajax({
+              type: "post",
+              dataType: "json",
+              url: urlStr,  //服务请求地址
+              success: function(data) {
+                  initThisZtree(data);//传入数据,初始化ztree
+                  fuzzySearch('deptzTree','#keyword',false,true); //初始化模糊搜索方法
+              }
+          });
+      }
+      function initThisZtree(data){
+          //初始化ztree三个参数分别是(jQuery对象,ztree设置,树节点数据)
+          var treeObj=$.fn.zTree.init($("#deptzTree"), setting, data.data);
+          treeObj.expandAll(true);
+      }
+      //初始化ztree数据
+      $(document).ready(function(){
+          initZtree("/cache/getDeptTree");
+      });
+      //引用layui table
+      var userTable;
+      layui.use(['table'],function () {
+          userTable = layui.table;
+          userTable.render({
+              elem:'#userTable',
+              url:'#(ctx)/sys/user/getList',
+              page:true,
+              id:'userTable',
+              cols:[[
+                  {type:'numbers',title:'序号',width:'5%'},
+                  {type:'checkbox',title:'',width:'5%'},
+                  {field:'account',title:'账号'},
+                  {field:'name',title:'姓名'},
+                  {field:'rolesName',title:'角色名称'},
+                  {field:'deptName',title:'部门'},
+                  {field:'email',title:'邮箱'},
+                  {field:'phone',title:'电话'},
+                  {field:'createtime',title:'创建时间'},
+                  {field:'status',title:'状态',templet :function(d){
+                      return objStatus["id_"+d.status];
+                  }}
+              ]]
+          });
+      })
+
+      //实例化vue
+      var vm = new Vue({
+          el:'#hyapp',
+          data:{
+              q:{name:null,account:null}
+          },
+          methods:{
+              query: function () {
+                  vm.reload();
+              },
+              reload: function () {
+                  userTable.reload('userTable',{
+                      where:vm.q,
+                      page:{curr:1}
+                  })
+              },
+              clearWhere:function () {
+                  vm.q.name = null;
+                  vm.q.account = null;
+              }
+
+          }
+      })
+
+
+  </script>
+#end

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<pre class="lay-code">
+
+配置了导入路径
+layui.config({
+version: false,
+debug: false,
+base: '/resource/js/module/'
+});
+
+<script type="text/javascript">
+    layui.use(['datagrid', 'autocomplete', 'form', 'jquery', 'element', 'laydate'],function(){
+        var $ = layui.jquery, autocomplete = layui.autocomplete, laydate = layui.laydate;
+        autocomplete.render({
+            elem: $('input[name=consignee]')[0],
+            url: 'site_url',
+            cache: true,
+            template_val: '{{d.consignee}}',
+            template_txt: '{{d.consignee}} <span class=\'layui-badge layui-bg-gray\'>{{d.phone_number}}</span>',
+            onselect: function (resp) {
+            $('input[name=phone_number]').val(resp.phone_number), $('input[name=address]').val(resp.address)
+        }
+    }),
+        laydate.render({
+            elem: $('input[name=receive_date]')[0]
+        }),
+            layui.onevent('datagrid', 'tool(goods)', function (e) {
+                if (e.filter == 'add')
+                {
+                    var data = layui.datagrid.getData('order');
+                    data[e.data.id] == undefined ? (data[e.data.id] = {goods: e.data.id, name: e.data.name, price: parseFloat(e.data.preset_amount), quantity: 1}) : (data[e.data.id].quantity = parseInt(data[e.data.id].quantity) + 1);
+                    layui.datagrid.reload('order', data);
+                }
+            }),
+            layui.onevent('datagrid', 'tool(order)', function (e) {
+                if (e.filter == 'delete')
+                {
+                    var data = layui.datagrid.getData('order');
+                    data[e.data.id] != undefined && (delete data[e.data.id], layui.datagrid.reload('order', data));
+                }
+
+            })
+    });
+</script>
+</pre>
+<script>
+    layui.use('code', function(){ //加载code模块
+        layui.code(); //引用code方法
+    });
+</script>
+
+</body>
+</html>

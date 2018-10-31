@@ -1,0 +1,45 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">工程师</label>
+            <div class="layui-input-inline">
+                <select name="city" lay-verify="">
+                    <option value="">请选择工程师</option>
+                    <option value="009">张三</option>
+                    <option value="010"> 李四</option>
+                    <option value="021">王五</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">排查方式</label>
+            <div class="layui-input-inline">
+                <select name="city" lay-verify="">
+                    <option value="">请选择用户</option>
+                    <option value="009">上门排查</option>
+                    <option value="010"> 返库排查</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-inline">
+                <textarea type="text" style="height: 100px;width: 500px" name="planName" placeholder="请输入生产企业" class="layui-input"></textarea>
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/equipManage/dispatchManage/vive">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end

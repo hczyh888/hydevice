@@ -1,0 +1,89 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel panel-info">
+    <div class="panel-heading ">
+        设备报修
+    </div>
+    <div id="all" class="panel-body">
+        <div style=" height:50px; width: 94%;">
+            <div class="layui-progress">
+                <div class="layui-progress-bar" lay-percent="30%"></div>
+            </div>
+            <div style="word-spacing:97px;margin-top: 10px">
+                设备报修 等待接单 故障排查 方案确认 维修中 维修验收 维修完成 服务评价
+            </div>
+        </div>
+    </div>
+<div class="panel panel-info">
+    <div class="panel-heading ">
+        设备报修
+    </div>
+    <div id="alls" class="panel-body">
+        <div style=" height:300px; width: 94%;">
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">故障描述：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" value="坏了"    lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">故障拍照：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" value="坏了"    lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">维修单号：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" value="WXD20180209002"    lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label label-180">报修时间：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" value="2018.2.09"    lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label label-180">报修人：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" value="王亚飞"    lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">维修单状态：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" value="已接单"    lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label label-180">设备状态：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" value="使用中"    lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label label-180">接单工程师：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" value="上海华一医疗"    lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label label-180">接单时间：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" value="2018.6.13"    lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label label-180">排查方式：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" value="上门排查"    lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label label-180">排查备注：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="applyinfor.title" value="坏了"    lay-verify=" " placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/statics/js/commonList.js"></script>
+#end
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+    });
+</script>

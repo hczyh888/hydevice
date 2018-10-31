@@ -1,0 +1,281 @@
+#@iframeLayout()
+#define mainContent()
+<!-- begin选择库存设备 -->
+<div id="selectDeviceLst" class="layui-field-box" style="display:none">
+    <form >
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">设备名称:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="deviceName" placeholder="请输入设备名称" class="form-control">
+            </div>
+
+            <label class="layui-form-label label-120">档案号:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="fileNumber" placeholder="请输入档案号" class="form-control">
+            </div>
+            <div class="layui-input-nomarl">
+
+                <button class="layui-btn layui-btn-sm search-btn" table-id="leaveStockTable" lay-submit="" lay-filter="search">
+                    <i class="fa fa-search">&nbsp;</i>查询
+                </button>
+                <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+            </div>
+        </div>
+        <div class="layui-form-item more-search">
+            <label class="layui-form-label label-120">库房</label>
+            <div class="layui-input-inline">
+                <input class="form-control" placeholder="请输入库房">
+            </div>
+            <label class="layui-form-label label-120">库房类型</label>
+            <div class="layui-input-inline">
+                #combox(type='dict',name='leavestock.leaveType','1','',code='leaveType')
+                #end
+            </div>
+        </div>
+        <div class="layui-form-item more-search">
+            <label class="layui-form-label label-120">生产企业:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="storehouseId" placeholder="请输入生产企业" class="form-control">
+            </div>
+            <label class="layui-form-label label-120">品牌:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="storehouseId" placeholder="请输入品牌" class="form-control">
+            </div>
+        </div>
+        <div class="layui-form-item more-search">
+            <label class="layui-form-label label-120 ">经销商:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="userId" placeholder="请输入经销商" class="form-control">
+            </div>
+        </div>
+    </form>
+
+    <table class="layui-table" lay-data="{url:'#(ctx)/stock/stockPile/layuigetList/',id:'leaveStockTable',page:true}" lay-filter="demo">
+        <thead>
+        <tr>
+            <!--复选框-->
+            <th lay-data="{type:'checkbox',fix:'left'}"></th>
+            <!--isPrimary：是否是主键-->
+            <th  lay-data="{field:'fileNumber'}">设备档案</th>
+
+            <th  lay-data="{field:'deviceName'}">设备名称</th>
+
+            <th lay-data="{field:'price',sort:'true'}">单价</th>
+
+            <th lay-data="{field:'number',sort:'true'}">数量</th>
+
+            <th  lay-data="{field:'firstEnterDate',sort:'true'}">入库时间</th>
+
+            <th lay-data="{field:'agencyName',sort:'true'}">经销商</th>
+
+            <th  lay-data="{field:'brandName',sort:'true'}">品牌</th>
+
+            <th  lay-data="{field:'companyName'}">生产企业</th>
+
+            <th width="10%" lay-data="{field:'className'}">设备分类名称</th>
+
+        </tr>
+        </thead>
+    </table>
+</div>
+<!-- end选择库存设备 -->
+<div class="layui-field-box">
+    <form class="layui-form " action="" >
+        <div class="layui-form-item " >
+            <label class="layui-form-label label-120">出库单号:</label>
+            <div class="layui-input-inline">
+                <input type="text" class="form-control" value="#(ckd)" name="leavestock.leavestockId" readonly="readonly">
+            </div>
+            <label class="layui-form-label label-120">制单人:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="userId" id="userId" value="#(getUser().name)" class="form-control" readonly="readonly" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">出库时间:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="leavestock.leavedate" id="test1" placeholder="请输入出库时间" class="form-control">
+            </div>
+            <label class="layui-form-label label-120">请领科室:</label>
+            <div class="layui-input-inline">
+                #combox(type='dept',name='dept.dept','1','',code='dept')
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">入库类型:</label>
+            <div class="layui-input-inline">
+                #combox(type='dict',name='enterstock.entertype','1','',code='enterType')
+            </div>
+            <label class="layui-form-label label-120">出库类型:</label>
+            <div class="layui-input-inline">
+                #combox(type='dict',name='leavestock.leaveType','1','',code='leaveType')
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">备注</label>
+            <div class="layui-input-inline">
+                <textarea style="height:50px;width: 510px" type="textarea" name="leavestock.remark"  placeholder="请输入备注"  class="form-control"></textarea>
+            </div>
+        </div>
+        <div style="position:absolute; right:0px; bottom:0px;">
+            <button class="layui-btn" lay-submit="" lay-filter="saveHead" data-url="#(ctx)/stock/leaveStock/saveHead">存为草稿</button>
+            <button class="layui-btn" lay-submit="" lay-filter="saveHead" data-url="#(ctx)/stock/leaveStock/saveHead">提交审核</button>
+        </div>
+    </form>
+    <table class="layui-table"  lay-data="{id:'mytable',data:[{idd:1,username:''}]}" lay-skin="row" lay-filter="deviceEvent">
+        <thead>
+        <tr>
+            <th lay-data="{field:'fileNumber', width:160}">档案号</th>
+            <th lay-data="{field:'deviceName', width:180}">设备名称</th>
+            <th lay-data="{field:'className', width:180}">设备分类名称</th>
+            <th lay-data="{field:'leaveDate', width:180}" id="newdate">出仓库时间</th>
+            <th lay-data="{field:'leavenum', width:180}">出库数量</th>
+            <th lay-data="{fixed: 'right', width:120, align:'center', toolbar: '#barDemo'}"></th>
+        </tr>
+        </thead>
+    </table>
+
+</div>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add" ><i class="fa fa-plus"></i></a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="fa fa-minus"></i></a>
+</script>
+#define js()
+<script src="/statics/js/commonList.js"></script>
+<script type="text/javascript">
+    layui.use(['table','form','laydate'], function () {
+        var table=layui.table;
+
+        table.on('tool(deviceEvent)',function(obj){
+            if(obj.event==='add'){
+                layer.open({
+                    type: 1,
+                    offset:'10px',
+                    title: '选择库存设备',
+                    shadeClose: false,
+                    shade: [0.3, '#000'],
+                    maxmin: false, //开启最大化最小化按钮
+                    area: ['95%','95%'],
+                    content: $('#selectDeviceLst'),
+                    btn:['确定','取消']
+                    ,btn1: function(index, layero){
+                        datas=[];
+                        //old data
+                        var table1 =table.cache.mytable;
+                        if(table1){
+                            for(var gg=0;gg<table1.length;gg++) {
+                                if (table1[gg].idd != 1) {
+                                    datas.push(table1[gg]);
+                                }
+                            }
+                        }
+                        var checkStatus = table.checkStatus('leaveStockTable').data;
+                        for(var gg=0;gg<checkStatus.length;gg++){
+                            checkStatus[gg].leavenum=1;
+                            checkStatus[gg].leaveDate=$t.formatDate(new Date(), 'yyyy-MM-dd');
+                            datas.push(checkStatus[gg]);
+
+                        }
+                        table.reload("mytable",{
+                            data:datas
+                        });
+
+                        layer.close(index);
+                    }
+                });
+            }
+
+            /*
+            * 删除一行数据
+            * */
+            if (obj.event === 'del') {
+                layer.confirm('确定要删除吗？？', function (index) {
+
+
+                    if (index>0) {
+                        table1 = table.cache.mytable;
+                        if(table1.length>1){
+                            obj.del();
+                        }else{
+                            obj.update({idd:111,username:""});
+                        }
+                        layer.close(index)
+                    }
+                });
+
+            }
+        });
+                /*
+               * 保存主表
+               * */
+        var form = layui.form;
+        //第一步，form的提交保存头
+        form.on('submit(saveHead)', function (data) {
+            var url=$(this).attr("data-url");
+            $.ajax({
+                url: url,
+                type: "post",
+                contentType: "application/x-www-form-urlencoded",
+                data: $(data.form).serialize(),    //JSON.stringify(data.field),
+                async: false,
+                dataType: "json",
+                success: function (R) {
+                    if (R.code == 0) {
+                        saveDetail();
+                       $t.Refresh();
+                        //刷新页面
+                        parent.layer.msg('操作成功 !', {icon: 1});
+                    } else if(R.code==1){
+                        parent.layer.alert(R.msg, {icon: 5});
+
+                    } else{
+                        parent.layer.msg(R.msg, {icon: 5});
+                    }
+                },
+                error: function (err) {
+                    alert("系统繁忙",{icon:5});
+                }
+            });
+            return false;
+        });
+        /*
+        *
+        * 对日期控件的渲染
+        * */
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#test1'
+            ,value:$t.formatDate(new Date(), 'yyyy-MM-dd')
+        });
+
+    });
+        /*
+        * 保存明细表
+        * */
+    function saveDetail() {
+        var saveTable=layui.table;
+        var saveData = saveTable.cache.mytable;
+        $.ajax({
+            type: "post",
+            url: "#(ctx)/stock/leaveStock/saveDetail",
+            contentType: "application/json",
+            data: JSON.stringify(saveData),
+            async: false,
+            dataType:"json",
+            success: function (result) {
+
+                if (result.code == 0) {
+                    // $(".search-btn").click();
+                    parent.layer.msg('操作成功 !', {icon: 1});
+                } else {
+
+                    parent.layer.msg(result.msg, {icon: 5});
+                }
+            },
+            error: function () {
+                parent.layer.msg("系统繁忙", {icon: 5});
+            }
+        });
+    }
+</script>
+#end

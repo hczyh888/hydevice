@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.hy</groupId>
+    <artifactId>hyParent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>hyDevices parent</name>
+    <modules>
+        <module>../hy_Common</module>
+        <module>../hy_System</module>
+        <module>../hy_Plan</module>
+        <module>../hy_Stock</module>
+        <module>../hy_Purchase</module>
+        <module>../hy_EquipManage</module>
+
+
+    </modules>
+    <!-- 使用阿里 maven 库 -->
+    <repositories>
+        <repository>
+            <id>ali-maven</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+    <properties>
+        <!--hydevices依赖-->
+        <hyDevices-hycommon.version>0.0.1</hyDevices-hycommon.version>
+        <hyDevices-hysystem.version>0.0.1</hyDevices-hysystem.version>
+        <hyDevices-webapps.version>0.0.1</hyDevices-webapps.version>
+        <hyDevices-hyEquipManage.version>0.0.1</hyDevices-hyEquipManage.version>
+        <hyDevices-hyPlan.version>0.0.1</hyDevices-hyPlan.version>
+        <hyDevices-hyPurchase.version>0.0.1</hyDevices-hyPurchase.version>
+        <hyDevices-hyStock.version>0.0.1</hyDevices-hyStock.version>
+        <jfinal-swagger.version>1.0-SNAPSHOT</jfinal-swagger.version>
+        <!-- JDK以及Maven插件版本配置 -->
+        <jdk.version>1.7</jdk.version>
+        <maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
+        <maven.surefire.plugin.version>2.17</maven.surefire.plugin.version>
+        <maven.source.plugin.version>2.1.2</maven.source.plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <!--jfinal的基础引用-->
+        <jfinal.version>3.4</jfinal.version>
+        <jetty-server>8.1.8</jetty-server>
+        <log4j.version>1.2.16</log4j.version>
+        <druid.version>1.0.29</druid.version>
+        <fastjson.version>1.2.31</fastjson.version>
+        <mysql-connector-java>5.1.44</mysql-connector-java>
+
+        <!-- 依赖版本 -->
+        <slf4j-log4j12.version>1.6.1</slf4j-log4j12.version>
+        <shiro.version>1.3.2</shiro.version>
+        <poi-version>3.17</poi-version>
+        <jxls-core.version>1.0.6</jxls-core.version>
+        <ehcache-core.version>2.6.11</ehcache-core.version>
+        <cos.version>2017.5</cos.version>
+        <commons-codec.version>1.9</commons-codec.version>
+        <commons-email.version>1.2</commons-email.version>
+        <jsoup.version>1.9.2</jsoup.version>
+        <cron4j.version>2.2.5</cron4j.version>
+        <joda-time.version>2.9.3</joda-time.version>
+        <javase.version>3.2.1</javase.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <commons-logging.version>1.2</commons-logging.version>
+        <pinyin4j.version>2.5.0</pinyin4j.version>
+        <QRCode.version>1.0</QRCode.version>
+        <freemarker.version>2.3.23</freemarker.version>
+        <cron4j.version>2.2.5</cron4j.version>
+        <poi-examples>3.16-beta2</poi-examples>
+
+        <!-- 非功能性依赖包 -->
+        <junit.version>4.11</junit.version>
+    </properties>
+
+    <dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.hy</groupId>
+            <artifactId>hyCommon</artifactId>
+            <version>${hyDevices-hycommon.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hy</groupId>
+            <artifactId>hySystem</artifactId>
+            <version>${hyDevices-hysystem.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hy</groupId>
+            <artifactId>hyEquipManage</artifactId>
+            <version>${hyDevices-hyEquipManage.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hy</groupId>
+            <artifactId>hyPlan</artifactId>
+            <version>${hyDevices-hyPlan.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hy</groupId>
+            <artifactId>hyPurchase</artifactId>
+            <version>${hyDevices-hyPurchase.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hy</groupId>
+            <artifactId>hyStock</artifactId>
+            <version>${hyDevices-hyStock.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hy</groupId>
+            <artifactId>webapps</artifactId>
+            <version>${hyDevices-webapps.version}</version>
+        </dependency>
+    </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env>dev</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <env>uat</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>prd</id>
+            <properties>
+                <env>prd</env>
+            </properties>
+        </profile>
+    </profiles>
+</project>

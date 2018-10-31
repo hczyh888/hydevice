@@ -1,0 +1,55 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-inline ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">账 户</label>
+            <div class="layui-input-inline">
+                <input type="text" name="account" value="#(user.account)" class="layui-input" disabled >
+            </div>
+            <label class="layui-form-label">姓 名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" value="#(user.name)" class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">性 别</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="sex" value="#(user.sex)"  title="男" #(user.sex==1?"checked":"disabled") >
+                <input type="radio" name="sex" value="#(user.sex)"  title="女" #(user.sex==2?"checked":"disabled") >
+            </div>
+            <label class="layui-form-label">角 色</label>
+            <div class="layui-input-inline">
+                <input type="text" name="roleId" value="#(user.roleId)" class="layui-input" disabled >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">部 门</label>
+            <div class="layui-input-inline">
+                <input type="text" name="deptId" value="#(user.deptId)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">生 日</label>
+            <div class="layui-input-inline">
+                <input type="text" name="birthday" value="#(user.birthday)" class="layui-input" id="test1"disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮 箱</label>
+            <div class="layui-input-inline">
+                <input type="text" name="email" value="#(user.email)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">电 话</label>
+            <div class="layui-input-inline">
+                <input type="text" name="phone" value="#(user.phone)" class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="status" value="#(user.status)" title="启用" #(user.status==1?"checked":"disabled") >
+                <input type="radio" name="status" value="#(user.status)" title="禁用" #(user.status==2?"checked":"disabled") >
+            </div>
+        </div>
+    </form>
+</div>
+#end

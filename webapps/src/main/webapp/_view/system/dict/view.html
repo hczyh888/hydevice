@@ -1,0 +1,41 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-inline ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">字典编号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="code" value="#(dict.code)" class="layui-input" disabled >
+            </div>
+            <label class="layui-form-label">字典序号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="num" value="#(dict.num)" class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">字典父名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="pid" value="#(dict.pid)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">字典名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" value="#(dict.name)" class="layui-input" disabled >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-inline">
+                <textarea style="height:100px;width: 500px" type="textarea" name="tips" value="#(dict.tips)"   class="layui-textarea" disabled></textarea>
+            </div>
+        </div>
+    </form>
+    <script>
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '#test1' //指定元素
+            });
+        });
+    </script>
+</div>
+#end

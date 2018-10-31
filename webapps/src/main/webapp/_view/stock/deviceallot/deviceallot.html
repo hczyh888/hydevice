@@ -1,0 +1,99 @@
+#@iframeLayout()
+#define mainContent()
+        <div class="panel panel-info">
+            <div id="all" class="panel-body">
+                <div class="wrapper" id="hyapp" v-cloak>
+                        <!-- search  -->
+                <div class="layui-card ">
+                    <div class="layui-card-body">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label label-120">调拨单号:</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="allotId" placeholder="请输入调拨单号" v-model="q.allotId" @keyup.enter="query" class="form-control">
+                            </div>
+
+                            <label class="layui-form-label label-120">制单时间:</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="time" placeholder="请选择制单时间" v-model="q.time" @keyup.enter="query" class="form-control">
+                            </div>
+                            <button class="layui-btn layui-btn-sm search-btn " @click="query">
+                                <i class="fa fa-search">&nbsp;</i>查询
+                            </button>
+                            <button class="layui-btn layui-btn-sm layui-btn-primary" @click="clearWhere">
+                                <i class="fa fa-refresh">&nbsp;</i>重置</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading ">
+                    <span>调拨单列表</span>
+                    <div class="pull-right">
+                        <a  href="javascript:addPage('新增调拨单','#(ctx)/stock/deviceAllot/add','deviceAllotAdd','57.35%-70%')"><i class="fa fa-plus">&nbsp;</i>增加调拨单</a>
+                    </div>
+                </div>
+                <div class="layui-form nowrap">
+                    <table id="allotTable" lay-filter="allot" ></table>
+                </div>
+            </div>
+#end
+#define js()
+  <script src="/statics/js/commonList.js"></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#time'
+        });
+    });
+
+    //引用layui table
+    var allotTable;
+    layui.use(['table'],function () {
+        allotTable = layui.table;
+        allotTable.render({
+            elem:'#allotTable',
+            url:'#(ctx)/stock/deviceAllot/getList',
+            page:true,
+            id:'allotTable',
+            cols:[[
+                {type:'numbers',title:'序号',width:'5%'},
+                {field:'allotId',title:'调拨单号'},
+                {field:'allotType',title:'调拨类型'},
+                {field:'fromStock',title:'转出库'},
+                {field:'toStock',title:'转入库'},
+                {field:'num',title:'数量'},
+                {field:'price',title:'金额'},
+                {field:'userId',title:'制单人'},
+                {field:'time',title:'制单时间'}
+            ]]
+        });
+    });
+
+    //实例化vue
+    var vm = new Vue({
+        el:'#hyapp',
+        data:{
+            q:{allotId:null,time:null}
+        },
+        methods:{
+            query: function () {
+                vm.reload();
+            },
+            reload: function () {
+                allotTable.reload('allotTable',{
+                    where:vm.q,
+                    page:{curr:1}
+                })
+            },
+            clearWhere:function () {
+                vm.q.allotId = null;
+                vm.q.time = null;
+            }
+
+        }
+    })
+</script>
+#end

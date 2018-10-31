@@ -1,0 +1,181 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form layui-form-pane" action="">
+        <input type="hidden" name="stockpile.id" value="#(stockpile.id)">
+        <input type="hidden" name="stockpilesubinfor.id" value="#(stockpile.id)">
+        <!--设备基础资料-->
+        <fieldset>
+            <legend><blockquote class="site-text layui-elem-quote layui-bg-white" style="word-spacing: 15px">设备基础资料</blockquote></legend>
+            <div class="layui-form-item">
+                <label class="layui-form-label">设备档案号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="stockpile.fileNumber" value="#(stockpile.fileNumber)" placeholder="请输入设备档案号" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label">是否固定资产</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="stockpilesubinfor.fixedAssets"  value="1" title="是"checked>
+                    <input type="radio" name="stockpilesubinfor.fixedAssets" value="2" title="否" >
+                </div>
+                <label class="layui-form-label" >资产编号 </label>
+                <div class="layui-input-inline">
+                    <input type="text" name="stockpilesubinfor.propertyId"  placeholder="请输入资产编号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </fieldset>
+        <!--设备基本属性-->
+        <fieldset>
+            <legend><blockquote class="site-text layui-elem-quote" style="word-spacing: 15px">设备基本属性</blockquote></legend>
+            <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                <span>设备名称：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.deviceName)</label></span>
+                <span>英文名称：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.fileNumber) </label></span>
+                <span>品牌：<label class="layui-label-right" style="font-size: larger;color: #0a67fb"> #(stockpile.brandName) </label></span></br>
+            </div>
+            <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                <span>型号：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.TypeName) </label></span>
+                <span>生产企业：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.companyName) </label></span>
+                <span>经销商：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.agencyName)</label></span></br>
+            </div>
+            <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                <span>单价：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.price) </label></span>
+                <span>单位：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.unitName) </label></span>
+                <label class="layui-form-label">设备出厂编号 </label>
+                <div class="layui-input-inline">
+                    <input type="text" name="stockpilesubinfor.facNumber"  placeholder="设备出厂编号" autocomplete="off" class="layui-input">
+                </div></br>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">购置日期 </label>
+                <div class="layui-input-inline">
+                    <input type="text" name="stockpilesubinfor.buyDate" id="buyDate"  placeholder="购置日期" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label">验收日期 </label>
+                <div class="layui-input-inline">
+                    <input type="text" name="stockpilesubinfor.acceptanceDate"  id="acceptanceDate" placeholder="请输入验收日期" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">医疗器械注册号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="stockpilesubinfor.regisNumber" placeholder="请输入医疗器械注册号" autocomplete="off" class="layui-input">
+                </div>
+            </div></br>
+        </fieldset>
+        <!--设备扩展属性-->
+        <fieldset>
+            <legend><blockquote class="site-text layui-elem-quote" style="word-spacing: 15px">设备扩展属性</blockquote></legend>
+            <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                <span>设备分类编码：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.codeName) </label></span>
+                <span>设备分类：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.className) </label></span>
+                <span>使用状态：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.status) </label></span></br>
+            </div>
+            <div class="layui-form-item" style="word-spacing: 15px;text-indent:15px">
+                <span>所属库房类型：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.typesName) </label></span>
+                <span>所属库房：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.nameName) </label></span>
+                <span>货位：<label class="layui-label-right" style="font-size: larger;color: #0a67fb">#(stockpile.placeName) </label></span>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">高危资产</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="stockpilesubinfor.riskAssets" value="1" title="是"checked>
+                    <input type="radio" name="stockpilesubinfor.riskAssets" value="2" title="否" >
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否急救设备</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="stockpilesubinfor.emergencyDevice" value="1" title="是"checked>
+                    <input type="radio" name="stockpilesubinfor.emergencyDevice" value="2" title="否" >
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否特种设备</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="stockpilesubinfor.specialDevice" value="1" title="是"checked>
+                    <input type="radio" name="stockpilesubinfor.specialDevice" value="2" title="否" >
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">设备应用类型</label>
+                <div class="layui-input-inline">
+                    <select name="stockpilesubinfor.deviceType"  lay-search="">
+                        <option value="">请选择</option>
+                        <option value="临床应用型">临床应用型</option>
+                        <option value="临床实用型">临床实用型</option>
+                        <option value="临床研究型">临床研究型</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+
+
+        <!--设备维护属性-->
+        <fieldset>
+            <legend><blockquote class="site-text layui-elem-quote" style="word-spacing: 15px">设备维护属性</blockquote></legend>
+            <div class="layui-form-item">
+                <label class="layui-form-label">保养周期</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="stockpilesubinfor.mainPeriod" value="1" title="7日" checked>
+                    <input type="radio" name="stockpilesubinfor.mainPeriod" value="2" title="15日">
+                    <input type="radio" name="stockpilesubinfor.mainPeriod" value="3" title="30日" >
+                    <input type="radio" name="stockpilesubinfor.mainPeriod" value="4"  title="其他" >
+                    <input type="text" name="stockpilesubinfor.mainPeriod" value=""  >
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">计量周期</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="stockpilesubinfor.meaPeriod" value="1" title="7日" checked>
+                    <input type="radio" name="stockpilesubinfor.meaPeriod" value="2" title="15日">
+                    <input type="radio" name="stockpilesubinfor.meaPeriod" value="3" title="30日" >
+                    <input type="radio" name="stockpilesubinfor.meaPeriod" value="4"  title="其他" >
+                    <input type="text" name="stockpilesubinfor.meaPeriod" value=""  >
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">质量周期</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="stockpilesubinfor.quaPeriod" value="1" title="7日" checked>
+                    <input type="radio" name="stockpilesubinfor.quaPeriod" value="2" title="15日">
+                    <input type="radio" name="stockpilesubinfor.quaPeriod" value="3" title="30日" >
+                    <input type="radio" name="stockpilesubinfor.quaPeriod" value="4"  title="其他" >
+                    <input type="text" name="stockpilesubinfor.quaPeriod" value=""  >
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">折旧方式</label>
+                <div class="layui-input-inline">
+                    <select name="stockpilesubinfor.DepreWay"  lay-search="">
+                        <option value="">请选择</option>
+                        <option value="临床应用型">工作量法</option>
+                        <option value="临床实用型">平均年限法</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/stock/stockPile/update">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end
+<script src="/statics/js/commonList.js"></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#buyDate'
+        });
+        laydate.render({
+            elem: '#acceptanceDate'
+        });
+    });
+</script>
+

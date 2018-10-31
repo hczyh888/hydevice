@@ -1,0 +1,69 @@
+ #@iframeLayout()
+#define mainContent()
+<div class="layui-inline ">
+    <form class="layui-form layui-form-pane" action="">
+        <input type="hidden" name="planTask.id" value="#(planTask.id)">
+        <div class="layui-form-item">
+            <label class="layui-form-label">任务名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.taskName" value="#(planTask.taskName)" class="layui-input">
+            </div>
+            <label class="layui-form-label">任务类型</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.taskType" value="#(planTask.taskType)" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">操作人</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.userId" value="#(planTask.userId)" class="layui-input">
+            </div>
+            <label class="layui-form-label">提交任务时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.taskTime" value="#(planTask.taskTime)" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">采购数量</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.planNum" value="#(planTask.planNum)" class="layui-input">
+            </div>
+            <label class="layui-form-label">预算金额</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.planBuget" value="#(planTask.planBuget)" class="layui-input">
+            </div>
+        </div> <div class="layui-form-item">
+        <label class="layui-form-label">技术要求</label>
+        <div class="layui-input-inline">
+            <input type="text" name="planTask.require" value="#(planTask.require)" class="layui-input">
+        </div>
+
+        <label class="layui-form-label">采购计划书</label>
+        <div class="layui-input-inline">
+            <input type="text" name="planTask.planBook" value="#(planTask.planBook)" class="layui-input">
+        </div>
+    </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.tips" value="#(planTask.tips)" class="layui-input">
+            </div>
+            <label class="layui-form-label">状 态</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="planTask.status"required  lay-verify="required"  value="1" title="启用"checked>
+                <input type="radio" name="planTask.status"required  lay-verify="required"  value="2" title="禁用" >
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/plan/planTask/update">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end

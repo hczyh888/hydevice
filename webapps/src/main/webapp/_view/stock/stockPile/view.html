@@ -1,0 +1,285 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-tab-content">
+
+    <div class="layui-tab-item layui-show" style="word-spacing: 30px;margin-left: 60px">
+        <div class="layui-form-item">
+            <div class="panel"style="background-color: whitesmoke">
+                    <span class="layui-btn layui-btn-sm layui-btn-normal pull-right">使用中</span>
+                <table class="layui-table" style="margin-top: -10px">
+                    <colgroup>
+                        <col width="180">
+                        <col width="180">
+                        <col width="180">
+                        <col width="180">
+                        <col width="180">
+                        <col width="180">
+                    </colgroup>
+                    <tbody>
+                    <tr height="180">
+                        <td><span> 报修</span></td>
+                        <td><span>保养</span></td>
+                        <td><span>计量质控</span></td>
+                        <td><span>不良事件</span></td>
+                        <td><span>报废</span></td>
+                        <td><span>返库</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item"style="width: 500px;margin-left: 60px">
+        <div class="panel"style="background-color: whitesmoke">
+            <span class="layui-btn layui-btn-sm layui-btn-normal pull-right">使用中</span>
+            <table class="layui-table" style="margin-left: 20px">
+                <tr>
+                    <td><span>设备出厂编号： <label class="layui-label-right">amd00180fe</label></span></td>
+                </tr>
+                <tr>
+                    <td><span>资产编码： <label class="layui-label-right">少时诵诗书</label></span></td>
+                </tr>
+                <tr>
+                    <td><span>设备档案编号： <label class="layui-label-right">DAH2142017102400367</label></span></td>
+                </tr>
+                <tr>
+                    <td><span>设备分类： <label class="layui-label-right">输液辅助装置</label></span></td>
+                </tr>
+                <tr>
+                    <td><span>设备名称： <label class="layui-label-right">胰岛素</label></span></td>
+                </tr>
+                <tr>
+                    <td><span>使用科室： <label class="layui-label-right">计算机网络管理办</label></span></td>
+                </tr>
+                <tr>
+                    <td><span>设备类型： <label class="layui-label-right">少时诵诗书</label></span></td>
+                </tr>
+                <tr>
+                    <td><span>已用年限： <label class="layui-label-right">2年</label></span></td>
+                </tr>
+                <tr>
+                    <td><span>保修期： <label class="layui-label-right">3个月</label></span></td>
+                </tr>
+                <tr>
+                    <td><span>科室负责人： <label class="layui-label-right">少时诵诗书</label></span></td>
+                </tr>
+                <tr>
+                    <td><span>生产企业： <label class="layui-label-right">韩国丹麦</label></span></td>
+                </tr>
+                <tr>
+                    <td><span>品牌： <label class="layui-label-right">少时诵诗书</label></span></td>
+                </tr>
+                <tr>
+                    <td><span>规格型号： <label class="layui-label-right">DANA DianbecareIIS</label></span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layui-tab layui-tab-card" lay-filter="archivesInfoTabs" style="float: left;margin-left:600px;margin-top: -630px">
+        <ul class="layui-tab-title">
+            <li class="layui-this">动态</li>
+            <li>服务记录</li>
+            <li>配件信息</li>
+            <li>服务商记录</li>
+            <li>档案管理</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!--begin 动态-->
+            <div class="layui-tab-item layui-show">
+                <!-- search  -->
+                <div class="layui-form-item">
+                    <form class="layui-form"  >
+                        <!--此btn只是为了刷新grid -->
+                        <button class="layui-btn-sm search-btn hidden " table-id="table-part1" lay-submit="" lay-filter="search">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                    </form>
+                        </div>
+                        <div class="layui-form nowrap">
+                            <table class="layui-table" cyType="pageGrid" id="table-part1" cyProps="url:'/stock/subpart/getList',checkbox:'true',pageColor:'#2991d9'">
+                                <thead>
+                                <tr>
+                                    <!--复选框-->
+                                    <th width="1%" param="{type:'checkbox'}">
+                                        <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                                    </th>
+                                    <th width="10%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                                    <th width="10%" param="{name:'brand'}">操作时间</th>
+
+                                    <th width="10%" param="{name:'numUntil'}">操作者</th>
+
+                                    <th width="10%" param="{name:'price'}">服务类型</th>
+
+                                    <th width="10%" param="{name:'standard'}">服务详情</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+            <!--end 动态-->
+
+            <!--begin服务记录-->
+            <div class="layui-tab-item">
+                <div class="panel">
+                    <form class="layui-form"  >
+                        <!-- <a  href="javascript:addPage('零部件信息','#(ctx)/stock/subpart/add','subpartAdd','54%-70%')"><i class="fa fa-plus">&nbsp;</i>添加零部件</a>-->
+                        <!--此btn只是为了刷新grid -->
+                        <button class="layui-btn-sm search-btn hidden " table-id="table-part12" lay-submit="" lay-filter="search">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                    </form>
+                </div>
+                <div class="layui-form nowrap">
+                    <table class="layui-table" cyType="pageGrid" id="table-part12"
+                           cyProps="url:'/stock/subpart/getList',checkbox:'true',pageColor:'#2991d9'">
+                        <thead>
+                        <tr>
+                            <!--复选框-->
+                            <th width="1%" param="{type:'checkbox'}">
+                                <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                            </th>
+                            <th width="10%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                            <th width="10%" param="{name:'dealer'}">完成时间</th>
+
+                            <th width="10%" param="{name:'numUntil'}">服务类型</th>
+
+                            <th width="10%" param="{name:'price'}">费用</th>
+
+                            <th width="10%" param="{name:'standard'}">备注</th>
+
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <!--end服务记录-->
+
+            <!--begin配件信息-->
+            <div class="layui-tab-item">
+                <div class="panel">
+                    <form class="layui-form"  >
+                        <!-- <a  href="javascript:addPage('零部件信息','#(ctx)/stock/subpart/add','subpartAdd','54%-70%')"><i class="fa fa-plus">&nbsp;</i>添加零部件</a>-->
+                        <!--此btn只是为了刷新grid -->
+                        <button class="layui-btn-sm search-btn hidden " table-id="table-part11" lay-submit="" lay-filter="search">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                    </form>
+                </div>
+                <div class="layui-form nowrap">
+                    <table class="layui-table" cyType="pageGrid" id="table-part11"
+                           cyProps="url:'/stock/subpart/getList',checkbox:'true',pageColor:'#2991d9'">
+                        <thead>
+                        <tr>
+                            <!--复选框-->
+                            <th width="1%" param="{type:'checkbox'}">
+                                <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                            </th>
+                            <th width="10%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                            <th width="10%" param="{name:'numUntil'}">配件名称</th>
+
+                            <th width="10%" param="{name:'price'}">单价</th>
+
+                            <th width="10%" param="{name:'partName',sort:'true'}">数量</th>
+
+                            <th width="10%" param="{name:'standard'}">规格</th>
+
+                            <th width="10%" param="{name:'brand'}">经销商</th>
+
+                            <th width="10%" param="{name:'dealer'}">配件来源</th>
+
+                            <th width="10%" param="{name:'source'}">添加时间</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <!--end配件信息-->
+
+            <!--begin服务商记录-->
+            <div class="layui-tab-item">
+                <div class="panel">
+                    <form class="layui-form"  >
+                        <!-- <a  href="javascript:addPage('零部件信息','#(ctx)/stock/subpart/add','subpartAdd','54%-70%')"><i class="fa fa-plus">&nbsp;</i>添加零部件</a>-->
+                        <!--此btn只是为了刷新grid -->
+                        <button class="layui-btn-sm search-btn hidden " table-id="table-part13" lay-submit="" lay-filter="search">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                    </form>
+                </div>
+                <div class="layui-form nowrap">
+                    <table class="layui-table" cyType="pageGrid" id="table-part13"
+                           cyProps="url:'/stock/subpart/getList',checkbox:'true',pageColor:'#2991d9'">
+                        <thead>
+                        <tr>
+                            <!--复选框-->
+                            <th width="1%" param="{type:'checkbox'}">
+                                <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                            </th>
+                            <th width="10%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                            <th width="10%" param="{name:'partName',sort:'true'}">服务类型</th>
+
+                            <th width="10%" param="{name:'numUntil'}">机构名称</th>
+
+                            <th width="10%" param="{name:'price'}">联系方式</th>
+
+                            <th width="10%" param="{name:'standard'}">合同状态</th>
+
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <!--end服务商记录-->
+
+            <!--begin档案管理-->
+            <div class="layui-tab-item">
+                <div class="panel">
+                    <form class="layui-form"  >
+                        <!-- <a  href="javascript:addPage('零部件信息','#(ctx)/stock/subpart/add','subpartAdd','54%-70%')"><i class="fa fa-plus">&nbsp;</i>添加零部件</a>-->
+                        <!--此btn只是为了刷新grid -->
+                        <button class="layui-btn-sm search-btn hidden " table-id="table-part" lay-submit="" lay-filter="search">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                    </form>
+                </div>
+                <div class="layui-form nowrap">
+                    <table class="layui-table" cyType="pageGrid" id="table-part"
+                           cyProps="url:'/stock/subpart/getList',checkbox:'true',pageColor:'#2991d9'">
+                        <thead>
+                        <tr>
+                            <!--复选框-->
+                            <th width="1%" param="{type:'checkbox'}">
+                                <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                            </th>
+                            <th width="10%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                            <th width="10%" param="{name:'numUntil'}">档案名称</th>
+
+                            <th width="10%" param="{name:'price'}">档案类型</th>
+
+                            <th width="10%" param="{name:'standard'}">添加时间</th>
+
+                            <th width="10%" param="{name:'brand'}">操作</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <!--end档案管理-->
+
+
+    </div>
+    </div>
+#end
+    <script>
+       //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+        layui.use('element', function(){
+            var element = layui.element;
+        });
+    </script>

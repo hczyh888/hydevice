@@ -1,0 +1,63 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel">
+    <div class="panel-heading">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">操作人:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="classname" placeholder="请输入操作人" class="layui-input">
+                </div>
+                <div class="layui-input-normal">
+                    <button class="layui-btn layui-btn-sm search-btn" table-id="operationLogTable" lay-submit="" lay-filter="search">
+                        <i class="fa fa-search">&nbsp;</i>查询
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-body">
+        <div class="layui-btn-group pull-right ">
+            <button class="layui-btn layui-btn-sm layui-btn-green" onclick="Msg.success('操作成功')">
+                <i class="fa fa-file-excel-o">&nbsp;</i>导出
+            </button>
+        </div>
+        <div class="layui-form nowrap">
+            <table class="layui-table " id="operationLogTable" cyType="pageGrid"
+                   cyProps="url:'#(ctx)/log/operationLog/getList',checkbox:'true',pageColor:'#2991d9'">
+                <thead>
+                <tr>
+                    <!--复选框-->
+                    <th width="1%" param="{type:'checkbox'}">
+                        <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                    </th>
+                    <!--isPrimary：是否是主键-->
+                    <th width="5%" param="{name:'id',isPrimary:'true',hide:'true'}">id</th>
+
+                    <th width="5%" param="{name:'logName'}">日志名称</th>
+
+                    <th width="5%" param="{name:'method'}">方法参数</th>
+                    <th width="5%" param="{name:'createtime',sort:'true'}">日志时间</th>
+
+                    <th width="5%" param="{name:'succeed'}">是否成功</th>
+
+                    <th width="5%" param="{name:'classname',sort:'true'}">操作人</th>
+
+                    <th width="10%" param="{operate:'true',buttons:[{func:'Render.delete',url:'#(ctx)/log/operationLog/del',title:'删除',area:'60%-80%'}]}">操作
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+#end
+
+
+
+
+

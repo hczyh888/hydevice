@@ -1,0 +1,65 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form layui-form-pane" action="">
+        <input type="hidden" name="parameter.id" value="#(parameter.id)">
+        <div class="layui-form-item">
+            <label class="layui-form-label">编码:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="parameter.code" value="#(parameter.code)"  required  lay-verify="required" placeholder="请输入编码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序号:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="parameter.num" value="#(parameter.num)"  required  lay-verify="required" placeholder="请输入排序号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">名字：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="parameter.name"  value="#(parameter.name)" required  lay-verify="required" placeholder="请输入名字" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">参数：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="parameter.para"  value="#(parameter.para)" required  lay-verify="required" placeholder="请输入参数" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="parameter.tips"  value="#(parameter.tips)" required  lay-verify="required" placeholder="请输入状态" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">提示：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="parameter.status"  value="#(parameter.status)" required  lay-verify="required" placeholder="请输入提示" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">版本：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="parameter.version"  value="#(parameter.version)" required  lay-verify="required" placeholder="请输入版本" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/sys/parameter/update">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end

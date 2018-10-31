@@ -1,0 +1,104 @@
+#@iframeLayout()
+#define mainContent()
+<blockquote class="site-text layui-elem-quote" style="word-spacing: 15px">
+    采购计划明细：<span>计划名称： <label class="layui-label-right">#(audit.planName)</label></span>
+    <span>计划类型： <label class="layui-label-right">#(audit.planType)</label></span>
+    <span>采购日期： <label class="layui-label-right">#(audit.purchaseDate)</label></span>
+</blockquote>
+
+<!--基础资料-->
+
+<table class="layui-table" style="margin-left: 20px">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <tr>
+        <th rowspan="6">基础资料</th>
+        <td><span>拼音简码： <label class="layui-label-right">#(audit.Code)</label></span></td>
+        <td><span>设备科室： <label class="layui-label-right">#(audit.deviceCnName)</label></span></td>
+        <td><span>科室负责人：<label class="layui-label-right">#(audit.userId)</label></span></td>
+    </tr>
+    <tr>
+        <td><span>设备名称： <label class="layui-label-right">#(audit.deviceCnName)</label></span></td>
+        <td><span>设备英文名： <label class="layui-label-right">#(audit.deviceCnName)</label></span></td>
+        <td><span>设备数量：<label class="layui-label-right">#(audit.deviceNumber)</label></span></td>
+    </tr>
+    <tr>
+        <td><span>单  位： <label class="layui-label-right">#(audit.unit)</label></span></td>
+        <td><span>设备应用类型： <label class="layui-label-right">#(audit.deviceCnName)</label></span></td>
+        <td><span>预算金额：<label class="layui-label-right">#(audit.budget)</label></span></td>
+    </tr>
+    <tr>
+        <td><span>资金来源：<label class="layui-label-right">#(audit.capitalSource)</label></span></td>
+        <td colspan="2"><span>申请理由： <label class="layui-label-right">#(audit.applyReason)</label></span></td>
+    </tr>
+    <!--partner 部分 -->
+    #for(partner : audit.applyPartnerLst)
+    <tr>
+        <td><span>是否进口： <label class="layui-label-right">#(partner.importOut)</label></span></td>
+        <td><span>规格型号： <label class="layui-label-right">#(partner.models)</label></span></td>
+        <td><span>推荐品牌/厂商：<label class="layui-label-right">#(partner.brand)</label></span></td>
+    </tr>
+    <tr>
+        <td><span>合作分成方式购置：<label class="layui-label-right">#(partner.way)</label></span></td>
+    </tr>
+    #end
+    </tbody>
+</table></br>
+
+<!--报批资料-->
+<table class="layui-table" style="margin-left: 20px">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <tbody>
+    <tr>
+        <th rowspan="3">报批资料</th>
+        <td><span>文件标题： <label class="layui-label-right">#(audit.applyinfor.title)</label></span></td>
+        <td><span>文件名： <label class="layui-label-right">#(audit.applyinfor.fileName)</label></span></td>
+        <td><span>存储相对路径：<label class="layui-label-right">#(audit.applyinfor.path)</label></span></td>
+    </tr>
+    </tbody>
+</table></br>
+
+<!--经济效益-->
+
+    <table class="layui-table" style="margin-left: 20px">
+        <colgroup>
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <tbody>
+        <tr>
+            <th rowspan="3">经济效益</th>
+            <td><span>正常使用年限： <label class="layui-label-right">#(audit.applybenefit.useYear)</label></span></td>
+            <td><span>每周使用时间： <label class="layui-label-right">#(audit.applybenefit.useWeek)</label></span></td>
+            <td><span>收费标准一次：<label class="layui-label-right">#(audit.applybenefit.charge)</label></span></td>
+        </tr>
+        <tr>
+            <td><span>年经济收入： <label class="layui-label-right">#(audit.applybenefit.income)</label></span></td>
+            <td><span>每年维修耗材费用共： <label class="layui-label-right">#(audit.applybenefit.cost)</label></span></td>
+            <td><span>预计回收成本时间：<label class="layui-label-right">#(audit.applybenefit.recoveryTime)</label></span></td>
+        </tr>
+        <tr>
+            <td><span>样品数： <label class="layui-label-right">#(audit.applybenefit.sampleNumber)</label></span></td>
+            <td><span>人次数： <label class="layui-label-right">#(audit.applybenefit.peopleTimes)</label></span></td>
+        </tr>
+        </tbody>
+    </table>
+
+</br>
+</div>
+#end
+<div class="page-footer">
+    <div class="btn-list">
+        <div class="btnlist">
+            <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>关闭</button>
+        </div>
+    </div>
+</div>

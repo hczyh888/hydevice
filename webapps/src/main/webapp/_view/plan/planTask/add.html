@@ -1,0 +1,69 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">任务名称<span class="span_must">*</span> </label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.taskName" value="#(planTask.taskName??)"  required  lay-verify="required" placeholder="请输入任务名称" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label" >任务类型 </label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.taskType" value="#(planTask.taskType??)"  placeholder="请输入操作Id" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" >操作人 </label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.userId" value="#(planTask.userId??)"  placeholder="请输入操作人" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">提交任务时间 </label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.taskTime" value="#(planTask.taskTime??)" placeholder="请输入提交任务时间" autocomplete="off" class="layui-input">
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">采购数量 </label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.planNum" value="#(planTask.planNum??)"  placeholder="请输入采购数量" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">预算金额 </label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.planBuget" value="#(planTask.planBuget??)"  placeholder="请输入预算金额" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">技术要求 </label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.require" value="#(planTask.require??)"  placeholder="请输入技术要求" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">采购计划书 </label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.planBook"  value="#(planTask.planBook??)" placeholder="请输入采购计划书" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注 </label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.tips"  value="#(planTask.tips??)" placeholder="请输入采购计划书" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">状 态<span class="span_must">*</span> </label>
+            <div class="layui-input-inline">
+                <input type="radio" name="planTask.status" value="#(planTask.status??)" required  lay-verify="required"  value="1" title="启用"checked>
+                <input type="radio" name="planTask.status" value="#(planTask.status??)" required  lay-verify="required"  value="2" title="禁用" >
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/sys/planTask/doadd">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end

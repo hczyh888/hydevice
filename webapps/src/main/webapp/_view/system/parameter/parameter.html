@@ -1,0 +1,65 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel ">
+    <div class="panel-heading">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">编码:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="code" placeholder="请输入编码" class="layui-input">
+                    </div>
+                    <div class="layui-input-normal">
+                        <button class="layui-btn layui-btn-sm search-btn" table-id="paraTable" lay-submit="" lay-filter="search">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+                    </div>
+                </div>
+            </form>
+    </div>
+    <div class="panel-body">
+        <div class="layui-btn-group pull-left ">
+            <button class="layui-btn layui-btn-sm" onclick="Page.open('添加参数','/sys/parameter/add','paraAdd','50%-80%')">
+                <i class="fa fa-plus">&nbsp;</i>增加
+            </button>
+        </div>
+        <div class="layui-form nowrap">
+            <table class="layui-table" id="paraTable" cyType="pageGrid"
+                   cyProps="url:'/sys/parameter/getList',checkbox:'true',pageColor:'#2991d9'">
+                <thead>
+                <tr>
+                    <!--复选框-->
+                    <th width="1%" param="{type:'checkbox'}">
+                        <input type="checkbox" lay-skin="primary" lay-filter="allChoose">
+                    </th>
+                    <!--isPrimary：是否是主键-->
+                    <th width="5%" param="{name:'num',isPrimary:'true',hide:'true'}">序号</th>
+
+                    <th width="10%" param="{name:'code',sort:'true'}">编码</th>
+
+                    <th width="5%" param="{name:'num',sort:'true'}">排序号</th>
+
+                    <th width="5%" param="{name:'name'}">名字</th>
+
+                    <th width="5%" param="{name:'para'}">参数</th>
+
+                    <th width="5%" param="{name:'tips'}">提示</th>
+
+                    <th width="5%" param="{name:'status',enumName:'StateEnum'}">状态</th>
+
+                    <th width="10%" param="{operate:'true',buttons:[{func:'Render.edit',url:'/sys/parameter/edit',title:'修改',area:'60%-70%'},
+                                                  {func:'Render.delete',url:'/sys/parameter/del',title:'删除'}]}">
+                        操作
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+
+#end
+

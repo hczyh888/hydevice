@@ -1,0 +1,23 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-inline ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" value="#(roles.name)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">上级角色</label>
+            <div class="layui-input-inline">
+                <input type="text" name="pid" value="#(roles.pid)" class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">别 名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="tips" value="#(roles.tips)" class="layui-input" disabled>
+            </div>
+        </div>
+    </form>
+</div>
+#end

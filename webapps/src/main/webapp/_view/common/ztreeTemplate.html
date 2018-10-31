@@ -1,0 +1,34 @@
+#define ztree(ztreeData)
+<div>
+    <ul id="zTree" class="ztree"></ul>
+</div>
+<script>
+    var setting = {
+        check: {
+            enable: true//checkbox
+        },
+        view: {
+            // 使用ztree自定义高亮时，一定要设置fontCss,setHighlight是自定义高亮方法
+            //fontCss: setHighlight,
+            nameIsHTML: true, //允许name支持html
+            selectedMulti: false
+        },
+        edit: {
+            enable: false,
+            editNameSelectAll: false
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+        /*callback: {
+            beforeClick: zTreeBeforeClick
+        }*/
+    };
+    var treedata=#(ztreeData);
+  $(document).ready(function(){
+      $.fn.zTree.init($("#zTree"), setting, treedata);
+  })
+</script>
+#end

@@ -1,0 +1,36 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="form-horizontal" action="">
+        <input type="hidden" name="audit.id" value="#(audit.id)">
+        <input type="hidden" name="audit.status" value="3">
+        <div class="form-group">
+                <div class="col-sm-2 control-label">审核结果</div>
+                <!--<div cyType="radioTool" cyProps="enumName:'StateEnum'" name="audit.status" value="1" class="layui-input-inline"></div>-->
+            </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">审核人</div>
+            <div class="col-sm-10">
+                <input type="text" name="audit.auditor" value=" #(getUser().id)" required  lay-verify="required" placeholder="请输入审核人" autocomplete="off" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">意见</div>
+            <div class="col-sm-10">
+                <textarea style="width: 400px;height: 80px" type="textarea" name="audit.auditOpinion" value="#(audit.auditOpinion)" required  lay-verify="required" placeholder="请输入意见" autocomplete="off" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/plan/audit/update">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+#end

@@ -1,0 +1,77 @@
+#@iframeLayout()
+#define mainContent()
+
+<div class="layui-field-box ">
+    <form class="layui-form " action="">
+        <input type="hidden" name="devicelist.id" value="#(devicelist.id)">
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">设备分类</span></label>
+            <div class="layui-input-inline div-input-50">
+                <input value="#(devicelist.deviceClass.name ??)"  id="devicelist-classId" readonly  class="layui-input"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">设备名称</span></label>
+            <div class="layui-input-inline div-input-50">
+                <input type="text" name="devicelist.cnName"  value="#(devicelist.cnName)" readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">设备简码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="devicelist.simpleName" value="#(devicelist.simpleName)" readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">英文名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="devicelist.enName" value="#(devicelist.enName)"  readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">型号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="devicelist.type" value="#(devicelist.type)"  readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">单位</label>
+            <div class="layui-input-inline">
+                <input type="text" name="devicelist.unit" value='#(unitList.get("id_"+devicelist.unit))' readonly class="layui-input" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">品牌</label>
+            <div class="layui-input-inline">
+                <input type="text" name="devicelist.brand" value='#(brandList.get("id_"+devicelist.brand))' readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">生产企业</label>
+            <div class="layui-input-inline div-input-50" >
+                <input  value="#(devicelist.partner.companyName ??)"  id="devicelist-otherCompanyID" readonly class="layui-input"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">状态</label>
+            <div class="layui-input-inline">
+                <input type="text" name="devicelist.status" value='#(statusList.get("id_"+devicelist.status))' readonly class="layui-input" />
+            </div>
+        </div>
+        <div class="page-footer ">
+            <div class="btn-list pull-right">
+                <button class="layui-btn layui-btn-sm" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+#end
+#define js()
+<!-- 引入ztree插件 -->
+<script type="text/javascript" src="/statics/plugins/ztree/jquery.ztree.all.min.js"></script>
+<!-- 引入ztree插件扩展功能 -->
+<script type="text/javascript" src="/statics/plugins/ztree/jquery.ztree.exhide.min.js"></script>
+<!-- 引入自定义方法 -->
+<script type="text/javascript" src="/statics/plugins/ztree/fuzzysearch.js"></script>
+#end

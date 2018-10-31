@@ -1,0 +1,120 @@
+#@iframeLayout()
+#define mainContent()
+<div class="panel">
+    <div class="wrapper" id="hyapp" v-cloak>
+    <div class="panel-heading">
+        <!-- search  -->
+            <div class="layui-card ">
+                <div class="layui-card-body">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label-120">计划名称:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="planName" placeholder="请输入计划名称" v-model="q.planName" @keyup.enter="query" class="form-control">
+                        </div>
+
+                        <label class="layui-form-label label-120">设备名称:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="deviceCnName" placeholder="请输入设备名称" v-model="q.deviceCnName" @keyup.enter="query" class="form-control">
+                        </div>
+                        <button class="layui-btn layui-btn-sm search-btn " @click="query">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                        <button class="layui-btn layui-btn-sm layui-btn-primary" @click="clearWhere">
+                            <i class="fa fa-refresh">&nbsp;</i>重置</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span>计划审核列表</span>
+                    <div class="layui-btn-group pull-right top5 ">
+                        <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="Msg.success('操作成功')">
+                            <i class="fa fa-file-excel-o">&nbsp;</i>导出
+                        </button>
+                    </div>
+                </div>
+                <div class="layui-form nowrap">
+                    <table id="auditTable" lay-filter="audit" ></table>
+                </div>
+            </div>
+    </div>
+</div>
+
+<script type="text/html" id="barAudit">
+    <a class="layui-btn layui-btn-xs" lay-event="view">查看</a>
+
+    #[[
+    {{# if (d.status==1){ }}
+    <a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
+    {{# }else{ }}
+    &nbsp;&nbsp;已审
+    {{# } }}
+    ]]#
+
+</script>
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+<script>
+    //引用layui table
+    var auditTable;
+    layui.use(['table'],function () {
+        auditTable = layui.table;
+        auditTable.render({
+            elem:'#auditTable',
+            url:'#(ctx)/plan/audit/getList/1',
+            page:true,
+            id:'auditTable',
+            cols:[[
+                {type:'numbers',title:'序号',width:'5%'},
+                {field:'planName',title:'计划名称'},
+                {field:'deviceCnName',title:'设备名称'},
+                {field:'planType',title:'计划类型'},
+                {field:'userDept',title:'使用科室'},
+                {field:'budget',title:'预算金额',width:'10%'},
+                {field:'createTime',title:'申请日期',width:'10%'},
+                {field:'purchaseDate',title:'采购日期',width:'10%'},
+                {fixed:'right',align:'center',title:'操作',width:'10%',toolbar:'#barAudit'}
+            ]]
+        });
+        //监听工具条
+        auditTable.on('tool(audit)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'view'){
+                openIframe(data.id,'#(ctx)/plan/audit/view','查看','60%-75%');
+
+            }else if(layEvent == 'check'){
+                openIframe(data.id,'#(ctx)/plan/audit/edit','审核','60%-75%');
+            }
+        });
+    });
+
+    //实例化vue
+    var vm = new Vue({
+        el:'#hyapp',
+        data:{
+            q:{planName:null,pid:null,deviceCnName:null}
+        },
+        methods:{
+            query: function () {
+                vm.reload();
+            },
+            reload: function () {
+                auditTable.reload('auditTable',{
+                    where:vm.q,
+                    page:{curr:1}
+                })
+            },
+            clearWhere:function () {
+                vm.q.planName = null;
+                vm.q.pid = null;
+                vm.q.deviceCnName = null;
+            }
+
+        }
+    })
+</script>
+#end
+

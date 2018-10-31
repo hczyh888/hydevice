@@ -1,0 +1,115 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label" >任务类型：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAudit.taskType" placeholder="请输入任务类型" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">任务编号：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAuditDetail.taskNum"  placeholder="请输入任务编号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">任务名称：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAudit.taskName" placeholder="请输入任务名称" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">计划任务：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAudit.taskName" placeholder="请输入计划任务" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">采购方式：</label>
+            <div class="layui-input-inline">
+                <select name="purchaseAudit.taskName" lay-verify="">
+                    <option value="010">统一招标</option>
+                    <option value="021">集体采购</option>
+                </select>
+            </div>
+            <label class="layui-form-label">部门科室：</label>
+            <div class="layui-input-inline">
+                <select name="purchaseAudit.taskName" lay-verify="">
+                    <option value="010">急诊科</option>
+                    <option value="021">住院部</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">设备名称：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAudit.deviceName" placeholder="请输入设备名称" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">采购数量：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAuditDetail.num"  autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">单位：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAuditDetail.unit"  placeholder="请输入单位" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">预算金额：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAudit.sumBuget" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" >资金来源：</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="purchaseAuditDetail.source"  value="1" title="财政拨款"checked>
+                <input type="radio" name="purchaseAuditDetail.source" value="2" title="科室自留" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" >负责人：</label>
+            <div class="layui-input-inline">
+                <select name="purchaseAudit.userId" lay-verify="">
+                    <option value="010">王亮亮</option>
+                    <option value="021">admin</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">采购时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="purchaseAudit.time" id="time" placeholder="请输入采购时间" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">技术参数：</label>
+            <div class="layui-input-inline">
+                <input style="width: 500px;height: 80px;" type="text" name="purchaseAuditDetail.parameters" placeholder="请输入技术参数" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注：</label>
+            <div class="layui-input-inline">
+                <input style="width: 500px;height: 80px;" type="text" name="purchaseAuditDetail.remark" placeholder="请输入备注" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/purchase/purchaseAudit/doadd">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <a href="javascript:history.go(-1);location.reload()" class="layui-btn">返回</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end
+<script>
+    layui.use(['form','laydate'], function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#time'
+        });
+    });
+</script>

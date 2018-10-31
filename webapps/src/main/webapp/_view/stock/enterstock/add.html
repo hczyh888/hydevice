@@ -1,0 +1,360 @@
+#@iframeLayout()
+#define mainContent()
+<!--添加设备信息 -->
+<div id="selectDeviceLst" class="layui-field-box" style="display:none">
+    <form  id="enter" >
+            <div class="layui-form-item">
+                <label class="layui-form-label label-150 ">设备目录：</label>
+                    <div class="layui-input-inline">
+                        <!--<select name="wareType" id="wareType" class="layui-input"  lay-filter="deviceSnselect">
+                            <option value="">请选择类型</option>
+                            #for(deviceclass : deviceclass)
+                            <option value="#(deviceclass.id)">#(deviceclass.pid)</option>
+                            #end
+                        </select>-->
+                        #comboxgroup(type='devicelist',name='enterstock.classId', value='1' ,required='required')
+                        #end
+                    </div>
+                    <label class="layui-form-label label-150" >设备名称：</label>
+                    <div class="layui-input-inline">
+                        <select name="deviceselect" class="form-control"  id="deviceselect" lay-filter="deviceselect" >
+
+                        </select>
+                       <!-- <input type="text" name="classId" class="layui-input" lay-verify="required" placeholder="请选择设备名称" >-->
+                    </div>
+            </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-150">设备数量（件）：</label>
+            <div class="layui-input-inline">
+                <input type="number" name="enternum" id="ceshiNumber" class="form-control"  placeholder="请输入数量">
+            </div>
+            <label class="layui-form-label label-150" >单价（元）：</label>
+            <div class="layui-input-inline">
+                <input type="number" name="price" class="form-control" placeholder="请输入单价">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-150">入库类型：</label>
+            <div class="layui-input-inline">
+                #combox(type='dict',name='enterstock.enterType','1','',code='enterType')
+                #end
+            </div>
+            <label class="layui-form-label label-150 getName">货位：</label>
+            <div class="layui-input-inline" >
+                <input type="text" name="place" class="form-control" placeholder="请输入货位" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-150">保修开始时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="beginTime" id="test1" placeholder="请输入保修开始时间" class="form-control">
+            </div>
+            <label class="layui-form-label label-150">保修期(月)：</label>
+            <div class="layui-input-inline">
+                <input type="number" name="warrantyPeriod"  class="form-control" placeholder="请输入保修期">
+            </div>
+        </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label label-150">生产企业：</label>
+                <div class="layui-input-inline">
+                    #combox(type='company',name='company.companyId','1','',code='company')
+                </div>
+            </div>
+    </form>
+</div>
+<!--end添加设备信息-->
+<div class="layui-field-box" >
+    <!-- 入库单头部 -->
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">入库单号：</label>
+            <div class="layui-input-inline">
+                <input class="form-control" value="#(rkd)" name="enterstock.enterStockId"  readonly="readonly">
+            </div>
+            <label class="layui-form-label label-120">制单人：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="enterstock.userId"  value="#(getUser().name)" class="form-control" readonly="readonly">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">入库时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="enterstock.enterDate"  id="test2" placeholder="请选择入库时间" class="form-control">
+            </div>
+            <label class="layui-form-label label-120">入库类型：</label>
+            <div class="layui-input-inline">
+                #combox(type='dict',name='enterstock.entertype','1','',code='enterType')
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-120">入库库房：</label>
+            <div class="layui-input-inline">
+                #combox(type='dict',name='enterstock.warehouseId','1','',code='wareHouse')
+            </div>
+            <label class="layui-form-label label-120">经销商：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="enterstock.agency" placeholder="请输入经销商"  class="form-control" value="">
+            </div>
+        </div>
+        <div class="layui-form-item ">
+            <label class="layui-form-label label-120" >数量合计：</label>
+            <div class="layui-input-inline">
+                <input type="number" id="sumNum" name="enterstock.sumNum" placeholder="0.00" class="form-control" style="font-weight: bold" readonly>
+            </div>
+            <label class="layui-form-label label-120" >金额合计：</label>
+            <div class="layui-input-inline">
+                <input type="number" id="sumMoney" name="enterstock.sumMoney" placeholder="0.00" class="form-control" readonly style="font-weight: bold" >
+            </div>
+        </div>
+        <div class="layui-form-item ">
+            <label class="layui-form-label label-120">备注</label>
+            <div class="layui-input-inline">
+                <textarea style="height:50px;width: 510px" type="textarea" name="enterstock.remark"  placeholder="请输入备注"  class="form-control"></textarea>
+            </div>
+        </div>
+        <div style="position:absolute; right:0px; bottom:0px;">
+            <button class="layui-btn" lay-submit="" lay-filter="saveHead" data-url="#(ctx)/stock/enterStock/saveHead" >存为草稿</button>
+            <button class="layui-btn" lay-submit="" lay-filter="saveHead" data-url="#(ctx)/stock/enterStock/saveHead">提交审核</button>
+        </div>
+    </form>
+    <!--end入库单头部-->
+    <table class="layui-table"  lay-data="{id:'mytable',data:[{idd:1,username:''}]}" lay-skin="row" lay-filter="deviceEvent" >
+        <thead>
+        <tr>
+            <th lay-data="{field:'deviceId', width:100,align:'center'}">设备目录</th>
+            <th lay-data="{field:'classId', width:100,align:'center'}">设备名称</th>
+            <th lay-data="{field:'enternum', width:100,align:'center'}">设备数量</th>
+            <th lay-data="{field:'price', width:100,align:'center'}">单价</th>
+            <th lay-data="{field:'companyId', width:100,align:'center'}">生产企业</th>
+            <th lay-data="{field:'enterType', width:100,align:'center'}">入库类型</th>
+            <th lay-data="{field:'place', width:100,align:'center'}">货位</th>
+            <th lay-data="{field:'beginTime', width:120,align:'center'}">保修开始时间</th>
+            <th lay-data="{field:'warrantyPeriod', width:120,align:'center'}">保修期（月）</th>
+            <th lay-data="{fixed: 'right', width:120, align:'center',toolbar: '#barDemo'}">操作</th>
+        </tr>
+        </thead>
+    </table>
+
+
+
+</div>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add"><i class="fa fa-plus"></i></a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="fa fa-minus"></i></a>
+</script>
+<script src="/statics/js/commonList.js"></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#test1'
+        });
+        laydate.render({
+            elem:'#test2'
+        })
+    });
+</script>
+
+<script type="text/javascript">
+    layui.use(['table','form','laydate'],function (){
+
+        //二级联动选择框
+        var form = layui.form;
+        form.on('select(deviceSnselect)', function(data){
+            var pid=data.value;
+            $.ajax({
+                type: 'POST',
+                url: '#(ctx)/sys/deviceclass/getDeviceClass/'+pid,
+                data: {pid:pid},
+                dataType:  'json',
+                success: function(data){
+                    $("#deviceselect").html("");
+                    $.each(data, function(key, val) {
+                        var option1 = $("<option>").val(val.id).text(val.text);
+                        $("#deviceselect").append(option1);
+                        form.render('select');
+                    });
+                    //$("#wareselect").get(0).selectedIndex=0;
+                }
+            });
+        });
+
+        /*
+        * 对日期控件的渲染
+        * */
+        var laydate = layui.laydate;
+       var date=new Date();
+        laydate.render({
+            elem: '#test1'
+
+            ,value:$t.formatDate(new Date(), 'yyyy-MM-dd')
+
+        });
+        laydate.render({
+            elem:'#test2'
+            ,value:$t.formatDate(new Date(), 'yyyy-MM-dd')
+        });
+
+
+            var form = layui.form,table=layui.table;
+            //第一步，form的提交保存头
+            form.on('submit(saveHead)', function(data) {
+                var url=$(this).attr("data-url");
+                $.ajax({
+                    url: url,
+                    type: "post",
+                    contentType: "application/x-www-form-urlencoded",
+                    data: $(data.form).serialize(),    //JSON.stringify(data.field),
+                    async: false,
+                    dataType: "json",
+                    success: function (R) {
+                        if (R.code == 0) {
+
+                            saveDetail(R.enterId);
+                            $t.Refresh();
+                            //刷新页面
+                            parent.layer.msg('操作成功 !', {icon: 1});
+                        } else if(R.code==1){
+                            parent.layer.alert(R.msg, {icon: 5});
+
+                        } else{
+                            parent.layer.msg(R.msg, {icon: 5});
+                        }
+                    },
+                    error: function (err) {
+                        alert("系统繁忙",{icon:5});
+                    }
+                });
+
+            });
+            table.on('tool(deviceEvent)', function (obj) {
+                if (obj.event === 'add') {
+                /*
+                * 打开一个新的ifream
+                * */
+                layer.open({
+                    type: 1,
+                    offset: '10px',
+                    title: '添加设备',
+                    shadeClose: false,
+                    shade: [0.3, '#000'],
+                    maxmin: false, //开启最大化最小化按钮
+                    area: ['70%', '90%'],
+                    content: $('#selectDeviceLst'),
+                    btn: ['确定', '取消']
+                    , btn1: function (index, layero) {
+                        var classId = $(layero).find("[name='enterstock.classId']").val();
+                        var classIdArray = classId.split(",");
+                        var deviceId = classIdArray[0]; //设备ID
+                        var classId = classIdArray[1]; //设备分类ID
+                        var deviceSn = classIdArray[2]; //设备编码
+                        var enternum = $(layero).find("[name='enternum']").val();
+                        var num = new  Number(enternum);
+                        var newnum=num.toFixed(2);
+                        var price = $(layero).find("[name='price']").val();
+                        var newprice = new  Number(price);
+                        var lastprice=newprice.toFixed(2);
+                        var companyId = $(layero).find("[name='company.companyId']").val();
+                        var enterType = $(layero).find("[name='enterstock.enterType']").val();
+                        var place = $(layero).find("[name='place']").val();
+                        var beginTime = $(layero).find("[name='beginTime']").val();
+                        var warrantyPeriod = $(layero).find("[name='warrantyPeriod']").val();
+                        var record = {
+                            deviceId: deviceId,
+                            classId: classId,
+                            deviceSn:deviceSn,
+                            enternum: newnum,
+                            price: lastprice,
+                            companyId: companyId,
+                            enterType: enterType,
+                            place: place,
+                            beginTime: beginTime,
+                            warrantyPeriod: warrantyPeriod
+                        };
+                        datas = [];
+                        var numSum = 0, moneySum = 0;
+                        var tabledata = table.cache.mytable;
+                        /*
+                        * old data
+                        *
+                        * */
+                        if (tabledata) {
+                            for (var i = 0; i < tabledata.length; i++) {
+                                if (tabledata[i].idd != 1) {
+                                    numSum += Number(tabledata[i].enternum);
+                                    moneySum += Number(tabledata[i].price);
+                                    datas.push(tabledata[i]);
+                                }
+                            }
+                        }
+                        /*
+                        * 数量以及金额的汇总统计
+                        * */
+                        numSum += Number(record.enternum);
+                        var num = new  Number(numSum);
+                        var newnum=num.toFixed(2);
+                        moneySum += Number(record.price);
+                        var newmoneySum = new  Number(moneySum);
+                        var newmoney=newmoneySum.toFixed(2);
+                        $('#sumNum').val(newnum);
+                        $('#sumMoney').val(newmoney);
+                        /*
+                        * 将new  data放入
+                        * */
+                        datas.push(record);
+                        /*
+                        * 重新加载表格
+                        * */
+                        table.reload("mytable",
+                            {
+                                data: datas
+                            });
+                        /*
+                        * 做完整个动作关闭页面
+                        * */
+                        layer.close(index);
+                    }
+                });
+            }
+            /** 删除按钮渲染* */
+                if (obj.event === 'del') {
+                layer.confirm('确定要删除吗？？', function (index) {
+                    demodata = table.cache.mytable;
+                    if(demodata.length>1){
+                        obj.del();
+                    }else{
+                        obj.update({idd:1,username:"",deviceId:"",classId:"",enternum:"",price:"",companyId:"",enterType:"",place:"",beginTime:"",warrantyPeriod:""});
+                    }
+                    layer.close(index)
+
+                });
+
+            }
+            });
+        });
+    function saveDetail(enterId) {
+        var saveTable=layui.table;
+        var saveData = saveTable.cache.mytable;
+        $.ajax({
+            type: "post",
+            url: "#(ctx)/stock/enterStock/saveDetail/"+enterId,
+            contentType: "application/json",
+            data: JSON.stringify(saveData),
+            async: false,
+            dataType:"json",
+            success: function (result) {
+
+                if (result.code == 0) {
+                    // $(".search-btn").click();
+                    parent.layer.msg('操作成功 !', {icon: 1});
+                } else {
+
+                    parent.layer.msg(result.msg, {icon: 5});
+                }
+            },
+            error: function () {
+                parent.layer.msg("系统繁忙", {icon: 5});
+            }
+        });
+    }
+</script>

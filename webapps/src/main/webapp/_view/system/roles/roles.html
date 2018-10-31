@@ -1,0 +1,97 @@
+#@iframeLayout()
+#define mainContent()
+<div class="wrapper" id="hyapp" v-cloak>
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div class="layui-form-item">
+                <label class="layui-form-label label-120">角色名称:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="name" placeholder="请输入角色名称" v-model="q.name" @keyup.enter="query" autocomplete="off" class="form-control">
+                </div>
+                <div class="layui-input-normal">
+                    <button class="layui-btn layui-btn-sm search-btn" @click="query" >
+                        <i class="fa fa-search">&nbsp;</i>查询
+                    </button>
+                    <button class="layui-btn layui-btn-sm layui-btn-primary" @click="clearWhere">
+                        <i class="fa fa-refresh">&nbsp;</i>重置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span>角色列表</span>
+            <div class="layui-btn-group pull-right top5 ">
+                <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="Page.open('添加角色','#(ctx)/sys/roles/add','rolesAdd','70%-80%')">
+                    <i class="fa fa-plus">&nbsp;</i>增加
+                </button>
+            </div>
+        </div>
+        <div class="layui-form nowrap">
+            <table id="rolesTable" lay-filter="roles"></table>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="barRoles">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs" lay-event="assign" >授权</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+#end
+#define js()
+<script src="/statics/js/commonList.js"></script>
+<script>
+    var rolesTable;
+    layui.use(['table'],function () {
+        rolesTable = layui.table;
+        rolesTable.render({
+            elem:'#rolesTable',
+            url:'#(ctx)/sys/roles/getList',
+            id:'rolesTable',
+            page:true,
+            cols:[[
+                {type:'numbers',title:'序号',width:'5%'},
+                {field:'name',title:'角色名'},
+                {field:'rolesName',title:'上级角色名'},
+                {field:'tips',title:'备注'},
+                {fixed:'right',align:'center',title:'操作',width:180,toolbar:'#barRoles'}
+            ]]
+        });
+        //监听工具条
+        rolesTable.on('tool(roles)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'del'){
+                deleteOne(data.id,'#(ctx)/sys/roles/del','删除角色');
+            }else if(layEvent == 'edit'){
+                openIframe(data.id,'#(ctx)/sys/roles/edit','编辑-角色','60%-75%');
+            }else if(layEvent == 'assign'){
+                openIframe(data.id,'#(ctx)/sys/roles/rolesAssign','授权','60%-80%');
+            }
+        });
+    })
+    //vue绑定
+    var vm = new Vue({
+        el:'#hyapp',
+        data:{
+            q:{name:null}
+        },
+        methods:{
+            query:function () {
+                vm.reload();
+            },
+            reload:function () {
+                rolesTable.reload('rolesTable', {
+                    where: vm.q,
+                    page: {curr: 1}
+                })
+            },
+             clearWhere:function () {
+                 vm.q.name = null;
+            }
+        }
+    })
+</script>
+#end
+

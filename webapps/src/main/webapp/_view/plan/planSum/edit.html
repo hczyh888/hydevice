@@ -1,0 +1,75 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-field-box ">
+    <form class="layui-form layui-form-pane" action="">
+        <input type="hidden" name="planSum.id" value="#(planSum.id)">
+        <input type="hidden" name="planTask.id" value="#(planSum.id)">
+        <div class="layui-form-item">
+            <label class="layui-form-label">任务类型</label>
+            <div class="layui-input-inline">
+                <select name="planTask.taskType" lay-verify="">
+                    <option value="1">年度任务</option>
+                    <option value="2" selected>临时任务</option>
+                </select>
+            </div>
+            <label class="layui-form-label">任务名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.taskName"  class="layui-input" placeholder="请输入任务名称" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">计划名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.taskName" value="#(planSum.planName)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">设备名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.deviceId" value="#(planSum.deviceCnName)" class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">计划类型</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.taskType" value="#(planSum.planType)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">预算金额</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.planBuget" value="#(planSum.budget)" class="layui-input" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">使用科室</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.deviceId" value="#(planSum.deviceId)" class="layui-input" disabled>
+            </div>
+            <label class="layui-form-label">采购日期</label>
+            <div class="layui-input-inline">
+                <input type="text" name="planTask.taskTime" value="#(planSum.purchaseDate)" class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">技术参数</label>
+            <div class="layui-input-inline">
+                <textarea style="height:100px;width: 500px" type="textarea" name="planTask.require" placeholder="请输入技术参数"  class="layui-input"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-inline">
+                <textarea style="height:100px;width: 500px" type="textarea" name="planTask.tips" placeholder="请输入备注"  class="layui-input"></textarea>
+            </div>
+        </div>
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button id="btn1"class="layui-btn" lay-submit="" lay-filter="submit" data-url="#(ctx)/plan/planSum/update">
+                        <i class="fa fa-floppy-o">&nbsp;</i>保存
+                    </button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+#end
+<script type="text/javascript"></script>

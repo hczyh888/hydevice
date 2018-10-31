@@ -1,0 +1,148 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-tab layui-tab-card" lay-filter="repairManageTabs">
+    <ul class="layui-tab-title">
+        <li class="layui-this">全部</li>
+        <li>未完成</li>
+        <li>待接单</li>
+        <li>已接单</li>
+        <li>待确认</li>
+        <li>已完成</li>
+    </ul>
+    <div class="panel">
+        <div class="panel-body">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label label-120">维修单号:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="taskName" placeholder="请输入安装单号" class="layui-input">
+                    </div>
+                    <label class="layui-form-label label-120">设备名称:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="taskName" placeholder="请输入设备名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-normal">
+                        <button class="layui-btn layui-btn-sm layui-btn-green" lay-submit=""
+                                lay-filter="moreSearch">
+                            <i class="fa fa-chevron-down">&nbsp;</i>更多
+                        </button>
+                        <button class="layui-btn layui-btn-sm search-btn" table-id="applyTable" lay-submit="" lay-filter="search">
+                            <i class="fa fa-search">&nbsp;</i>查询
+                        </button>
+                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+                    </div>
+                </div>
+                <div class="layui-form-item more-search">
+                    <label class="layui-form-label label-120">生产企业:</label>
+                    <div class="layui-input-inline">
+                        <select name="planTask.taskName"  lay-search="">
+                            <option value="">请选择</option>
+                            <option value="1">年计划</option>
+                            <option value="2">临时计划</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label label-120">部门科室:</label>
+                    <div class="layui-input-inline">
+                        #combox(type='dept',name='dept.dept','1','',code='dept')
+                        </div>
+                </div>
+                <div class="layui-form-item more-search">
+                    <label class="layui-form-label label-120">报装时间:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="taskTime" id="taskTime" placeholder="请输入报装时间" class="layui-input">
+                    </div>
+                    <label class="layui-form-label label-120">安装时间:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="taskTime" id="taskTime1" placeholder="请输入安装时间" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item more-search">
+                    <label class="layui-form-label label-120">其它:</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="taskName" value="未开发票" title="未开发票">
+                        <input type="radio" name="taskName" value="部分已开发票" title="部分已开发票">
+                        <input type="radio" name="taskName" value="全部已开发票" title="全部已开发票">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="panel-heading">
+            <span>维修单</span>
+            <div class="layui-btn-group pull-right" style="margin-top: -5px" >
+                <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="Page.open('添加','#(ctx)/equipManage/repairManage/add','maintainManageAdd','50%-70%')">
+                    <i class="fa fa-plus">&nbsp;</i>增加
+                </button>
+                <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="Msg.success('操作成功')">
+                    <i class="fa fa-file-excel-o">&nbsp;</i>自动接单
+                </button>
+            </div>
+        </div>
+        <div class="panel-body" style="padding:0px">
+            <div class="layui-form nowrap">
+                <table id="repairManageTable" lay-filter="repairManage" ></table>
+            </div>
+        </div>
+        <script type="text/html" id="barRepairManage">
+            <a class="layui-btn layui-btn-xs" lay-event="detail">接单</a>
+            <a class="layui-btn layui-btn-xs" lay-event="edit">拒绝</a>
+            <a class="layui-btn layui-btn-xs" lay-event="detail">排查</a>
+            <a class="layui-btn layui-btn-xs" lay-event="edit">完成</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">故障记录</a>
+        </script>
+    </div>
+</div>
+#end
+#define js()
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#taskTime'
+        });
+        laydate.render({
+            elem: '#taskTime1'
+        });
+    });
+</script>
+<script src="/statics/js/commonList.js"></script>
+<script type="text/javascript">
+    layui.use('table',function(){
+        var repairManageTable = layui.table;
+        //渲染表格
+        repairManageTable.render({
+            elem:'#repairManageTable'
+            ,skin:'row'
+            ,cellMinWidth: 80
+            ,url:'#(ctx)/equipManage/repairManage/getList'
+            ,page:true
+            ,cols:[[
+                {type:'numbers',title:'序号',width:'5%'},
+                {field:'taskName',title:'维修单号',width:'20%'},
+                {field:'taskName',title:'设备名称',width:'10%'},
+                {field:'taskName',title:'生产企业',width:'10%'},
+                {field:'taskName',title:'状态',width:'10%'},
+                {field:'taskName',title:'部门科室',width:'10%'},
+                {field:'taskTime',title:'报装时间',width:'10%'},
+                {field:'taskTime',title:'安装日期',width:'10%'},
+                {fixed:'right',align:'center',title:'操作',width:'14%',toolbar:'#barRepairManage'}
+            ]]
+        });
+        //监听工具条
+        repairManageTable.on('tool(repairManage)',function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            if(layEvent === 'detail'){
+
+            }else if(layEvent === 'del'){
+                deleteOne(data.id,'#(ctx)/equipManage/repairManage/del','删除合作单位');
+
+            }else if(layEvent == 'edit'){
+                openIframe(data.id,'#(ctx)/equipManage/repairManage/edit','修改合作单位信息','50%-70%');
+            }
+        })
+    })
+</script>
+#end
+

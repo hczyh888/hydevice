@@ -1,0 +1,16 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-inline ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">任务情况</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="planTask.status" value="#(planTask.status)" required  lay-verify="required"  value="1" title="已下达">
+                <input type="radio" name="planTask.status" value="#(planTask.status)" required  lay-verify="required"  value="2" title="未下达"checked >
+            </div>
+        </div>
+
+    </form>
+
+</div>
+#end

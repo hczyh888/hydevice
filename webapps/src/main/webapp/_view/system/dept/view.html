@@ -1,0 +1,32 @@
+#@iframeLayout()
+#define mainContent()
+<div class="layui-inline ">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">部门简称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="simpleName" value="#(dept.simpleName)" class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">部门全称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="fullName" value="#(dept.fullName)" class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">上级部门</label>
+            <div class="layui-input-inline">
+                <input type="text" name="pid" value="#(dept.pid)" class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+        <label class="layui-form-label">状 态</label>
+        <div class="layui-input-inline">
+            <input type="radio" name="status" value="#(devicelist.status)" title="启用" #(devicelist.status==1?"checked":"disabled") >
+            <input type="radio" name="status" value="#(devicelist.status)" title="禁用" #(devicelist.status==2?"checked":"disabled") >
+        </div>
+        </div>
+    </form>
+</div>
+#end
